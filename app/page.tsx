@@ -48,7 +48,7 @@ export default function Home() {
       <Header variant="support" />
 
       <main className="max-w-7xl mx-auto px-4 py-6 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="">
           <div className="lg:col-span-2">
             <div className="relative h-[400px] rounded-lg overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10" />
@@ -80,40 +80,6 @@ export default function Home() {
                 <div className="w-2 h-2 rounded-full bg-white/50" />
                 <div className="w-2 h-2 rounded-full bg-white/50" />
               </div>
-            </div>
-          </div>
-
-          <div className="bg-[#1a5f1a] rounded-lg p-6 text-white">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-bold">HM+ in Parliament</h3>
-              <div className="flex gap-2">
-                <button className="text-[#7AB51D] hover:text-white">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                <button className="text-[#7AB51D] hover:text-white">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3 mb-4">
-              {carouselImages.map((img, index) => (
-                <div key={index} className="relative h-24 rounded-lg overflow-hidden bg-gray-700">
-                  <div className="absolute inset-0 flex items-center justify-center text-xs text-gray-400">
-                    Image {index + 1}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-white/10 p-3 rounded-lg">
-              <p className="text-sm font-medium">
-                MPs Doubt Impact of State Funds Model Ministerial Poverty
-              </p>
             </div>
           </div>
         </div>
