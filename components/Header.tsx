@@ -88,28 +88,28 @@ export default function Header({ variant = 'support' }: { variant?: 'support' | 
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-64">
                 <DropdownMenuItem asChild>
+                    <Link href="/trackers/mps" className="w-full cursor-pointer">Members of Parliament</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/trackers/bills" className="w-full cursor-pointer">Bills Tracker</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/trackers/loans" className="w-full cursor-pointer">Loans Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/trackers/debt" className="w-full cursor-pointer">Debt Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/trackers/bills" className="w-full cursor-pointer">Bills Tracker</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/trackers/parliament-performance" className="w-full cursor-pointer">Parliament Performance Tracker</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
                   <Link href="/trackers/budget" className="w-full cursor-pointer">Budget Tracker</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/trackers/mps" className="w-full cursor-pointer">Members of Parliament</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/trackers/hansards" className="w-full cursor-pointer">Hansards Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/trackers/order-paper" className="w-full cursor-pointer">Order Paper Tracker</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                    <Link href="/trackers/parliament-performance" className="w-full cursor-pointer">Parliament Performance Tracker</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -147,7 +147,7 @@ export default function Header({ variant = 'support' }: { variant?: 'support' | 
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="w-56">
                 <DropdownMenuItem asChild>
-                  <Link href="/resources/explainers" className="w-full cursor-pointer">Explainers (&quot;How a Bill becomes an Act&quot;)</Link>
+                  <Link href="/resources/explainers" className="w-full cursor-pointer">Explainers</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/resources/reports-briefs" className="w-full cursor-pointer">Reports &amp; Briefs</Link>
