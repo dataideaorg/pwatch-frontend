@@ -165,6 +165,17 @@ export interface MPPaginatedResponse {
   results: MP[];
 }
 
+export interface MPSummary {
+  total_mps: number;
+  total_parties: number;
+  total_districts: number;
+  party_distribution: {
+    party: string;
+    count: number;
+    percentage: number;
+  }[];
+}
+
 export async function fetchMPs(
   page: number = 1,
   pageSize: number = 20,
@@ -188,6 +199,14 @@ export async function fetchMPs(
   const response = await fetch(`${API_BASE_URL}/trackers/mps/?${params.toString()}`);
   if (!response.ok) {
     throw new Error('Failed to fetch MPs');
+  }
+  return response.json();
+}
+
+export async function fetchMPSummary(): Promise<MPSummary> {
+  const response = await fetch(`${API_BASE_URL}/trackers/mps/summary/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch MPs summary');
   }
   return response.json();
 }
