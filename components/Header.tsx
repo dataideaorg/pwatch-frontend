@@ -100,7 +100,7 @@ export default function Header({ variant = 'support' }: { variant?: 'support' | 
                   <Link href="/trackers/debt" className="w-full cursor-pointer">Debt Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href="/trackers/budget" className="w-full cursor-pointer">Budget Tracker</Link>
+                  <Link href="/trackers/budgets" className="w-full cursor-pointer">Budget Tracker</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
                   <Link href="/trackers/hansards" className="w-full cursor-pointer">Hansards Tracker</Link>

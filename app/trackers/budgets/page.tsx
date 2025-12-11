@@ -115,7 +115,7 @@ export default function BudgetsPage() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <Header variant="support" />
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
@@ -182,14 +182,7 @@ export default function BudgetsPage() {
                   budgets.map((budget) => (
                     <tr key={budget.id} className="hover:bg-gray-50 transition-colors">
                       <td className="px-6 py-4">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-shrink-0 w-10 h-10 bg-[#085e29] bg-opacity-10 rounded-full flex items-center justify-center">
-                            <FileText className="text-[#085e29]" size={20} />
-                          </div>
-                          <div>
-                            <div className="font-medium text-gray-900">{budget.name}</div>
-                          </div>
-                        </div>
+                        <div className="font-medium text-gray-900">{budget.name}</div>
                       </td>
                       <td className="px-6 py-4 text-gray-600">
                         {budget.financial_year}
@@ -274,6 +267,6 @@ export default function BudgetsPage() {
           </p>
         </div>
       </main>
-    </>
+    </div>
   )
 }

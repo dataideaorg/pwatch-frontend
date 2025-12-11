@@ -34,19 +34,6 @@ export default async function BillsTrackerPage() {
       <Header variant="support" />
 
       <main className="relative">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-br from-slate-700 via-slate-600 to-slate-700">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center mb-12">
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Bills Tracker
-              </h1>
-              <p className="text-slate-200 text-lg max-w-2xl mx-auto">
-                Track the progress of bills through Parliament from introduction to presidential assent
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* How a Bill Becomes an Act Section */}
         <div className="bg-white border-b">
