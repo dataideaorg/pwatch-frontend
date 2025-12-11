@@ -627,3 +627,45 @@ export async function fetchTeamMembers(): Promise<TeamMember[]> {
   // Handle both array response and paginated response
   return Array.isArray(data) ? data : data.results || [];
 }
+
+// Home API
+export interface HeroImage {
+  id: number;
+  title: string;
+  image: string;
+  order: number;
+  is_active: boolean;
+  alt_text: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Headline {
+  id: number;
+  text: string;
+  is_bold: boolean;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchHeroImages(): Promise<HeroImage[]> {
+  const response = await fetch(`${API_BASE_URL}/home/hero-images/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch hero images');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
+
+export async function fetchHeadlines(): Promise<Headline[]> {
+  const response = await fetch(`${API_BASE_URL}/home/headlines/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch headlines');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
