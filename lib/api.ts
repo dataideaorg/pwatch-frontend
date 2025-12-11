@@ -578,3 +578,52 @@ export async function submitContactForm(data: ContactSubmission): Promise<Contac
 
   return response.json();
 }
+
+// About API
+export interface Objective {
+  id: number;
+  title: string;
+  description: string;
+  order: number;
+  icon: string;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TeamMember {
+  id: number;
+  name: string;
+  title: string;
+  bio: string;
+  photo: string | null;
+  email: string;
+  phone: string;
+  linkedin_url: string;
+  twitter_url: string;
+  facebook_url: string;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchObjectives(): Promise<Objective[]> {
+  const response = await fetch(`${API_BASE_URL}/about/objectives/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch objectives');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
+
+export async function fetchTeamMembers(): Promise<TeamMember[]> {
+  const response = await fetch(`${API_BASE_URL}/about/team-members/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch team members');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
