@@ -174,6 +174,80 @@ export async function fetchHomeNewsSummary(): Promise<HomeNewsSummaryResponse> {
   return response.json();
 }
 
+// Blog API
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  author: string;
+  category: string;
+  category_display: string;
+  excerpt: string;
+  image: string | null;
+  published_date: string;
+}
+
+export interface BlogDetail extends BlogPost {
+  content: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface BlogPaginatedResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: BlogPost[];
+}
+
+export async function fetchBlogs(
+  page: number = 1,
+  pageSize: number = 12,
+  filters?: {
+    category?: string;
+    status?: string;
+    search?: string;
+    ordering?: string;
+  }
+): Promise<BlogPaginatedResponse> {
+  const params = new URLSearchParams({
+    page: page.toString(),
+    page_size: pageSize.toString(),
+  });
+
+  if (filters?.category) params.append('category', filters.category);
+  if (filters?.status) params.append('status', filters.status);
+  if (filters?.search) params.append('search', filters.search);
+  if (filters?.ordering) params.append('ordering', filters.ordering);
+
+  const response = await fetch(`${API_BASE_URL}/blog/?${params.toString()}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch blogs');
+  }
+  return response.json();
+}
+
+export async function fetchBlog(slug: string): Promise<BlogDetail> {
+  const response = await fetch(`${API_BASE_URL}/blog/${slug}/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch blog post');
+  }
+  return response.json();
+}
+
+export interface HomeBlogSummaryResponse {
+  results: BlogPost[];
+}
+
+export async function fetchHomeBlogSummary(): Promise<HomeBlogSummaryResponse> {
+  const response = await fetch(`${API_BASE_URL}/blog/home-summary/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch home blog summary');
+  }
+  return response.json();
+}
+
 // MPs API
 export interface MP {
   id: number;
