@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { ChevronLeft, ChevronRight, Folder } from 'lucide-react';
-import { fetchHeroImages, fetchHeadlines, fetchHomeNewsSummary, fetchHomeTrackersSummary, fetchHomeResourcesSummary, HeroImage, Headline, NewsArticle, HomeTrackersSummary, HomeResourcesSummary } from '@/lib/api';
+import { fetchHeroImages, fetchHeadlines, fetchHomeNewsSummary, fetchHomeBlogSummary, fetchHomeTrackersSummary, fetchHomeResourcesSummary, HeroImage, Headline, NewsArticle, BlogPost, HomeTrackersSummary, HomeResourcesSummary } from '@/lib/api';
 import Link from 'next/link';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
@@ -18,6 +18,7 @@ export default function Home() {
   const [heroImages, setHeroImages] = useState<HeroImage[]>([]);
   const [headlines, setHeadlines] = useState<Headline[]>([]);
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Trackers section state
@@ -79,6 +80,15 @@ export default function Home() {
     } catch (error) {
       console.error('Error loading news:', error);
       setNewsArticles([]);
+    }
+    
+    // Fetch latest 3 blog posts (optimized cached endpoint)
+    try {
+      const blogData = await fetchHomeBlogSummary();
+      setBlogPosts(blogData.results || []);
+    } catch (error) {
+      console.error('Error loading blogs:', error);
+      setBlogPosts([]);
     }
     
     setLoading(false);
@@ -274,6 +284,62 @@ export default function Home() {
                       {article.excerpt && (
                         <p className="mt-2 text-xs text-gray-600 line-clamp-2 flex-1">
                           {article.excerpt}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Latest Blogs Section */}
+        <div className="mt-8">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-2xl font-bold text-gray-800">Latest Blogs</h3>
+            <Link href="/blogs">
+              <Button variant="ghost" className="text-[#085e29] hover:text-[#064920] font-medium h-auto p-0">
+                View All
+              </Button>
+            </Link>
+          </div>
+
+          {blogPosts.length === 0 ? (
+            <div className="text-center py-8 text-gray-500">
+              <p>No blog posts available</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {blogPosts.map((post) => (
+                <Link key={post.id} href={`/blogs/${post.slug}`}>
+                  <div className="h-full flex flex-col rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="relative h-48 bg-gray-200 flex-shrink-0">
+                      {post.image ? (
+                        <img
+                          src={post.image.startsWith('http') ? post.image : `${API_BASE_URL.replace('/api', '')}${post.image}`}
+                          alt={post.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+                          No Image
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-4 bg-white flex-1 flex flex-col">
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="text-xs font-semibold text-[#085e29] uppercase">
+                          {post.category_display || post.category}
+                        </span>
+                        <span className="text-xs text-gray-500">By: {post.author}</span>
+                      </div>
+                      <h4 className="mt-2 text-sm font-semibold text-gray-800 line-clamp-2">
+                        {post.title}
+                      </h4>
+                      {post.excerpt && (
+                        <p className="mt-2 text-xs text-gray-600 line-clamp-2 flex-1">
+                          {post.excerpt}
                         </p>
                       )}
                     </div>
