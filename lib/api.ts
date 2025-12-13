@@ -890,7 +890,7 @@ export interface GlobalSearchResponse {
   };
 }
 
-export async function searchGlobal(query: string, limit: number = 5): Promise<GlobalSearchResponse> {
+export async function searchGlobal(query: string, limit: number = 5, signal?: AbortSignal): Promise<GlobalSearchResponse> {
   if (!query.trim()) {
     return {
       query: '',
@@ -905,9 +905,18 @@ export async function searchGlobal(query: string, limit: number = 5): Promise<Gl
     limit: limit.toString()
   });
 
-  const response = await fetch(`${API_BASE_URL}/search/?${params.toString()}`);
+  const response = await fetch(`${API_BASE_URL}/search/?${params.toString()}`, {
+    signal,
+  });
+  
   if (!response.ok) {
+    if (response.status === 400) {
+      throw new Error('Invalid search query');
+    } else if (response.status === 500) {
+      throw new Error('Server error. Please try again later.');
+    }
     throw new Error('Failed to perform search');
   }
+  
   return response.json();
 }

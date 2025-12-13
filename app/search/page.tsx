@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -53,6 +53,7 @@ export default function SearchPage() {
   const [searchResults, setSearchResults] = useState<GlobalSearchResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     if (query) {
@@ -60,17 +61,34 @@ export default function SearchPage() {
     } else {
       setLoading(false);
     }
+
+    // Cleanup: abort request on unmount or query change
+    return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+    };
   }, [query]);
 
   const loadSearchResults = async () => {
+    // Cancel previous request
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+
+    // Create new abort controller
+    abortControllerRef.current = new AbortController();
+
     try {
       setLoading(true);
       setError(null);
-      const results = await searchGlobal(query, 20); // 20 results per category for full page
+      const results = await searchGlobal(query, 20, abortControllerRef.current.signal); // 20 results per category for full page
       setSearchResults(results);
-    } catch (err) {
-      setError('Failed to load search results. Please try again.');
-      console.error('Search error:', err);
+    } catch (err: any) {
+      if (err.name !== 'AbortError' && err.name !== 'DOMException') {
+        setError(err.message || 'Failed to load search results. Please try again.');
+        console.error('Search error:', err);
+      }
     } finally {
       setLoading(false);
     }
