@@ -285,18 +285,6 @@ export default function DonatePage() {
 
           {/* Sidebar Information */}
           <div className="space-y-6">
-            {/* About Section */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">About CEPA</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                The Centre for Policy Analysis (CEPA) is committed to promoting transparency, accountability, 
-                and good governance in Uganda through comprehensive parliamentary monitoring and policy analysis.
-              </p>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                Your support enables us to continue providing critical insights and data that empower citizens 
-                and strengthen democratic institutions.
-              </p>
-            </div>
 
             {/* Contact Information */}
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
