@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Header from '@/components/Header';
@@ -47,7 +47,7 @@ const typeLinks: { [key: string]: string } = {
   polls: '/citizens-voice',
 };
 
-export default function SearchPage() {
+function SearchPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [searchResults, setSearchResults] = useState<GlobalSearchResponse | null>(null);
@@ -382,3 +382,19 @@ export default function SearchPage() {
   );
 }
 
+export default function SearchPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-50">
+        <Header />
+        <main className="max-w-7xl mx-auto px-4 py-12">
+          <div className="text-center">
+            <p className="text-gray-600">Loading search...</p>
+          </div>
+        </main>
+      </div>
+    }>
+      <SearchPageContent />
+    </Suspense>
+  );
+}
