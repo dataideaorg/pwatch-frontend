@@ -47,11 +47,11 @@ export default function Header() {
       abortControllerRef.current = new AbortController();
 
       try {
-        const results = await searchGlobal(searchQuery, 3); // 3 results per category for dropdown
+        const results = await searchGlobal(searchQuery, 3, abortControllerRef.current?.signal); // 3 results per category for dropdown
         setSearchResults(results);
         setShowDropdown(true);
       } catch (error: any) {
-        if (error.name !== 'AbortError') {
+        if (error.name !== 'AbortError' && error.name !== 'DOMException') {
           console.error('Search error:', error);
           setSearchResults(null);
         }
