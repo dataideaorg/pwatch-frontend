@@ -203,7 +203,7 @@ export default function Header() {
             {showDropdown && searchResults && searchResults.total_results > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute top-full left-0 mt-2 w-96 bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto z-50"
+                className="absolute top-full right-0 mt-2 w-96 max-w-[calc(100vw-2rem)] sm:max-w-none bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto z-50"
               >
                 <div className="p-2">
                   {Object.entries(searchResults.results).map(([type, results]) => {
