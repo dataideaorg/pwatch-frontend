@@ -25,6 +25,33 @@ export default async function BillDetailsPage({
 
   const currentProgress = getProgressStatus(bill.status);
 
+  // Convert YouTube URL to embed format
+  const getYouTubeEmbedUrl = (url: string | null): string | null => {
+    if (!url) return null;
+    
+    // Handle different YouTube URL formats
+    let videoId = '';
+    
+    // Standard watch URL: https://www.youtube.com/watch?v=VIDEO_ID
+    const watchMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\n?#]+)/);
+    if (watchMatch) {
+      videoId = watchMatch[1];
+    }
+    
+    // Already an embed URL
+    if (url.includes('youtube.com/embed/')) {
+      return url;
+    }
+    
+    if (videoId) {
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    
+    return url; // Return original if we can't parse it
+  };
+
+  const embedUrl = getYouTubeEmbedUrl(bill.video_url);
+
   return (
     <div className="min-h-screen bg-gray-50">
 
@@ -46,9 +73,9 @@ export default async function BillDetailsPage({
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm h-full flex flex-col">
               <div className="relative flex-1 bg-slate-900" style={{ minHeight: '400px' }}>
-              {bill.video_url ? (
+              {embedUrl ? (
                 <iframe
-                  src={bill.video_url}
+                  src={embedUrl}
                   className="absolute inset-0 w-full h-full"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -57,11 +84,12 @@ export default async function BillDetailsPage({
               ) : (
                 <>
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <button className="w-20 h-20 bg-white bg-opacity-30 rounded-full flex items-center justify-center hover:bg-opacity-40 transition-colors">
-                      <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                    <div className="text-center">
+                      <svg className="w-20 h-20 text-white opacity-50 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
                       </svg>
-                    </button>
+                      <p className="text-white opacity-75 text-sm">No video available</p>
+                    </div>
                   </div>
                   <div className="absolute inset-0 bg-gray-700 opacity-20"></div>
                 </>
