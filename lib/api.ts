@@ -711,6 +711,39 @@ export async function submitContactForm(data: ContactSubmission): Promise<Contac
   return response.json();
 }
 
+// Donation API
+export interface DonationSubmission {
+  name: string;
+  email: string;
+  country: string;
+  address?: string;
+  donation_method?: string;
+  message?: string;
+}
+
+export interface DonationSubmissionResponse {
+  success: boolean;
+  message: string;
+  id?: number;
+}
+
+export async function submitDonationForm(data: DonationSubmission): Promise<DonationSubmissionResponse> {
+  const response = await fetch(`${API_BASE_URL}/contact/donations/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || error.detail || 'Failed to submit donation form');
+  }
+
+  return response.json();
+}
+
 // About API
 export interface Objective {
   id: number;
