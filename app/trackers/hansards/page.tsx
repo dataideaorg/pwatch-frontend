@@ -281,14 +281,7 @@ export default function HansardsTrackerPage() {
                 {paginatedHansards.map((hansard) => (
                   <tr key={hansard.id} className="hover:bg-gray-50 transition-colors">
                     <td className="px-6 py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-10 h-10 bg-[#085e29] bg-opacity-10 rounded-lg flex items-center justify-center">
-                          <FileText className="w-5 h-5 text-[#085e29]" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">{hansard.name}</p>
-                        </div>
-                      </div>
+                      <p className="text-sm font-medium text-gray-900">{hansard.name}</p>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600">
                       {formatDate(hansard.date)}

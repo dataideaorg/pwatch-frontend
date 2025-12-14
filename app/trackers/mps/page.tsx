@@ -30,6 +30,7 @@ export default function MPsPage() {
   const [partyFilterTerm, setPartyFilterTerm] = useState('');
   const [districtFilterTerm, setDistrictFilterTerm] = useState('');
   const [searchFilterTerm, setSearchFilterTerm] = useState('');
+  const [nameSearchTerm, setNameSearchTerm] = useState('');
   const [searchDropdownOpen, setSearchDropdownOpen] = useState(false);
   const [partyDropdownOpen, setPartyDropdownOpen] = useState(false);
   const [districtDropdownOpen, setDistrictDropdownOpen] = useState(false);
@@ -65,6 +66,19 @@ export default function MPsPage() {
   const filteredMps = useMemo(() => {
     let filtered = [...allMps];
 
+    // Filter by name search term (first name, last name, or full name)
+    if (nameSearchTerm.trim()) {
+      const searchLower = nameSearchTerm.toLowerCase().trim();
+      filtered = filtered.filter((mp) => {
+        const fullName = mp.name.toLowerCase();
+        const firstName = mp.first_name?.toLowerCase() || '';
+        const lastName = mp.last_name?.toLowerCase() || '';
+        return fullName.includes(searchLower) || 
+               firstName.includes(searchLower) || 
+               lastName.includes(searchLower);
+      });
+    }
+
     // Filter by search terms (name or constituency)
     if (selectedSearchTerms.length > 0) {
       filtered = filtered.filter((mp) => {
@@ -95,7 +109,7 @@ export default function MPsPage() {
     }
 
     return filtered;
-  }, [allMps, selectedSearchTerms, selectedParties, selectedDistricts]);
+  }, [allMps, nameSearchTerm, selectedSearchTerms, selectedParties, selectedDistricts]);
 
   // Client-side sorting - sort the filtered mps array based on sortField and sortDirection
   const sortedMps = useMemo(() => {
@@ -233,11 +247,6 @@ export default function MPsPage() {
     }
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Filters are now applied client-side, so no API call needed
-    setPage(1);
-  };
 
   const toggleSelection = (value: string, list: string[], setter: (v: string[]) => void) => {
     if (!value) return;
@@ -327,7 +336,7 @@ export default function MPsPage() {
 
         {/* Search and Filter Section */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
-          <form onSubmit={handleSearch} className="space-y-4">
+          <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -476,20 +485,15 @@ export default function MPsPage() {
               </div>
             </div>
 
-            <div className="flex gap-2">
-              <button
-                type="submit"
-                className="bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
-              >
-                Search
-              </button>
-              {(selectedSearchTerms.length || selectedParties.length || selectedDistricts.length) ? (
+            {(selectedSearchTerms.length || selectedParties.length || selectedDistricts.length) ? (
+              <div className="flex justify-end">
                 <button
                   type="button"
                   onClick={() => {
                     setSelectedSearchTerms([]);
                     setSelectedParties([]);
                     setSelectedDistricts([]);
+                    setNameSearchTerm('');
                     setSearchFilterTerm('');
                     setPartyFilterTerm('');
                     setDistrictFilterTerm('');
@@ -499,9 +503,9 @@ export default function MPsPage() {
                 >
                   Clear Filters
                 </button>
-              ) : null}
-            </div>
-          </form>
+              </div>
+            ) : null}
+          </div>
         </div>
 
         {/* MPs Table and Party Distribution Chart */}
@@ -513,6 +517,58 @@ export default function MPsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
             {/* MPs Table */}
             <div className="lg:col-span-2">
+            {/* Name Search Field */}
+            <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+              <div className="relative">
+                <Input
+                  type="text"
+                  placeholder="Search by name..."
+                  value={nameSearchTerm}
+                  onChange={(e) => {
+                    setNameSearchTerm(e.target.value);
+                    setPage(1); // Reset to first page when searching
+                  }}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-[#085e29] text-gray-900 placeholder:text-gray-400"
+                />
+                <svg
+                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+                {nameSearchTerm && (
+                  <button
+                    onClick={() => {
+                      setNameSearchTerm('');
+                      setPage(1);
+                    }}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                    aria-label="Clear search"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
