@@ -94,7 +94,6 @@ export interface NewsArticle {
   author: string;
   category: string;
   category_display: string;
-  excerpt: string;
   image: string | null;
   published_date: string;
 }
@@ -150,7 +149,6 @@ export interface BlogPost {
   author: string;
   category: string;
   category_display: string;
-  excerpt: string;
   image: string | null;
   published_date: string;
 }
@@ -844,7 +842,6 @@ export interface SearchResult {
   author?: string;
   category?: string;
   category_display?: string;
-  excerpt?: string;
   image?: string | null;
   published_date?: string;
   [key: string]: any; // Allow additional fields

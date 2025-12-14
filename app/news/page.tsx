@@ -130,11 +130,6 @@ export default function NewsPage() {
                       <h3 className="font-bold text-gray-800 text-sm mb-3 line-clamp-3">
                         {article.title}
                       </h3>
-                      {article.excerpt && (
-                        <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                          {article.excerpt}
-                        </p>
-                      )}
                       <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
                         <svg
                           className="w-4 h-4"

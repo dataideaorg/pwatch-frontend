@@ -186,11 +186,8 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
                   <a href="tel:+256414237498" className="text-gray-600 hover:text-[#085e29] transition-colors text-sm block">
-                    +256 414 237 498
+                  +256 393 228 160
                 </a>
-                  <a href="tel:+256772626266" className="text-gray-600 hover:text-[#085e29] transition-colors text-sm block">
-                    +256 772 626 266
-                  </a>
                 </div>
               </div>
             </div>
@@ -203,8 +200,8 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
                   <p className="text-gray-600 text-sm">
-                    Plot 18, Kanjokya Street,<br />
-                    Kamwokya, Kampala<br />
+                   Plot 3, Ssunna Close,<br />
+                   Ntinda, Kampala,<br />
                     Uganda
                   </p>
                 </div>
