@@ -181,8 +181,8 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent z-10" />
+              {/* Gradient Overlay - Left to Right for text visibility */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/20 z-10" />
 
               {/* Navigation Arrows */}
               <button
@@ -281,11 +281,38 @@ export default function Home() {
                       <h4 className="mt-2 text-sm font-semibold text-gray-800 line-clamp-2">
                         {article.title}
                       </h4>
-                      {article.excerpt && (
-                        <p className="mt-2 text-xs text-gray-600 line-clamp-2 flex-1">
-                          {article.excerpt}
-                        </p>
-                      )}
+                      <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span>{new Date(article.published_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                      </div>
+                      <div className="mt-1 flex items-center gap-2 text-xs text-gray-600">
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
+                        </svg>
+                        <span>{article.author}</span>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -855,20 +882,46 @@ export default function Home() {
                       />
                     </div>
                     <div className="p-4 bg-white flex-1 flex flex-col">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-semibold text-[#085e29] uppercase">
-                          {post.category_display || post.category}
-                        </span>
-                        <span className="text-xs text-gray-500">By: {post.author}</span>
-                      </div>
-                      <h4 className="mt-2 text-sm font-semibold text-gray-800 line-clamp-2">
+                      <span className="text-xs font-semibold text-[#085e29] uppercase mb-2">
+                        {post.category_display || post.category}
+                      </span>
+                      <h4 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2">
                         {post.title}
                       </h4>
-                      {post.excerpt && (
-                        <p className="mt-2 text-xs text-gray-600 line-clamp-2 flex-1">
-                          {post.excerpt}
-                        </p>
-                      )}
+                      <div className="mt-auto space-y-1">
+                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            />
+                          </svg>
+                          <span>{new Date(post.published_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                        </div>
+                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                          <svg
+                            className="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            />
+                          </svg>
+                          <span>{post.author}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Link>

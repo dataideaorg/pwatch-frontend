@@ -276,9 +276,9 @@ function SearchPageContent() {
                               {result.author && (
                                 <p className="text-sm text-gray-600 mb-1">By {result.author}</p>
                               )}
-                              {result.excerpt && (
-                                <p className="text-sm text-gray-600 line-clamp-2">
-                                  {result.excerpt}
+                              {result.published_date && (
+                                <p className="text-xs text-gray-500">
+                                  {new Date(result.published_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
                                 </p>
                               )}
                             </div>

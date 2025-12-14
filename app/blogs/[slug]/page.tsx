@@ -163,14 +163,6 @@ export default function BlogDetailPage() {
               </div>
             </div>
 
-            {/* Excerpt */}
-            {blog.excerpt && (
-              <div className="mb-6">
-                <p className="text-lg text-gray-700 italic border-l-4 border-[#085e29] pl-4">
-                  {blog.excerpt}
-                </p>
-              </div>
-            )}
 
             {/* Content */}
             <div

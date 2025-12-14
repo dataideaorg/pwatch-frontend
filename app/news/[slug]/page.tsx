@@ -163,14 +163,6 @@ export default function NewsDetailPage() {
               </div>
             </div>
 
-            {/* Excerpt */}
-            {article.excerpt && (
-              <div className="mb-6">
-                <p className="text-lg text-gray-700 italic border-l-4 border-[#085e29] pl-4">
-                  {article.excerpt}
-                </p>
-              </div>
-            )}
 
             {/* Content */}
             <div

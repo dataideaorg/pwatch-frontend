@@ -185,40 +185,43 @@ export default function BlogsPage() {
                               {post.category_display || post.category}
                             </span>
                           </div>
-                          <p className="text-sm font-semibold text-gray-700 mb-2">
-                            By: {post.author}
-                          </p>
                           <h3 className="font-bold text-gray-800 text-base mb-3 line-clamp-2 flex-1">
                             {post.title}
                           </h3>
-                          {post.excerpt && (
-                            <p className="text-xs text-gray-600 mb-3 line-clamp-2">
-                              {post.excerpt}
-                            </p>
-                          )}
-                          <div className="flex items-center gap-2 text-xs text-gray-500 mt-auto">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                              />
-                            </svg>
-                            <span>{formatDate(post.published_date)}</span>
+                          <div className="mt-auto space-y-1">
+                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                />
+                              </svg>
+                              <span>{formatDate(post.published_date)}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-gray-600">
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                                />
+                              </svg>
+                              <span>{post.author}</span>
+                            </div>
                           </div>
-                          <a
-                            href={`/blogs/${post.slug}`}
-                            onClick={(e) => e.stopPropagation()}
-                            className="text-[#085e29] hover:text-[#064920] font-medium text-sm mt-2 inline-block"
-                          >
-                            Read More...
-                          </a>
                         </div>
                       </div>
                     </Link>

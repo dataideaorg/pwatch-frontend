@@ -123,10 +123,7 @@ export default function Footer() {
                   </svg>
                   <div>
                     <a href="tel:+256414237498" className="block hover:text-white transition-colors">
-                      +256 414 237 498
-                    </a>
-                    <a href="tel:+256772626266" className="block hover:text-white transition-colors">
-                      +256 772 626 266
+                    +256 393 228 160
                     </a>
                   </div>
                 </div>
@@ -138,8 +135,8 @@ export default function Footer() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                   <div className="text-gray-200">
-                    Plot 18, Kanjokya Street,<br />
-                    Kamwokya, Kampala<br />
+                    Plot 3, Ssunna Close,<br />
+                    Ntinda, Kampala,<br />
                     Uganda
                   </div>
                 </div>
