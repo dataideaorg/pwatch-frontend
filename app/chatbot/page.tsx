@@ -1,31 +1,68 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Send, Loader2, FileText, MessageSquare } from 'lucide-react';
 import { chatWithBot, ChatbotResponse } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+interface ChatMessage {
+  query: string;
+  response: ChatbotResponse;
+}
 
 export default function ChatbotPage() {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ChatbotResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [chatHistory, setChatHistory] = useState<Array<{ query: string; response: ChatbotResponse }>>([]);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+
+  // Initialize or retrieve session ID from localStorage
+  useEffect(() => {
+    const storedSessionId = localStorage.getItem('chatbot_session_id');
+    if (storedSessionId) {
+      setSessionId(storedSessionId);
+    }
+  }, []);
+
+  // Save session ID to localStorage when it changes
+  useEffect(() => {
+    if (sessionId) {
+      localStorage.setItem('chatbot_session_id', sessionId);
+    }
+  }, [sessionId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!query.trim()) return;
 
+    const currentQuery = query.trim();
     setLoading(true);
     setError(null);
     setResponse(null);
 
     try {
-      const result = await chatWithBot(query.trim());
-      setResponse(result);
-      setChatHistory(prev => [...prev, { query: query.trim(), response: result }]);
+      const result = await chatWithBot(currentQuery, sessionId || undefined);
+      
+      // Update session ID if returned from backend
+      if (result.session_id) {
+        setSessionId(result.session_id);
+      }
+      
+      // Add to chat history (keep only last 5 pairs)
+      const newMessage: ChatMessage = {
+        query: currentQuery,
+        response: result
+      };
+      setChatHistory(prev => {
+        const updated = [...prev, newMessage];
+        // Keep only last 5 message pairs (10 messages total)
+        return updated.slice(-5);
+      });
+      
       setQuery('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to get response from chatbot');
@@ -38,6 +75,8 @@ export default function ChatbotPage() {
     setChatHistory([]);
     setResponse(null);
     setError(null);
+    setSessionId(null);
+    localStorage.removeItem('chatbot_session_id');
   };
 
   return (
@@ -62,98 +101,105 @@ export default function ChatbotPage() {
         </div>
 
         {/* Chat Interface */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-white rounded-lg shadow-lg border border-gray-200 flex flex-col h-[600px]">
           {/* Chat History */}
-          {chatHistory.length > 0 && (
-            <div className="mb-6 space-y-4 max-h-96 overflow-y-auto pr-2">
-              {chatHistory.map((item, index) => (
-                <div key={index} className="space-y-3">
-                  {/* User Query */}
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#085e29] flex items-center justify-center">
-                      <span className="text-white text-sm font-semibold">You</span>
-                    </div>
-                    <div className="flex-1 bg-gray-100 rounded-lg p-3">
-                      <p className="text-gray-800">{item.query}</p>
-                    </div>
-                  </div>
+          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+            {chatHistory.length === 0 && !response && !error && (
+              <div className="text-center py-12 text-gray-600">
+                <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                <p className="text-lg">Start a conversation!</p>
+                <p className="text-sm text-gray-500 mt-2">Ask me anything about parliamentary proceedings, bills, or documents.</p>
+              </div>
+            )}
 
-                  {/* Bot Response */}
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                      <MessageSquare className="w-5 h-5 text-blue-600" />
-                    </div>
-                    <div className="flex-1 space-y-2">
-                      <div className="bg-blue-50 rounded-lg p-3">
-                        <p className="text-gray-800 whitespace-pre-wrap">{item.response.answer}</p>
-                      </div>
-                      {item.response.document_url && (
-                        <a
-                          href={item.response.document_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-sm text-[#085e29] hover:text-[#064920] transition-colors"
-                        >
-                          <FileText className="w-4 h-4" />
-                          <span>Source: {item.response.document_name}</span>
-                        </a>
-                      )}
-                    </div>
+            {/* Display last 5 message pairs */}
+            {chatHistory.map((item, index) => (
+              <div key={index} className="space-y-4">
+                {/* User Query */}
+                <div className="flex justify-end">
+                  <div className="bg-[#e0f2f1] text-gray-900 rounded-lg p-3 max-w-md">
+                    <p className="font-medium text-sm mb-1">You:</p>
+                    <p className="text-sm whitespace-pre-wrap">{item.query}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          )}
 
-          {/* Current Response */}
-          {response && chatHistory.length === 0 && (
-            <div className="mb-6 space-y-3">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                  <MessageSquare className="w-5 h-5 text-blue-600" />
-                </div>
-                <div className="flex-1 space-y-2">
-                  <div className="bg-blue-50 rounded-lg p-3">
-                    <p className="text-gray-800 whitespace-pre-wrap">{response.answer}</p>
+                {/* Bot Response */}
+                <div className="flex justify-start">
+                  <div className="bg-blue-50 text-gray-800 rounded-lg p-3 max-w-md space-y-2">
+                    <p className="font-medium text-sm mb-1">Bot:</p>
+                    <p className="text-sm whitespace-pre-wrap">{item.response.answer}</p>
+                    {item.response.document_url && (
+                      <a
+                        href={item.response.document_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs text-[#085e29] hover:text-[#064920] transition-colors"
+                      >
+                        <FileText className="w-3 h-3" />
+                        <span className="line-clamp-1">Source: {item.response.document_name}</span>
+                      </a>
+                    )}
                   </div>
+                </div>
+              </div>
+            ))}
+
+            {/* Current Response (if not yet added to history) */}
+            {response && chatHistory.length === 0 && (
+              <div className="flex justify-start">
+                <div className="bg-blue-50 text-gray-800 rounded-lg p-3 max-w-md space-y-2">
+                  <p className="font-medium text-sm mb-1">Bot:</p>
+                  <p className="text-sm whitespace-pre-wrap">{response.answer}</p>
                   {response.document_url && (
                     <a
                       href={response.document_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm text-[#085e29] hover:text-[#064920] transition-colors"
+                      className="inline-flex items-center gap-2 text-xs text-[#085e29] hover:text-[#064920] transition-colors"
                     >
-                      <FileText className="w-4 h-4" />
-                      <span>Source: {response.document_name}</span>
+                      <FileText className="w-3 h-3" />
+                      <span className="line-clamp-1">Source: {response.document_name}</span>
                     </a>
                   )}
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Error Message */}
-          {error && (
-            <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
-              <p className="text-red-800">{error}</p>
-            </div>
-          )}
+            {/* Loading Indicator */}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-700 rounded-lg p-3 max-w-md flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <p className="text-sm">Thinking...</p>
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {error && (
+              <div className="flex justify-start">
+                <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 max-w-md">
+                  <p className="text-sm">{error}</p>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Input Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex gap-2">
+          <div className="border-t border-gray-200 p-6">
+            <form onSubmit={handleSubmit} className="flex items-center gap-3">
               <Input
                 type="text"
-                placeholder="Ask a question about parliamentary proceedings..."
+                placeholder="Ask a question..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 text-gray-900 placeholder:text-gray-400"
+                className="flex-1 text-base text-gray-900 placeholder:text-gray-400"
                 disabled={loading}
               />
               <Button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="bg-[#085e29] hover:bg-[#064920] text-white px-6"
+                className="bg-[#085e29] hover:bg-[#064920] text-white px-4 py-2"
               >
                 {loading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -161,21 +207,17 @@ export default function ChatbotPage() {
                   <Send className="w-5 h-5" />
                 )}
               </Button>
-            </div>
-          </form>
-
-          {/* Clear History Button */}
-          {chatHistory.length > 0 && (
-            <div className="mt-4 flex justify-end">
               <Button
-                onClick={clearHistory}
+                type="button"
                 variant="outline"
-                className="text-sm text-gray-600 hover:text-gray-800"
+                onClick={clearHistory}
+                disabled={chatHistory.length === 0 && !response && !error}
+                className="bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 px-4 py-2"
               >
-                Clear History
+                Clear
               </Button>
-            </div>
-          )}
+            </form>
+          </div>
         </div>
 
         {/* Info Section */}

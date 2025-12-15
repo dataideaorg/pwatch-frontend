@@ -922,6 +922,7 @@ export async function searchGlobal(query: string, limit: number = 5, signal?: Ab
 // Chatbot API
 export interface ChatbotQuery {
   query: string;
+  session_id?: string;
 }
 
 export interface ChatbotResponse {
@@ -929,15 +930,19 @@ export interface ChatbotResponse {
   document_name: string;
   document_url: string;
   confidence?: number;
+  session_id?: string;
 }
 
-export async function chatWithBot(query: string): Promise<ChatbotResponse> {
+export async function chatWithBot(query: string, sessionId?: string): Promise<ChatbotResponse> {
   const response = await fetch(`${API_BASE_URL}/chatbot/chat/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({ 
+      query,
+      ...(sessionId && { session_id: sessionId })
+    }),
   });
 
   if (!response.ok) {
