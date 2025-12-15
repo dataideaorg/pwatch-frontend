@@ -1,10 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MessageSquare, X, Send, Loader2, FileText, ChevronUp, ChevronDown } from 'lucide-react';
 import { chatWithBot, ChatbotResponse } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+
+interface ChatMessage {
+  query: string;
+  response: ChatbotResponse;
+}
 
 export default function ChatbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,19 +18,53 @@ export default function ChatbotWidget() {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<ChatbotResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [sessionId, setSessionId] = useState<string | null>(null);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+
+  // Initialize or retrieve session ID from localStorage
+  useEffect(() => {
+    const storedSessionId = localStorage.getItem('chatbot_session_id');
+    if (storedSessionId) {
+      setSessionId(storedSessionId);
+    }
+  }, []);
+
+  // Save session ID to localStorage when it changes
+  useEffect(() => {
+    if (sessionId) {
+      localStorage.setItem('chatbot_session_id', sessionId);
+    }
+  }, [sessionId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!query.trim()) return;
 
+    const currentQuery = query.trim();
     setLoading(true);
     setError(null);
     setResponse(null);
 
     try {
-      const result = await chatWithBot(query.trim());
-      setResponse(result);
+      const result = await chatWithBot(currentQuery, sessionId || undefined);
+      
+      // Update session ID if returned from backend
+      if (result.session_id) {
+        setSessionId(result.session_id);
+      }
+      
+      // Add to chat history (keep only last 5 pairs)
+      const newMessage: ChatMessage = {
+        query: currentQuery,
+        response: result
+      };
+      setChatHistory(prev => {
+        const updated = [...prev, newMessage];
+        // Keep only last 5 message pairs (10 messages total)
+        return updated.slice(-5);
+      });
+      
       setQuery('');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to get response from chatbot');
@@ -49,6 +88,15 @@ export default function ChatbotWidget() {
     setQuery('');
     setResponse(null);
     setError(null);
+    // Note: We keep chatHistory and sessionId to maintain conversation continuity
+  };
+
+  const clearHistory = () => {
+    setChatHistory([]);
+    setResponse(null);
+    setError(null);
+    setSessionId(null);
+    localStorage.removeItem('chatbot_session_id');
   };
 
   if (!isOpen) {
@@ -103,7 +151,7 @@ export default function ChatbotWidget() {
           {/* Content Area */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {/* Welcome Message */}
-            {!response && !error && (
+            {chatHistory.length === 0 && !response && !error && (
               <div className="text-center py-8">
                 <MessageSquare className="w-12 h-12 text-gray-400 mx-auto mb-3" />
                 <div className="mb-2">
@@ -120,8 +168,44 @@ export default function ChatbotWidget() {
               </div>
             )}
 
-            {/* Response */}
-            {response && (
+            {/* Chat History - Last 5 message pairs */}
+            {chatHistory.length > 0 && (
+              <div className="space-y-3">
+                {chatHistory.map((item, index) => (
+                  <div key={index} className="space-y-2">
+                    {/* User Query */}
+                    <div className="flex justify-end">
+                      <div className="bg-[#e0f2f1] text-gray-900 rounded-lg p-2 max-w-[85%]">
+                        <p className="text-xs font-medium mb-1">You:</p>
+                        <p className="text-xs whitespace-pre-wrap">{item.query}</p>
+                      </div>
+                    </div>
+
+                    {/* Bot Response */}
+                    <div className="flex justify-start">
+                      <div className="bg-blue-50 text-gray-800 rounded-lg p-2 max-w-[85%] space-y-1">
+                        <p className="text-xs font-medium mb-1">Bot:</p>
+                        <p className="text-xs whitespace-pre-wrap">{item.response.answer}</p>
+                        {item.response.document_url && (
+                          <a
+                            href={item.response.document_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-xs text-[#085e29] hover:text-[#064920] transition-colors mt-1"
+                          >
+                            <FileText className="w-3 h-3" />
+                            <span className="line-clamp-1">Source: {item.response.document_name}</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Current Response (if not yet in history) */}
+            {response && chatHistory.length === 0 && (
               <div className="space-y-2">
                 <div className="bg-blue-50 rounded-lg p-3">
                   <p className="text-sm text-gray-800 whitespace-pre-wrap">{response.answer}</p>
@@ -137,6 +221,16 @@ export default function ChatbotWidget() {
                     <span className="line-clamp-1">Source: {response.document_name}</span>
                   </a>
                 )}
+              </div>
+            )}
+
+            {/* Loading Indicator */}
+            {loading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-700 rounded-lg p-2 max-w-[85%] flex items-center gap-2">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  <p className="text-xs">Thinking...</p>
+                </div>
               </div>
             )}
 
@@ -172,6 +266,14 @@ export default function ChatbotWidget() {
                 )}
               </Button>
             </form>
+            {chatHistory.length > 0 && (
+              <button
+                onClick={clearHistory}
+                className="mt-2 text-xs text-gray-500 hover:text-gray-700 transition-colors"
+              >
+                Clear History
+              </button>
+            )}
           </div>
         </>
       )}
