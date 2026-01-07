@@ -702,7 +702,7 @@ export default function Home() {
                             <div className="flex-1 min-w-0">
                               {explainer.file ? (
                                 <a
-                                  href={`${API_BASE_URL.replace('/api', '')}${explainer.file}`}
+                                  href={explainer.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
@@ -742,7 +742,7 @@ export default function Home() {
                             <div className="flex-1 min-w-0">
                               {report.file ? (
                                 <a
-                                  href={`${API_BASE_URL.replace('/api', '')}${report.file}`}
+                                  href={report.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
@@ -782,7 +782,7 @@ export default function Home() {
                             <div className="flex-1 min-w-0">
                               {publication.file ? (
                                 <a
-                                  href={`${API_BASE_URL.replace('/api', '')}${publication.file}`}
+                                  href={publication.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
@@ -822,7 +822,7 @@ export default function Home() {
                             <div className="flex-1 min-w-0">
                               {statement.file ? (
                                 <a
-                                  href={`${API_BASE_URL.replace('/api', '')}${statement.file}`}
+                                  href={statement.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
