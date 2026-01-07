@@ -201,7 +201,7 @@ export default function ExplainersPage() {
                       <td className="px-6 py-4">
                         {explainer.file ? (
                           <a
-                            href={`${API_BASE_URL.replace('/api', '')}${explainer.file}`}
+                            href={explainer.file}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-2 bg-[#085e29] text-white px-4 py-2 rounded-md hover:bg-[#064920] transition-colors text-sm"
