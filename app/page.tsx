@@ -274,7 +274,7 @@ export default function Home() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="p-4 bg-white flex-1 flex flex-col">
+                    <div className="p-4 bg-[#f3eed4] flex-1 flex flex-col">
                       <span className="text-xs font-semibold text-[#2d5016] uppercase">
                         {article.category_display || article.category}
                       </span>
@@ -324,14 +324,14 @@ export default function Home() {
         {/* Trackers Section */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">Trackers</h3>
-          <div className="bg-gray-100 rounded-lg overflow-hidden">
+          <div className="bg-[#ddd0b8] rounded-lg overflow-hidden">
             {/* Tabs */}
-          <div className="bg-gray-200 px-4 py-2 flex flex-wrap gap-2 border-b border-gray-300">
+          <div className="bg-[#d2c4b0] px-4 py-2 flex flex-wrap gap-2 border-b border-gray-300">
             <button
               onClick={() => setActiveTab('mps')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'mps'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -341,7 +341,7 @@ export default function Home() {
               onClick={() => setActiveTab('bills')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'bills'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -351,7 +351,7 @@ export default function Home() {
               onClick={() => setActiveTab('loans')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'loans'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -361,7 +361,7 @@ export default function Home() {
               onClick={() => setActiveTab('budgets')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'budgets'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -371,7 +371,7 @@ export default function Home() {
               onClick={() => setActiveTab('hansards')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'hansards'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -381,7 +381,7 @@ export default function Home() {
               onClick={() => setActiveTab('order-paper')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'order-paper'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -390,7 +390,7 @@ export default function Home() {
           </div>
 
           {/* Content Area */}
-          <div className="bg-white p-4">
+          <div className="bg-[#f3eed4] p-4">
             {trackersLoading ? (
               <div className="text-center py-8">
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>
@@ -633,14 +633,14 @@ export default function Home() {
         {/* Resources Section */}
         <div className="mt-12">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">Resources</h3>
-          <div className="bg-gray-100 rounded-lg overflow-hidden">
+          <div className="bg-[#ddd0b8] rounded-lg overflow-hidden">
             {/* Tabs */}
-          <div className="bg-gray-200 px-4 py-2 flex flex-wrap gap-2 border-b border-gray-300">
+          <div className="bg-[#d2c4b0] px-4 py-2 flex flex-wrap gap-2 border-b border-gray-300">
             <button
               onClick={() => setActiveResourceTab('explainers')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'explainers'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -650,7 +650,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('reports')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'reports'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -660,7 +660,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('partner-publications')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'partner-publications'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -670,7 +670,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('statements')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'statements'
-                  ? 'bg-white text-gray-900'
+                  ? 'bg-[#f3eed4] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -679,7 +679,7 @@ export default function Home() {
           </div>
 
           {/* Content Area */}
-          <div className="bg-white p-4">
+          <div className="bg-[#f3eed4] p-4">
             {resourcesLoading ? (
               <div className="text-center py-8">
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>
@@ -881,7 +881,7 @@ export default function Home() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="p-4 bg-white flex-1 flex flex-col">
+                    <div className="p-4 bg-[#f3eed4] flex-1 flex flex-col">
                       <span className="text-xs font-semibold text-[#2d5016] uppercase mb-2">
                         {post.category_display || post.category}
                       </span>

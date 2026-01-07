@@ -220,7 +220,7 @@ function SearchPageContent() {
             const count = searchResults.counts[type as keyof typeof searchResults.counts] || 0;
 
             return (
-              <div key={type} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+              <div key={type} className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold text-gray-800">
                     {typeLabels[type] || type}

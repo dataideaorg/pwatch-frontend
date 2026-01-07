@@ -208,7 +208,7 @@ export default function BillsTrackerPage() {
 
           {/* Statistics Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">1st Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -216,7 +216,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['1st_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">2nd Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -224,7 +224,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['2nd_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">3rd Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -232,7 +232,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['3rd_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Waiting Assent</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -240,7 +240,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.passed ?? 0}</p>
               )}
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Assented</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -248,7 +248,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.assented ?? 0}</p>
               )}
             </div>
-            <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Withdrawn</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -299,7 +299,7 @@ export default function BillsTrackerPage() {
               </Button>
             </div>
           ) : sortedBills.length > 0 ? (
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader className="bg-[#f3eed4]">
@@ -433,7 +433,7 @@ export default function BillsTrackerPage() {
               </div>
             </div>
           ) : (
-            <div className="text-center py-16 bg-white rounded-lg border border-slate-200">
+            <div className="text-center py-16 bg-[#f3eed4] rounded-lg border border-slate-200">
               <p className="text-slate-600">
                 {searchQuery 
                   ? `No bills found matching "${searchQuery}". Try a different search term.`

@@ -63,7 +63,7 @@ export default function TrackersPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg p-8 shadow-lg">
+          <div className="bg-[#f3eed4] rounded-lg p-8 shadow-lg">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
                 <div className="flex flex-col items-center">

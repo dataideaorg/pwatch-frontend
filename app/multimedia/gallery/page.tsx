@@ -223,7 +223,7 @@ export default function GalleryPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -282,7 +282,7 @@ export default function GalleryPage() {
 
         {/* Gallery Grid */}
         {sortedImages.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No images found</p>
             {(searchQuery || categoryFilter !== 'all' || featuredFilter !== null) && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -293,7 +293,7 @@ export default function GalleryPage() {
             {sortedImages.map((image) => (
               <div
                 key={image.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
+                className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
                 onClick={() => setSelectedImage(image)}
               >
                 {/* Image */}
@@ -348,7 +348,7 @@ export default function GalleryPage() {
             onClick={() => setSelectedImage(null)}
           >
             <div
-              className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto"
+              className="bg-[#f3eed4] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -429,7 +429,7 @@ export default function GalleryPage() {
         )}
 
         {/* Footer Info */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Our Gallery</h3>
           <p className="text-sm text-gray-600">
             Our gallery showcases photographs from parliamentary events, activities, and important moments.

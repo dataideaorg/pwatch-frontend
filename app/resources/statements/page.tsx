@@ -124,7 +124,7 @@ export default function StatementsPage() {
           <p className="text-gray-600 mt-2">Official statements and position papers from CEPA</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -266,7 +266,7 @@ export default function StatementsPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">About Statements</h3>
           <p className="text-gray-600">
             Official statements, position papers, and policy positions from CEPA on key governance and parliamentary issues.

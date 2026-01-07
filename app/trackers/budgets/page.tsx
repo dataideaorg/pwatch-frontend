@@ -208,7 +208,7 @@ export default function BudgetsPage() {
           <p className="text-gray-600 mt-2">National budget documents and financial plans</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -389,7 +389,7 @@ export default function BudgetsPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">About Budget Documents</h2>
           <p className="text-gray-600">
             Access official national budget documents and supplementary budgets. These documents provide detailed

@@ -168,7 +168,7 @@ export default function BlogsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   {blogPosts.map((post) => (
                     <Link key={post.id} href={`/blogs/${post.slug}`}>
-                      <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full flex flex-col">
+                      <div className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full flex flex-col">
                         <div className="relative h-64 bg-gray-200 flex-shrink-0">
                           <img
                             src={post.image 

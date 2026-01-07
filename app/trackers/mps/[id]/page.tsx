@@ -98,7 +98,7 @@ export default function MPDetailPage() {
         </div>
 
         {/* MP Profile Card */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-[#f3eed4] rounded-lg shadow-md overflow-hidden">
           {/* Header Section with Photo */}
           <div className="bg-gradient-to-r from-[#2d5016] to-[#1b3d26] p-8 text-white">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">

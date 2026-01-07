@@ -149,7 +149,7 @@ export default function ChatbotWidget() {
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
         {/* Proactive Message Bubble */}
         {showProactiveMessage && (
-          <div className="bg-white rounded-lg shadow-xl border border-gray-200 p-4 max-w-xs relative animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <div className="bg-[#f3eed4] rounded-lg shadow-xl border border-gray-200 p-4 max-w-xs relative animate-in fade-in slide-in-from-bottom-2 duration-300">
             <div className="flex items-start gap-3">
               <div className="flex-1">
                 <p className="text-sm font-medium text-gray-900 mb-1">
@@ -202,7 +202,7 @@ export default function ChatbotWidget() {
   }
 
   return (
-    <div className={`fixed bottom-6 right-6 z-50 bg-white rounded-lg shadow-2xl border border-gray-200 transition-all duration-300 ${
+    <div className={`fixed bottom-6 right-6 z-50 bg-[#f3eed4] rounded-lg shadow-2xl border border-gray-200 transition-all duration-300 ${
       isMinimized ? 'w-80 h-14' : 'w-96 h-[500px]'
     } flex flex-col`}>
       {/* Header */}

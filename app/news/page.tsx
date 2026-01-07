@@ -114,7 +114,7 @@ export default function NewsPage() {
                   <Link
                     key={article.id}
                     href={`/news/${article.slug}`}
-                    className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                    className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
                   >
                     <div className="relative h-48 bg-gradient-to-br from-orange-400 to-pink-500">
                       <img

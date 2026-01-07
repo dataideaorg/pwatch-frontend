@@ -109,7 +109,7 @@ export default function BlogDetailPage() {
         </div>
 
         {/* Blog Post */}
-        <article className="bg-white rounded-lg shadow-md overflow-hidden">
+        <article className="bg-[#f3eed4] rounded-lg shadow-md overflow-hidden">
           {/* Header Image */}
           <div className="relative h-96 bg-gray-200">
             <img

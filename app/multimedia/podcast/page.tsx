@@ -224,7 +224,7 @@ export default function PodcastPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -270,7 +270,7 @@ export default function PodcastPage() {
 
         {/* Podcasts Grid */}
         {sortedPodcasts.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No podcasts found</p>
             {(searchQuery || categoryFilter !== 'all') && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -285,7 +285,7 @@ export default function PodcastPage() {
               return (
                 <div
                   key={podcast.id}
-                  className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                  className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {/* Thumbnail */}
                   <div className="relative h-48 w-full bg-gray-200">
@@ -405,7 +405,7 @@ export default function PodcastPage() {
         )}
 
         {/* Footer Info */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Our Podcasts</h3>
           <p className="text-sm text-gray-600">
             Our podcasts feature in-depth discussions on parliamentary matters, governance, and civic engagement.
