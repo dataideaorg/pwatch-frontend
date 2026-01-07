@@ -56,7 +56,7 @@ export default async function BillDetailsPage({
     <div className="min-h-screen bg-[#f3eed4]">
 
       {/* Page Header */}
-      <div className="bg-white border-b">
+      <div className="bg-[#f3eed4] border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center gap-3 text-sm text-slate-600 mb-4">
             <Link href="/trackers/bills" className="hover:text-[#2d5016]">Bills Tracker</Link>
@@ -234,7 +234,7 @@ export default async function BillDetailsPage({
               <div key={reading.id} className="bg-[#f3eed4] rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="bg-[#2d5016] px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2d5016] font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-[#f3eed4] flex items-center justify-center text-[#2d5016] font-bold text-sm">
                       {index + 1}
                       {index === 0 && <sup className="text-xs">st</sup>}
                       {index === 1 && <sup className="text-xs">nd</sup>}

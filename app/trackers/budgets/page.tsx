@@ -167,7 +167,7 @@ export default function BudgetsPage() {
         <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
-            <p className="text-gray-600">Loading budgets...</p>
+            <p className="text-[#8b7d6b]">Loading budgets...</p>
           </div>
         </div>
       </>
@@ -205,20 +205,20 @@ export default function BudgetsPage() {
             Back to Trackers
           </Link>
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Budgets</h1>
-          <p className="text-gray-600 mt-2">National budget documents and financial plans</p>
+          <p className="text-[#8b7d6b] mt-2">National budget documents and financial plans</p>
         </div>
 
-        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
-          <div className="p-4 border-b border-gray-200">
+        <div className="bg-[#f3eed4] rounded-lg border border-[#d2c4b0] shadow-sm">
+          <div className="p-4 border-b border-[#d2c4b0]">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" size={20} />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b5a690] z-10" size={20} />
                 <Input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={`Search through ${totalCount} budget records...`}
-                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400"
+                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-[#b5a690]"
                   style={{ color: '#111827' }}
                 />
               </div>
@@ -226,7 +226,7 @@ export default function BudgetsPage() {
                 <Button
                   variant="outline"
                   onClick={() => setSearchQuery('')}
-                  className="bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300"
+                  className="bg-[#d2c4b0] text-[#7a6b5a] hover:bg-[#c4b5a0] border-[#c4b5a0]"
                 >
                   Clear
                 </Button>
@@ -236,17 +236,17 @@ export default function BudgetsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-100">
+              <thead className="bg-[#ddd0b8]">
                 <tr>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-gray-200 transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-[#7a6b5a] uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
                     onClick={() => handleSort('name')}
                     title="Click to sort"
                   >
                     <div className="flex items-center gap-2">
                       <FileText size={16} />
                       Document Name
-                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                      <span className={`text-[#b5a690] group-hover:text-[#2d5016] transition-colors text-xs ${
                         sortField === 'name' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'name' 
@@ -257,13 +257,13 @@ export default function BudgetsPage() {
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-gray-200 transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-[#7a6b5a] uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
                     onClick={() => handleSort('financial_year')}
                     title="Click to sort"
                   >
                     <div className="flex items-center gap-2">
                     Financial Year
-                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                      <span className={`text-[#b5a690] group-hover:text-[#2d5016] transition-colors text-xs ${
                         sortField === 'financial_year' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'financial_year' 
@@ -274,13 +274,13 @@ export default function BudgetsPage() {
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-gray-200 transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-[#7a6b5a] uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
                     onClick={() => handleSort('budget_total_amount')}
                     title="Click to sort"
                   >
                     <div className="flex items-center gap-2">
                     Total Amount
-                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                      <span className={`text-[#b5a690] group-hover:text-[#2d5016] transition-colors text-xs ${
                         sortField === 'budget_total_amount' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'budget_total_amount' 
@@ -290,7 +290,7 @@ export default function BudgetsPage() {
                       </span>
                     </div>
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-semibold text-[#7a6b5a] uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -299,8 +299,8 @@ export default function BudgetsPage() {
                 {paginatedBudgets.length === 0 ? (
                   <tr>
                     <td colSpan={4} className="px-6 py-12 text-center">
-                      <div className="flex flex-col items-center gap-3 text-gray-500">
-                        <FileText size={48} className="text-gray-300" />
+                      <div className="flex flex-col items-center gap-3 text-[#a69780]">
+                        <FileText size={48} className="text-[#c4b5a0]" />
                         <p className="text-lg font-medium">No budgets found</p>
                         {searchQuery && (
                           <p className="text-sm">Try adjusting your search query</p>
@@ -314,10 +314,10 @@ export default function BudgetsPage() {
                       <td className="px-6 py-4">
                         <div className="font-medium text-gray-900">{budget.name}</div>
                       </td>
-                      <td className="px-6 py-4 text-gray-600">
+                      <td className="px-6 py-4 text-[#8b7d6b]">
                         {budget.financial_year}
                       </td>
-                      <td className="px-6 py-4 text-gray-600">
+                      <td className="px-6 py-4 text-[#8b7d6b]">
                         <span className="font-semibold text-[#2d5016]">
                           {formatCurrency(budget.budget_total_amount)}
                         </span>
@@ -341,15 +341,15 @@ export default function BudgetsPage() {
           </div>
 
           {sortedBudgets.length > 0 && (
-            <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-              <div className="text-sm text-gray-600">
+            <div className="px-6 py-4 border-t border-[#d2c4b0] flex items-center justify-between">
+              <div className="text-sm text-[#8b7d6b]">
                 Showing {((page - 1) * pageSize) + 1} to {Math.min(page * pageSize, totalCount)} of {totalCount} budgets
               </div>
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setPage(1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="First page"
                 >
                   <ChevronsLeft size={20} />
@@ -357,18 +357,18 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Previous page"
                 >
                   <ChevronLeft size={20} />
                 </button>
-                <span className="px-4 py-2 text-sm font-medium text-gray-700">
+                <span className="px-4 py-2 text-sm font-medium text-[#7a6b5a]">
                   Page {page} of {totalPages}
                 </span>
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={page === totalPages}
-                  className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Next page"
                 >
                   <ChevronRight size={20} />
@@ -376,22 +376,22 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(totalPages)}
                   disabled={page === totalPages}
-                  className="p-2 rounded-md hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Last page"
                 >
                   <ChevronsRight size={20} />
                 </button>
               </div>
-              <div className="text-sm text-gray-600">
+              <div className="text-sm text-[#8b7d6b]">
                 Per Page: {pageSize}
               </div>
             </div>
           )}
         </div>
 
-        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-[#d2c4b0] shadow-sm p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">About Budget Documents</h2>
-          <p className="text-gray-600">
+          <p className="text-[#8b7d6b]">
             Access official national budget documents and supplementary budgets. These documents provide detailed
             information on government revenue, expenditure, and financial planning for each fiscal year.
           </p>
