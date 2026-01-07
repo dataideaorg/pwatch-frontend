@@ -20,6 +20,8 @@ export default function ChatbotWidget() {
   const [error, setError] = useState<string | null>(null);
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [showProactiveMessage, setShowProactiveMessage] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
   // Initialize or retrieve session ID from localStorage
   useEffect(() => {
@@ -36,6 +38,45 @@ export default function ChatbotWidget() {
     }
   }, [sessionId]);
 
+  // Proactive engagement: Show message after user has been on page for a while
+  useEffect(() => {
+    // Only show proactive message if user hasn't interacted with chatbot yet
+    if (hasInteracted || isOpen) {
+      setShowProactiveMessage(false);
+      return;
+    }
+
+    // Check if we've already shown the proactive message in this session
+    const hasShownProactive = sessionStorage.getItem('chatbot_proactive_shown');
+    if (hasShownProactive === 'true') {
+      return;
+    }
+
+    // Show proactive message after 45 seconds of page load
+    const proactiveTimer = setTimeout(() => {
+      setShowProactiveMessage(true);
+      sessionStorage.setItem('chatbot_proactive_shown', 'true');
+    }, 45000); // 45 seconds
+
+    // Hide message after 15 seconds if not dismissed
+    const hideTimer = setTimeout(() => {
+      setShowProactiveMessage(false);
+    }, 60000); // 45s + 15s
+
+    return () => {
+      clearTimeout(proactiveTimer);
+      clearTimeout(hideTimer);
+    };
+  }, [hasInteracted, isOpen]);
+
+  // Track when user opens chatbot to mark as interacted
+  useEffect(() => {
+    if (isOpen && !hasInteracted) {
+      setHasInteracted(true);
+      setShowProactiveMessage(false);
+    }
+  }, [isOpen, hasInteracted]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -45,6 +86,8 @@ export default function ChatbotWidget() {
     setLoading(true);
     setError(null);
     setResponse(null);
+    setHasInteracted(true);
+    setShowProactiveMessage(false);
 
     try {
       const result = await chatWithBot(currentQuery, sessionId || undefined);
@@ -79,6 +122,8 @@ export default function ChatbotWidget() {
     } else {
       setIsOpen(true);
       setIsMinimized(false);
+      setHasInteracted(true);
+      setShowProactiveMessage(false);
     }
   };
 
@@ -101,13 +146,58 @@ export default function ChatbotWidget() {
 
   if (!isOpen) {
     return (
-      <button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-50 bg-[#085e29] text-white p-4 rounded-full shadow-lg hover:bg-[#064920] transition-all hover:scale-110"
-        aria-label="Open chatbot"
-      >
-        <MessageSquare className="w-6 h-6" />
-      </button>
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+        {/* Proactive Message Bubble */}
+        {showProactiveMessage && (
+          <div className="bg-white rounded-lg shadow-xl border border-gray-200 p-4 max-w-xs relative animate-in fade-in slide-in-from-bottom-2 duration-300">
+            <div className="flex items-start gap-3">
+              <div className="flex-1">
+                <p className="text-sm font-medium text-gray-900 mb-1">
+                  Need help finding something?
+                </p>
+                <p className="text-xs text-gray-600 mb-3">
+                  I can help you find information about parliamentary proceedings, bills, and documents.
+                </p>
+                <button
+                  onClick={() => {
+                    setIsOpen(true);
+                    setHasInteracted(true);
+                    setShowProactiveMessage(false);
+                  }}
+                  className="text-xs bg-[#085e29] hover:bg-[#064920] text-white px-3 py-1.5 rounded transition-colors"
+                >
+                  Ask me anything
+                </button>
+              </div>
+              <button
+                onClick={() => setShowProactiveMessage(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                aria-label="Dismiss"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            {/* Arrow pointing down to button */}
+            <div className="absolute -bottom-2 right-12">
+              <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-gray-200"></div>
+              <div className="absolute top-0.5 left-[-6px] w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-transparent border-t-white"></div>
+            </div>
+          </div>
+        )}
+        
+        {/* Chatbot Button */}
+        <button
+          onClick={handleToggle}
+          className="bg-[#085e29] text-white p-4 rounded-full shadow-lg hover:bg-[#064920] transition-all hover:scale-110 relative"
+          aria-label="Open chatbot"
+        >
+          <MessageSquare className="w-6 h-6" />
+          {/* Pulse animation when proactive message is shown */}
+          {showProactiveMessage && (
+            <span className="absolute top-0 right-0 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
+          )}
+        </button>
+      </div>
     );
   }
 
