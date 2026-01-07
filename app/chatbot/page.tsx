@@ -80,7 +80,7 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -133,7 +133,7 @@ export default function ChatbotPage() {
                         href={item.response.document_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs text-[#085e29] hover:text-[#064920] transition-colors"
+                        className="inline-flex items-center gap-2 text-xs text-[#2d5016] hover:text-[#1b3d26] transition-colors"
                       >
                         <FileText className="w-3 h-3" />
                         <span className="line-clamp-1">Source: {item.response.document_name}</span>
@@ -155,7 +155,7 @@ export default function ChatbotPage() {
                       href={response.document_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-[#085e29] hover:text-[#064920] transition-colors"
+                      className="inline-flex items-center gap-2 text-xs text-[#2d5016] hover:text-[#1b3d26] transition-colors"
                     >
                       <FileText className="w-3 h-3" />
                       <span className="line-clamp-1">Source: {response.document_name}</span>
@@ -199,7 +199,7 @@ export default function ChatbotPage() {
               <Button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="bg-[#085e29] hover:bg-[#064920] text-white px-4 py-2"
+                className="bg-[#2d5016] hover:bg-[#1b3d26] text-white px-4 py-2"
               >
                 {loading ? (
                   <Loader2 className="w-5 h-5 animate-spin" />
@@ -225,19 +225,19 @@ export default function ChatbotPage() {
           <h2 className="text-lg font-semibold text-gray-900 mb-3">How it works</h2>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-start gap-2">
-              <span className="text-[#085e29] font-semibold">•</span>
+              <span className="text-[#2d5016] font-semibold">•</span>
               <span>Ask questions about parliamentary proceedings, bills, or documents</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#085e29] font-semibold">•</span>
+              <span className="text-[#2d5016] font-semibold">•</span>
               <span>The chatbot searches through uploaded documents to find relevant information</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#085e29] font-semibold">•</span>
+              <span className="text-[#2d5016] font-semibold">•</span>
               <span>You'll receive an answer with a link to the source document</span>
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-[#085e29] font-semibold">•</span>
+              <span className="text-[#2d5016] font-semibold">•</span>
               <span>Documents are uploaded and managed through the Django admin panel</span>
             </li>
           </ul>

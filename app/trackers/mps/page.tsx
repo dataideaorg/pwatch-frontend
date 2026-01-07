@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 
-const PARTY_COLORS = ['#085e29', '#f97316', '#2563eb', '#9333ea', '#ef4444', '#14b8a6', '#f59e0b'];
+const PARTY_COLORS = ['#2d5016', '#f97316', '#2563eb', '#9333ea', '#ef4444', '#14b8a6', '#f59e0b'];
 
 export default function MPsPage() {
   // Store all MPs loaded from the server
@@ -259,7 +259,7 @@ export default function MPsPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-gray-600">Loading Members of Parliament...</p>
@@ -271,13 +271,13 @@ export default function MPsPage() {
 
   if (error && allMps.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-red-600">{error}</p>
             <button
               onClick={() => loadAllMPs()}
-              className="mt-4 bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+              className="mt-4 bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
             >
               Try Again
             </button>
@@ -288,7 +288,7 @@ export default function MPsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Header Section */}
@@ -344,7 +344,7 @@ export default function MPsPage() {
                 </label>
                 <DropdownMenu open={searchDropdownOpen} onOpenChange={setSearchDropdownOpen}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-gray-50 border-gray-300">
+                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-[#f3eed4] border-gray-300">
                       {selectedSearchTerms.length > 0
                         ? `${selectedSearchTerms.length} selected`
                         : 'Select names/constituencies'}
@@ -393,7 +393,7 @@ export default function MPsPage() {
                 </label>
                 <DropdownMenu open={districtDropdownOpen} onOpenChange={setDistrictDropdownOpen}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-gray-50 border-gray-300">
+                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-[#f3eed4] border-gray-300">
                       {selectedDistricts.length > 0 ? `${selectedDistricts.length} selected` : 'All Districts'}
                       <span className="text-gray-400 text-xs ml-2">▼</span>
                     </Button>
@@ -440,7 +440,7 @@ export default function MPsPage() {
                 </label>
                 <DropdownMenu open={partyDropdownOpen} onOpenChange={setPartyDropdownOpen}>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-gray-50 border-gray-300">
+                    <Button variant="outline" className="w-full justify-between text-gray-600 bg-white hover:bg-[#f3eed4] border-gray-300">
                       {selectedParties.length > 0 ? `${selectedParties.length} selected` : 'All Parties'}
                       <span className="text-gray-400 text-xs ml-2">▼</span>
                     </Button>
@@ -528,7 +528,7 @@ export default function MPsPage() {
                     setNameSearchTerm(e.target.value);
                     setPage(1); // Reset to first page when searching
                   }}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-[#085e29] text-gray-900 placeholder:text-gray-400"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] text-gray-900 placeholder:text-gray-400"
                 />
                 <svg
                   className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -572,7 +572,7 @@ export default function MPsPage() {
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-[#f3eed4]">
                     <tr>
                         <th 
                           className="px-5 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100 transition-colors group"
@@ -581,8 +581,8 @@ export default function MPsPage() {
                         >
                           <div className="flex items-center gap-2">
                             Name
-                            <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                              sortField === 'name' ? 'text-[#085e29]' : ''
+                            <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                              sortField === 'name' ? 'text-[#2d5016]' : ''
                             }`}>
                               {sortField === 'name' 
                                 ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -598,8 +598,8 @@ export default function MPsPage() {
                         >
                           <div className="flex items-center gap-2">
                         Party
-                            <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                              sortField === 'party' ? 'text-[#085e29]' : ''
+                            <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                              sortField === 'party' ? 'text-[#2d5016]' : ''
                             }`}>
                               {sortField === 'party' 
                                 ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -615,8 +615,8 @@ export default function MPsPage() {
                         >
                           <div className="flex items-center gap-2">
                         Constituency
-                            <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                              sortField === 'constituency' ? 'text-[#085e29]' : ''
+                            <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                              sortField === 'constituency' ? 'text-[#2d5016]' : ''
                             }`}>
                               {sortField === 'constituency' 
                                 ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -632,8 +632,8 @@ export default function MPsPage() {
                         >
                           <div className="flex items-center gap-2">
                         District
-                            <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                              sortField === 'district' ? 'text-[#085e29]' : ''
+                            <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                              sortField === 'district' ? 'text-[#2d5016]' : ''
                             }`}>
                               {sortField === 'district' 
                                 ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -649,11 +649,11 @@ export default function MPsPage() {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                       {paginatedMps.map((mp) => (
-                      <tr key={mp.id} className="hover:bg-gray-50 transition-colors">
+                      <tr key={mp.id} className="hover:bg-[#f3eed4] transition-colors">
                           <td className="px-5 py-4">
                             <div className="flex items-start">
                             <div className="flex-shrink-0 h-10 w-10">
-                              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#085e29] to-[#064920] flex items-center justify-center text-white text-sm font-bold overflow-hidden">
+                              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-[#2d5016] to-[#1b3d26] flex items-center justify-center text-white text-sm font-bold overflow-hidden">
                                 {mp.photo ? (
                                   <img
                                     src={mp.photo}
@@ -676,7 +676,7 @@ export default function MPsPage() {
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-[#085e29] text-white">
+                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-[#2d5016] text-white">
                             {mp.party}
                           </span>
                         </td>
@@ -689,7 +689,7 @@ export default function MPsPage() {
                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                           <Link
                             href={`/trackers/mps/${mp.id}`}
-                            className="text-[#085e29] hover:text-[#064920] font-medium"
+                            className="text-[#2d5016] hover:text-[#1b3d26] font-medium"
                           >
                             View Details
                           </Link>
@@ -710,14 +710,14 @@ export default function MPsPage() {
                 <button
                   onClick={() => goToPage(page - 1)}
                     disabled={page === 1}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Previous
                 </button>
                 <button
                   onClick={() => goToPage(page + 1)}
                     disabled={page >= Math.ceil(filteredMps.length / pageSize)}
-                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                     Next
                 </button>

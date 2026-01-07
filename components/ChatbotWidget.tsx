@@ -164,7 +164,7 @@ export default function ChatbotWidget() {
                     setHasInteracted(true);
                     setShowProactiveMessage(false);
                   }}
-                  className="text-xs bg-[#085e29] hover:bg-[#064920] text-white px-3 py-1.5 rounded transition-colors"
+                  className="text-xs bg-[#2d5016] hover:bg-[#1b3d26] text-white px-3 py-1.5 rounded transition-colors"
                 >
                   Ask me anything
                 </button>
@@ -188,7 +188,7 @@ export default function ChatbotWidget() {
         {/* Chatbot Button */}
         <button
           onClick={handleToggle}
-          className="bg-[#085e29] text-white p-4 rounded-full shadow-lg hover:bg-[#064920] transition-all hover:scale-110 relative"
+          className="bg-[#2d5016] text-white p-4 rounded-full shadow-lg hover:bg-[#1b3d26] transition-all hover:scale-110 relative"
           aria-label="Open chatbot"
         >
           <MessageSquare className="w-6 h-6" />
@@ -206,7 +206,7 @@ export default function ChatbotWidget() {
       isMinimized ? 'w-80 h-14' : 'w-96 h-[500px]'
     } flex flex-col`}>
       {/* Header */}
-      <div className="bg-[#085e29] text-white p-4 rounded-t-lg flex items-center justify-between">
+      <div className="bg-[#2d5016] text-white p-4 rounded-t-lg flex items-center justify-between">
         <div className="flex items-center gap-2">
           <MessageSquare className="w-5 h-5" />
           <div className="flex flex-col">
@@ -217,7 +217,7 @@ export default function ChatbotWidget() {
         <div className="flex items-center gap-2">
           <button
             onClick={handleToggle}
-            className="hover:bg-[#064920] p-1 rounded transition-colors"
+            className="hover:bg-[#1b3d26] p-1 rounded transition-colors"
             aria-label={isMinimized ? "Expand" : "Minimize"}
           >
             {isMinimized ? (
@@ -228,7 +228,7 @@ export default function ChatbotWidget() {
           </button>
           <button
             onClick={handleClose}
-            className="hover:bg-[#064920] p-1 rounded transition-colors"
+            className="hover:bg-[#1b3d26] p-1 rounded transition-colors"
             aria-label="Close"
           >
             <X className="w-4 h-4" />
@@ -281,7 +281,7 @@ export default function ChatbotWidget() {
                             href={item.response.document_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-xs text-[#085e29] hover:text-[#064920] transition-colors mt-1"
+                            className="inline-flex items-center gap-1 text-xs text-[#2d5016] hover:text-[#1b3d26] transition-colors mt-1"
                           >
                             <FileText className="w-3 h-3" />
                             <span className="line-clamp-1">Source: {item.response.document_name}</span>
@@ -305,7 +305,7 @@ export default function ChatbotWidget() {
                     href={response.document_url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-xs text-[#085e29] hover:text-[#064920] transition-colors"
+                    className="inline-flex items-center gap-2 text-xs text-[#2d5016] hover:text-[#1b3d26] transition-colors"
                   >
                     <FileText className="w-3 h-3" />
                     <span className="line-clamp-1">Source: {response.document_name}</span>
@@ -346,7 +346,7 @@ export default function ChatbotWidget() {
               <Button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="bg-[#085e29] hover:bg-[#064920] text-white px-3 py-2"
+                className="bg-[#2d5016] hover:bg-[#1b3d26] text-white px-3 py-2"
                 size="sm"
               >
                 {loading ? (

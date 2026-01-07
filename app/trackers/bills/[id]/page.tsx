@@ -53,13 +53,13 @@ export default async function BillDetailsPage({
   const embedUrl = getYouTubeEmbedUrl(bill.video_url);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       {/* Page Header */}
       <div className="bg-white border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center gap-3 text-sm text-slate-600 mb-4">
-            <Link href="/trackers/bills" className="hover:text-[#085e29]">Bills Tracker</Link>
+            <Link href="/trackers/bills" className="hover:text-[#2d5016]">Bills Tracker</Link>
             <span>/</span>
             <span className="text-slate-900 font-medium">Bill Details</span>
           </div>
@@ -110,7 +110,7 @@ export default async function BillDetailsPage({
                   <div className="flex flex-col items-center flex-1">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm ${
                       currentProgress >= 0
-                        ? 'bg-[#085e29] text-white'
+                        ? 'bg-[#2d5016] text-white'
                         : 'bg-slate-100 text-slate-400'
                     }`}>
                       1st
@@ -123,14 +123,14 @@ export default async function BillDetailsPage({
 
                   {/* Connector Line */}
                   <div className="flex items-center pt-6 flex-shrink-0" style={{ width: '40px' }}>
-                    <div className={`h-0.5 w-full ${currentProgress >= 1 ? 'bg-[#085e29]' : 'bg-slate-200'}`} />
+                    <div className={`h-0.5 w-full ${currentProgress >= 1 ? 'bg-[#2d5016]' : 'bg-slate-200'}`} />
                   </div>
 
                   {/* 2nd Reading */}
                   <div className="flex flex-col items-center flex-1">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm ${
                       currentProgress >= 1
-                        ? 'bg-[#085e29] text-white'
+                        ? 'bg-[#2d5016] text-white'
                         : 'bg-slate-100 text-slate-400'
                     }`}>
                       2nd
@@ -143,14 +143,14 @@ export default async function BillDetailsPage({
 
                   {/* Connector Line */}
                   <div className="flex items-center pt-6 flex-shrink-0" style={{ width: '40px' }}>
-                    <div className={`h-0.5 w-full ${currentProgress >= 2 ? 'bg-[#085e29]' : 'bg-slate-200'}`} />
+                    <div className={`h-0.5 w-full ${currentProgress >= 2 ? 'bg-[#2d5016]' : 'bg-slate-200'}`} />
                   </div>
 
                   {/* 3rd Reading */}
                   <div className="flex flex-col items-center flex-1">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm ${
                       currentProgress >= 2
-                        ? 'bg-[#085e29] text-white'
+                        ? 'bg-[#2d5016] text-white'
                         : 'bg-slate-100 text-slate-400'
                     }`}>
                       3rd
@@ -163,14 +163,14 @@ export default async function BillDetailsPage({
 
                   {/* Connector Line */}
                   <div className="flex items-center pt-6 flex-shrink-0" style={{ width: '40px' }}>
-                    <div className={`h-0.5 w-full ${currentProgress >= 4 ? 'bg-[#085e29]' : 'bg-slate-200'}`} />
+                    <div className={`h-0.5 w-full ${currentProgress >= 4 ? 'bg-[#2d5016]' : 'bg-slate-200'}`} />
                   </div>
 
                   {/* Presidential Assent */}
                   <div className="flex flex-col items-center flex-1">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
                       currentProgress >= 4
-                        ? 'bg-[#085e29] text-white'
+                        ? 'bg-[#2d5016] text-white'
                         : 'bg-slate-100 text-slate-400'
                     }`}>
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -194,7 +194,7 @@ export default async function BillDetailsPage({
                     <span className={`inline-flex items-center px-3 py-1 rounded-md text-xs font-medium ${
                       bill.status === 'assented'
                         ? 'bg-slate-100 text-slate-700'
-                        : 'bg-emerald-50 text-[#085e29]'
+                        : 'bg-emerald-50 text-[#2d5016]'
                     }`}>
                       {bill.status_display}
                     </span>
@@ -232,9 +232,9 @@ export default async function BillDetailsPage({
           {bill.readings && bill.readings.length > 0 ? (
             bill.readings.map((reading, index) => (
               <div key={reading.id} className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
-                <div className="bg-[#085e29] px-6 py-4">
+                <div className="bg-[#2d5016] px-6 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#085e29] font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2d5016] font-bold text-sm">
                       {index + 1}
                       {index === 0 && <sup className="text-xs">st</sup>}
                       {index === 1 && <sup className="text-xs">nd</sup>}

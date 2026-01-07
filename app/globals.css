@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f3eed4;
   --foreground: #171717;
+  --primary-green: #2d5016;
+  --primary-green-dark: #1b3d26;
+  --smokey-grey: #4a4a4a;
+  --antique-white: #f3eed4;
 }
 
 @theme inline {
@@ -90,12 +94,12 @@ body {
 }
 
 .blog-content a {
-  color: #085e29;
+  color: #2d5016;
   text-decoration: underline;
 }
 
 .blog-content a:hover {
-  color: #064920;
+  color: #1b3d26;
 }
 
 .blog-content img {
@@ -106,7 +110,7 @@ body {
 }
 
 .blog-content blockquote {
-  border-left: 4px solid #085e29;
+  border-left: 4px solid #2d5016;
   padding-left: 1rem;
   margin: 1.5rem 0;
   font-style: italic;

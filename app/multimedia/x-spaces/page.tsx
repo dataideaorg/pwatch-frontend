@@ -167,10 +167,10 @@ export default function XSpacesPage() {
 
   if (loading && allXSpaces.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#085e29]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
             <p className="mt-4 text-gray-600">Loading X Spaces...</p>
           </div>
         </main>
@@ -180,7 +180,7 @@ export default function XSpacesPage() {
 
   if (error && allXSpaces.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -198,13 +198,13 @@ export default function XSpacesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
           <Link
             href="/multimedia"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] transition-colors"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Multimedia
@@ -237,7 +237,7 @@ export default function XSpacesPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-transparent text-gray-900 bg-white"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-white"
               >
                 <option value="all">All Status</option>
                 <option value="upcoming">Upcoming</option>
@@ -291,7 +291,7 @@ export default function XSpacesPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="relative h-48 w-full bg-gradient-to-br from-[#085e29] to-[#064920] flex items-center justify-center">
+                  <div className="relative h-48 w-full bg-gradient-to-br from-[#2d5016] to-[#1b3d26] flex items-center justify-center">
                     <div className="text-white text-center">
                       <Calendar className="w-12 h-12 mx-auto mb-2" />
                       <p className="text-sm font-medium">{space.status_display}</p>
@@ -357,7 +357,7 @@ export default function XSpacesPage() {
                       href={space.x_space_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#085e29] text-white text-sm font-medium rounded-md hover:bg-[#064920] transition-colors"
+                      className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#2d5016] text-white text-sm font-medium rounded-md hover:bg-[#1b3d26] transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                       {space.status === 'live' ? 'Join Live' : space.status === 'upcoming' ? 'View on X' : 'View'}
@@ -367,7 +367,7 @@ export default function XSpacesPage() {
                         href={space.recording_url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-gray-50 transition-colors"
+                        className="inline-flex items-center justify-center gap-2 px-4 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-md hover:bg-[#f3eed4] transition-colors"
                       >
                         <Play className="w-4 h-4" />
                         Recording

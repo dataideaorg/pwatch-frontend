@@ -172,10 +172,10 @@ export default function GalleryPage() {
 
   if (loading && allImages.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#085e29]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
             <p className="mt-4 text-gray-600">Loading gallery...</p>
           </div>
         </main>
@@ -185,7 +185,7 @@ export default function GalleryPage() {
 
   if (error && allImages.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -203,13 +203,13 @@ export default function GalleryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
           <Link
             href="/multimedia"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] transition-colors"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Multimedia
@@ -242,7 +242,7 @@ export default function GalleryPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-transparent text-gray-900 bg-white"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-white"
               >
                 <option value="all">All Categories</option>
                 {categories.map((cat) => (
@@ -257,7 +257,7 @@ export default function GalleryPage() {
                   const value = e.target.value;
                   setFeaturedFilter(value === 'all' ? null : value === 'featured');
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-transparent text-gray-900 bg-white"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-white"
               >
                 <option value="all">All Images</option>
                 <option value="featured">Featured Only</option>
@@ -305,7 +305,7 @@ export default function GalleryPage() {
                   />
                   {image.featured && (
                     <div className="absolute top-2 right-2">
-                      <span className="px-2 py-1 bg-[#085e29] text-white text-xs font-medium rounded">
+                      <span className="px-2 py-1 bg-[#2d5016] text-white text-xs font-medium rounded">
                         Featured
                       </span>
                     </div>
@@ -381,7 +381,7 @@ export default function GalleryPage() {
                       </span>
                     )}
                     {selectedImage.featured && (
-                      <span className="inline-block px-3 py-1 bg-[#085e29] text-white text-sm rounded-full ml-2 mb-2">
+                      <span className="inline-block px-3 py-1 bg-[#2d5016] text-white text-sm rounded-full ml-2 mb-2">
                         Featured
                       </span>
                     )}

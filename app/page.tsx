@@ -147,7 +147,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="max-w-7xl mx-auto px-4 py-6 pb-20">
         <div className="">
@@ -249,7 +249,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-2xl font-bold text-gray-800">News and Updates</h3>
             <Link href="/news">
-              <Button variant="ghost" className="text-[#085e29] hover:text-[#064920] font-medium h-auto p-0">
+              <Button variant="ghost" className="text-[#2d5016] hover:text-[#1b3d26] font-medium h-auto p-0">
                 View All
               </Button>
             </Link>
@@ -275,7 +275,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="p-4 bg-white flex-1 flex flex-col">
-                      <span className="text-xs font-semibold text-[#085e29] uppercase">
+                      <span className="text-xs font-semibold text-[#2d5016] uppercase">
                         {article.category_display || article.category}
                       </span>
                       <h4 className="mt-2 text-sm font-semibold text-gray-800 line-clamp-2">
@@ -393,7 +393,7 @@ export default function Home() {
           <div className="bg-white p-4">
             {trackersLoading ? (
               <div className="text-center py-8">
-                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#085e29]"></div>
+                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>
                 <p className="mt-2 text-gray-500 text-sm">Loading...</p>
               </div>
             ) : (
@@ -411,7 +411,7 @@ export default function Home() {
                           <Link
                             key={mp.id}
                             href={`/trackers/mps/${mp.id}`}
-                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors cursor-pointer"
+                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f3eed4] transition-colors cursor-pointer"
                           >
                             <Folder className="w-4 h-4 text-[#a0522d] flex-shrink-0" />
                             <div className="flex-1 min-w-0">
@@ -425,7 +425,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/mps">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all MPs
                         </Button>
                       </Link>
@@ -446,7 +446,7 @@ export default function Home() {
                           <Link
                             key={bill.id}
                             href={`/trackers/bills/${bill.id}`}
-                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors cursor-pointer"
+                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f3eed4] transition-colors cursor-pointer"
                           >
                             <Folder className="w-4 h-4 text-[#a0522d] flex-shrink-0" />
                             <div className="flex-1 min-w-0">
@@ -460,7 +460,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/bills">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Bills
                         </Button>
                       </Link>
@@ -491,7 +491,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/loans">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Loans
                         </Button>
                       </Link>
@@ -517,7 +517,7 @@ export default function Home() {
                                   href={`${API_BASE_URL.replace('/api', '')}${budget.file}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {budget.name} ({budget.financial_year})
                                 </a>
@@ -533,7 +533,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/budgets">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Budgets
                         </Button>
                       </Link>
@@ -559,7 +559,7 @@ export default function Home() {
                                   href={`${API_BASE_URL.replace('/api', '')}${hansard.file}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {hansard.name} {hansard.date && `(${new Date(hansard.date).toLocaleDateString()})`}
                                 </a>
@@ -575,7 +575,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/hansards">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Hansards
                         </Button>
                       </Link>
@@ -601,7 +601,7 @@ export default function Home() {
                                   href={`${API_BASE_URL.replace('/api', '')}${paper.file}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {paper.name}
                                 </a>
@@ -617,7 +617,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/trackers/order-paper">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Order Papers
                         </Button>
                       </Link>
@@ -682,7 +682,7 @@ export default function Home() {
           <div className="bg-white p-4">
             {resourcesLoading ? (
               <div className="text-center py-8">
-                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#085e29]"></div>
+                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>
                 <p className="mt-2 text-gray-500 text-sm">Loading...</p>
               </div>
             ) : (
@@ -705,7 +705,7 @@ export default function Home() {
                                   href={explainer.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {explainer.name}
                                 </a>
@@ -719,7 +719,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/resources">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Explainers
                         </Button>
                       </Link>
@@ -745,7 +745,7 @@ export default function Home() {
                                   href={report.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {report.name}
                                 </a>
@@ -759,7 +759,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/resources">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Reports
                         </Button>
                       </Link>
@@ -785,7 +785,7 @@ export default function Home() {
                                   href={publication.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {publication.name}
                                 </a>
@@ -799,7 +799,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/resources">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Partner Publications
                         </Button>
                       </Link>
@@ -825,7 +825,7 @@ export default function Home() {
                                   href={statement.file}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="text-sm text-gray-800 truncate hover:text-[#085e29] transition-colors cursor-pointer block"
+                                  className="text-sm text-gray-800 truncate hover:text-[#2d5016] transition-colors cursor-pointer block"
                                 >
                                   {statement.name}
                                 </a>
@@ -839,7 +839,7 @@ export default function Home() {
                     )}
                     <div className="mt-4 text-left">
                       <Link href="/resources">
-                        <Button className="bg-[#085e29] hover:bg-[#064920] text-white">
+                        <Button className="bg-[#2d5016] hover:bg-[#1b3d26] text-white">
                           See all Statements
                         </Button>
                       </Link>
@@ -856,7 +856,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-2xl font-bold text-gray-800">Latest Blogs</h3>
             <Link href="/blogs">
-              <Button variant="ghost" className="text-[#085e29] hover:text-[#064920] font-medium h-auto p-0">
+              <Button variant="ghost" className="text-[#2d5016] hover:text-[#1b3d26] font-medium h-auto p-0">
                 View All
               </Button>
             </Link>
@@ -882,7 +882,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="p-4 bg-white flex-1 flex flex-col">
-                      <span className="text-xs font-semibold text-[#085e29] uppercase mb-2">
+                      <span className="text-xs font-semibold text-[#2d5016] uppercase mb-2">
                         {post.category_display || post.category}
                       </span>
                       <h4 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2">
@@ -932,7 +932,7 @@ export default function Home() {
       </main>
 
       {headlines.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-[#085e29] text-white py-3 overflow-hidden z-50 shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 bg-[#2d5016] text-white py-3 overflow-hidden z-50 shadow-lg">
           <div className="animate-marquee whitespace-nowrap">
             {headlines.map((headline) => (
               <span
