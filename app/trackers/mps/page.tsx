@@ -308,7 +308,7 @@ export default function MPsPage() {
 
         {/* Summary Section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
             <p className="text-sm text-gray-500">Total MPs</p>
             {loading ? (
               <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -316,7 +316,7 @@ export default function MPsPage() {
               <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.total_mps ?? 0}</p>
             )}
           </div>
-          <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
             <p className="text-sm text-gray-500">Total Parties</p>
             {loading ? (
               <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -324,7 +324,7 @@ export default function MPsPage() {
               <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.total_parties ?? 0}</p>
             )}
           </div>
-          <div className="bg-white rounded-lg shadow-sm p-5 border border-gray-200">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm p-5 border border-gray-200">
             <p className="text-sm text-gray-500">Total Districts</p>
             {loading ? (
               <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -335,7 +335,7 @@ export default function MPsPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-[#f3eed4] rounded-lg shadow-sm p-6 mb-6">
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
@@ -518,7 +518,7 @@ export default function MPsPage() {
             {/* MPs Table */}
             <div className="lg:col-span-2">
             {/* Name Search Field */}
-            <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-4 mb-4">
               <div className="relative">
                 <Input
                   type="text"
@@ -569,7 +569,7 @@ export default function MPsPage() {
                 )}
               </div>
             </div>
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
                   <thead className="bg-[#f3eed4]">
@@ -726,7 +726,7 @@ export default function MPsPage() {
             </div>
 
             {/* Party Distribution Chart */}
-            <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 self-start">
+            <div className="bg-[#f3eed4] rounded-lg shadow-sm p-6 border border-gray-200 self-start">
               <div className="mb-4">
                 <h3 className="text-xl font-bold text-gray-900">Party Distribution</h3>
                 <p className="text-sm text-gray-500">Share of MPs by political party</p>

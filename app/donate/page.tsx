@@ -76,7 +76,7 @@ export default function DonatePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Donation Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-8">
+            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-8">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Donation Information</h2>
                 <p className="text-gray-600">
@@ -284,7 +284,7 @@ export default function DonatePage() {
           <div className="space-y-6">
 
             {/* Contact Information */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Information</h3>
               <div className="space-y-3 text-sm text-gray-600">
                 <p>

@@ -207,7 +207,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           {/* Search */}
           <div className="mb-6">
             <div className="flex gap-3 items-center">
@@ -364,7 +364,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Hansards</h3>
           <p className="text-sm text-gray-600">
             Hansards are the official transcripts of parliamentary debates and proceedings in Uganda.

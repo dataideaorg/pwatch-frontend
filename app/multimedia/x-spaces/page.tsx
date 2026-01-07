@@ -218,7 +218,7 @@ export default function XSpacesPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -263,7 +263,7 @@ export default function XSpacesPage() {
 
         {/* X Spaces Grid */}
         {sortedXSpaces.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No X Spaces found</p>
             {(searchQuery || statusFilter !== 'all') && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -274,7 +274,7 @@ export default function XSpacesPage() {
             {sortedXSpaces.map((space) => (
               <div
                 key={space.id}
-                className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
               >
                 {/* Thumbnail */}
                 {space.thumbnail ? (
@@ -381,7 +381,7 @@ export default function XSpacesPage() {
         )}
 
         {/* Footer Info */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About X Spaces</h3>
           <p className="text-sm text-gray-600">
             X Spaces are live audio conversations on X (formerly Twitter). Join our discussions on parliamentary

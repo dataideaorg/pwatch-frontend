@@ -124,7 +124,7 @@ export default function ReportsBriefsPage() {
           <p className="text-gray-600 mt-2">Research reports, policy briefs, and analysis documents</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -266,7 +266,7 @@ export default function ReportsBriefsPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">About Reports & Briefs</h3>
           <p className="text-gray-600">
             In-depth research reports, policy briefs, and analytical documents covering parliamentary activities and governance issues.

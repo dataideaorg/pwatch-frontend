@@ -19,7 +19,7 @@ export default function ParliamentPerformancePage() {
           <p className="text-gray-600 mt-2">Track and analyze parliamentary performance metrics</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-12">
+        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-12">
           <div className="flex flex-col items-center justify-center text-center">
             <div className="w-24 h-24 bg-[#2d5016] bg-opacity-10 rounded-full flex items-center justify-center mb-6">
               <Clock className="w-12 h-12 text-[#2d5016]" />

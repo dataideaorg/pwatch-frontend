@@ -253,7 +253,7 @@ export default function LoansTrackerPage() {
         {/* Main Content - Table and Chart */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Loan Debt Table */}
-          <div className="lg:col-span-2 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="lg:col-span-2 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">LOAN DEBT</h2>
 
             {/* Search */}
@@ -400,7 +400,7 @@ export default function LoansTrackerPage() {
           </div>
 
           {/* Loan Sources Chart */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-6">LOAN SOURCES</h2>
 
             {sourcesSummary.length > 0 ? (
@@ -461,7 +461,7 @@ export default function LoansTrackerPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About This Data</h3>
           <p className="text-sm text-gray-600">
             Loan data includes government-approved loans and development projects from various international and bilateral sources.

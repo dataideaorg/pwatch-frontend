@@ -34,9 +34,9 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f3eed4]">
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#f3eed4]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             <div className="relative h-64 rounded-lg overflow-hidden bg-gray-200">
@@ -84,7 +84,7 @@ export default function AboutPage() {
                     </div>
                   ) : (
                     objectives.map((obj, index) => (
-                      <div key={obj.id} className="bg-white rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
+                      <div key={obj.id} className="bg-[#f3eed4] rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-16 h-16 bg-[#2d5016] rounded-full flex items-center justify-center text-white">
                             <span className="text-2xl font-bold">{index + 1}</span>
@@ -139,7 +139,7 @@ export default function AboutPage() {
                 </div>
               ) : (
                 teamMembers.map((member) => (
-                  <div key={member.id} className="bg-white rounded-lg overflow-hidden shadow-xl group">
+                  <div key={member.id} className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-xl group">
                 <div className="relative h-64 bg-gray-300">
                       {member.photo ? (
                         <img

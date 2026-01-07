@@ -195,7 +195,7 @@ export default function OrderPaperPage() {
           <p className="text-gray-600 mt-2">Parliamentary order papers outlining daily business and proceedings</p>
         </div>
 
-        <div className="bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -366,7 +366,7 @@ export default function OrderPaperPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">About Order Papers</h2>
           <p className="text-gray-600">
             Order Papers outline the business to be conducted during parliamentary sessions. They include questions,

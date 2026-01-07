@@ -140,7 +140,7 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white">
+    <header className="w-full bg-[#f3eed4]">
       <div className="bg-[#2d5016] px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <a href="https://www.facebook.com/pwatchug" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
@@ -205,7 +205,7 @@ export default function Header() {
             {showDropdown && searchResults && searchResults.total_results > 0 && (
               <div
                 ref={dropdownRef}
-                className="absolute top-full right-0 mt-2 w-96 max-w-[calc(100vw-2rem)] sm:max-w-none bg-white rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto z-50"
+                className="absolute top-full right-0 mt-2 w-96 max-w-[calc(100vw-2rem)] sm:max-w-none bg-[#f3eed4] rounded-lg shadow-xl border border-gray-200 max-h-96 overflow-y-auto z-50"
               >
                 <div className="p-2">
                   {Object.entries(searchResults.results).map(([type, results]) => {
@@ -406,7 +406,7 @@ export default function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t bg-white">
+          <div className="md:hidden border-t bg-[#f3eed4]">
             <nav className="px-4 py-4 space-y-4">
               {/* Trackers Dropdown */}
               <div>

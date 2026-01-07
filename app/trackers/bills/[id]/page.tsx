@@ -71,7 +71,7 @@ export default async function BillDetailsPage({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           {/* Video Player Section */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg border border-slate-200 overflow-hidden shadow-sm h-full flex flex-col">
+            <div className="bg-[#f3eed4] rounded-lg border border-slate-200 overflow-hidden shadow-sm h-full flex flex-col">
               <div className="relative flex-1 bg-slate-900" style={{ minHeight: '400px' }}>
               {embedUrl ? (
                 <iframe
@@ -100,7 +100,7 @@ export default async function BillDetailsPage({
 
           {/* Bill Status Section */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg border border-slate-200 p-6 shadow-sm h-full flex flex-col">
+            <div className="bg-[#f3eed4] rounded-lg border border-slate-200 p-6 shadow-sm h-full flex flex-col">
               <h2 className="text-lg font-semibold text-slate-900 mb-6">Bill Progress</h2>
 
               {/* Progress Tracker - Horizontal Timeline */}
@@ -231,7 +231,7 @@ export default async function BillDetailsPage({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {bill.readings && bill.readings.length > 0 ? (
             bill.readings.map((reading, index) => (
-              <div key={reading.id} className="bg-white rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
+              <div key={reading.id} className="bg-[#f3eed4] rounded-lg border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
                 <div className="bg-[#2d5016] px-6 py-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2d5016] font-bold text-sm">
@@ -294,7 +294,7 @@ export default async function BillDetailsPage({
               </div>
             ))
           ) : (
-            <div className="col-span-3 text-center py-12 bg-white rounded-lg border border-slate-200">
+            <div className="col-span-3 text-center py-12 bg-[#f3eed4] rounded-lg border border-slate-200">
               <p className="text-slate-600">No reading information available yet.</p>
             </div>
           )}
