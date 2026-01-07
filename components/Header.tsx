@@ -141,7 +141,7 @@ export default function Header() {
 
   return (
     <header className="w-full bg-white">
-      <div className="bg-[#085e29] px-4 py-2 flex items-center justify-between">
+      <div className="bg-[#2d5016] px-4 py-2 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <a href="https://www.facebook.com/pwatchug" target="_blank" rel="noopener noreferrer" className="text-white hover:opacity-80" aria-label="Facebook">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -260,7 +260,7 @@ export default function Header() {
                     <Link
                       href={`/search?q=${encodeURIComponent(searchQuery)}`}
                       onClick={() => setShowDropdown(false)}
-                      className="block px-2 py-2 text-center text-sm font-medium text-[#085e29] hover:bg-gray-50 rounded"
+                      className="block px-2 py-2 text-center text-sm font-medium text-[#2d5016] hover:bg-gray-50 rounded"
                     >
                       View all {searchResults.total_results} results
                     </Link>
@@ -288,7 +288,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-6">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-700 hover:text-[#085e29] font-medium text-sm h-auto p-0">
+                <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
                   Trackers
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -325,7 +325,7 @@ export default function Header() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-700 hover:text-[#085e29] font-medium text-sm h-auto p-0">
+                <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
                   Multimedia
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -347,7 +347,7 @@ export default function Header() {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-700 hover:text-[#085e29] font-medium text-sm h-auto p-0">
+                <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
                   Resources
                   <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -376,19 +376,19 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <Link href="/citizens-voice" className="text-gray-700 hover:text-[#085e29] font-medium text-sm">
+            <Link href="/citizens-voice" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               Citizens' Voice
             </Link>
-            <Link href="/news" className="text-gray-700 hover:text-[#085e29] font-medium text-sm">
+            <Link href="/news" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               News&Update
             </Link>
-            <Link href="/blogs" className="text-gray-700 hover:text-[#085e29] font-medium text-sm">
+            <Link href="/blogs" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               Blogs
             </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-[#085e29] font-medium text-sm">
+            <Link href="/contact" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               Contact
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-[#085e29] font-medium text-sm">
+            <Link href="/about" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               About Us
             </Link>
           </nav>
@@ -398,7 +398,7 @@ export default function Header() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle mobile menu"
           >
-            <svg className="w-6 h-6 text-[#085e29]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-6 h-6 text-[#2d5016]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
@@ -412,7 +412,7 @@ export default function Header() {
               <div>
                 <button
                   onClick={() => setOpenMobileDropdown(openMobileDropdown === 'trackers' ? null : 'trackers')}
-                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 >
                   Trackers
                   <svg 
@@ -428,56 +428,56 @@ export default function Header() {
                   <div className="pl-4 space-y-2 mt-2">
                     <Link 
                       href="/trackers/mps" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Members of Parliament
                     </Link>
                     <Link 
                       href="/trackers/bills" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Bills Tracker
                     </Link>
                     <Link 
                       href="/trackers/loans" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Loans Tracker
                     </Link>
                     <Link 
                       href="/trackers/debt" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Debt Tracker
                     </Link>
                     <Link 
                       href="/trackers/budgets" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Budget Tracker
                     </Link>
                     <Link 
                       href="/trackers/hansards" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Hansards Tracker
                     </Link>
                     <Link 
                       href="/trackers/order-paper" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Order Paper Tracker
                     </Link>
                     <Link 
                       href="/trackers/parliament-performance" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Parliament Performance Tracker
@@ -490,7 +490,7 @@ export default function Header() {
               <div>
                 <button
                   onClick={() => setOpenMobileDropdown(openMobileDropdown === 'multimedia' ? null : 'multimedia')}
-                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 >
                   Multimedia
                   <svg 
@@ -506,21 +506,21 @@ export default function Header() {
                   <div className="pl-4 space-y-2 mt-2">
                     <Link 
                       href="/multimedia/x-spaces" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       X Spaces
                     </Link>
                     <Link 
                       href="/multimedia/podcast" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Podcast
                     </Link>
                     <Link 
                       href="/multimedia/gallery" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Gallery
@@ -533,7 +533,7 @@ export default function Header() {
               <div>
                 <button
                   onClick={() => setOpenMobileDropdown(openMobileDropdown === 'resources' ? null : 'resources')}
-                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 >
                   Resources
                   <svg 
@@ -549,42 +549,42 @@ export default function Header() {
                   <div className="pl-4 space-y-2 mt-2">
                     <Link 
                       href="/resources/explainers" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Explainers
                     </Link>
                     <Link 
                       href="/resources/reports-briefs" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Reports & Briefs
                     </Link>
                     <Link 
                       href="/resources/partner-publications" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Partner Publications
                     </Link>
                     <Link 
                       href="/resources/statements" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Statements
                     </Link>
                     <Link 
                       href="/resources/committees" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Committees
                     </Link>
                     <Link 
                       href="/chatbot" 
-                      className="block text-gray-600 hover:text-[#085e29] text-sm py-1"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       Chatbot
@@ -596,35 +596,35 @@ export default function Header() {
               {/* Direct Links */}
               <Link 
                 href="/citizens-voice" 
-                className="block text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Citizens' Voice
               </Link>
               <Link 
                 href="/news" 
-                className="block text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 News&Update
               </Link>
               <Link 
                 href="/blogs" 
-                className="block text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Blogs
               </Link>
               <Link 
                 href="/contact" 
-                className="block text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link 
                 href="/about" 
-                className="block text-gray-700 hover:text-[#085e29] font-medium text-sm py-2"
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 About Us

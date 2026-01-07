@@ -45,7 +45,7 @@ export default function BlogDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-gray-600">Loading blog post...</p>
@@ -57,14 +57,14 @@ export default function BlogDetailPage() {
 
   if (error || !blog) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-red-600">{error || 'Blog post not found'}</p>
             <div className="mt-4 space-x-4">
               <button
                 onClick={loadBlog}
-                className="bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+                className="bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
               >
                 Try Again
               </button>
@@ -82,14 +82,14 @@ export default function BlogDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="mb-6">
           <Link
             href="/blogs"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] font-medium"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] font-medium"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -126,7 +126,7 @@ export default function BlogDetailPage() {
           <div className="p-8">
             {/* Category and Date */}
             <div className="flex items-center justify-between mb-4">
-              <span className="px-3 py-1 bg-[#085e29] text-white text-sm font-semibold rounded-full">
+              <span className="px-3 py-1 bg-[#2d5016] text-white text-sm font-semibold rounded-full">
                 {blog.category_display || blog.category}
               </span>
               <div className="flex items-center gap-2 text-sm text-gray-600">
@@ -154,7 +154,7 @@ export default function BlogDetailPage() {
 
             {/* Author */}
             <div className="flex items-center gap-3 mb-6 pb-6 border-b border-gray-200">
-              <div className="w-12 h-12 rounded-full bg-[#085e29] flex items-center justify-center text-white font-semibold">
+              <div className="w-12 h-12 rounded-full bg-[#2d5016] flex items-center justify-center text-white font-semibold">
                 {blog.author.charAt(0).toUpperCase()}
               </div>
               <div>
@@ -176,7 +176,7 @@ export default function BlogDetailPage() {
         <div className="mt-8 flex justify-center">
           <Link
             href="/blogs"
-            className="bg-[#085e29] text-white px-8 py-3 rounded-md hover:bg-[#064920] transition-colors font-medium"
+            className="bg-[#2d5016] text-white px-8 py-3 rounded-md hover:bg-[#1b3d26] transition-colors font-medium"
           >
             View All Blogs
           </Link>

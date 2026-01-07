@@ -82,7 +82,7 @@ export default function NewsPage() {
               <p className="text-red-600">{error}</p>
               <button
                 onClick={loadNews}
-                className="mt-4 bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+                className="mt-4 bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
               >
                 Try Again
               </button>
@@ -172,7 +172,7 @@ export default function NewsPage() {
                   <button
                     onClick={loadMore}
                     disabled={loadingMore}
-                    className="bg-[#085e29] text-white px-8 py-3 rounded-md hover:bg-[#064920] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-[#2d5016] text-white px-8 py-3 rounded-md hover:bg-[#1b3d26] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {loadingMore ? 'Loading...' : 'Load More Articles'}
                   </button>

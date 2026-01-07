@@ -46,7 +46,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
@@ -99,7 +99,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#085e29] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="Enter your full name"
                 />
               </div>
@@ -115,7 +115,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#085e29] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="your.email@example.com"
                 />
               </div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                   value={formData.subject}
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   disabled={isSubmitting}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#085e29] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="What is this regarding?"
                 />
               </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   disabled={isSubmitting}
                   rows={6}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#085e29] focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
                   placeholder="Please provide details about your inquiry..."
                 />
               </div>
@@ -155,7 +155,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#085e29] text-white py-3 rounded-md hover:bg-[#064920] transition-colors font-medium shadow-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400"
+                className="w-full bg-[#2d5016] text-white py-3 rounded-md hover:bg-[#1b3d26] transition-colors font-medium shadow-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:hover:bg-gray-400"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
               </button>
@@ -167,11 +167,11 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <Mail className="text-[#085e29]" size={32} />
+                  <Mail className="text-[#2d5016]" size={32} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
-                  <a href="mailto:info@cepa.or.ug" className="text-gray-600 hover:text-[#085e29] transition-colors text-sm">
+                  <a href="mailto:info@cepa.or.ug" className="text-gray-600 hover:text-[#2d5016] transition-colors text-sm">
                     info@cepa.or.ug
                   </a>
                 </div>
@@ -181,11 +181,11 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <Phone className="text-[#085e29]" size={32} />
+                  <Phone className="text-[#2d5016]" size={32} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Phone</h3>
-                  <a href="tel:+256414237498" className="text-gray-600 hover:text-[#085e29] transition-colors text-sm block">
+                  <a href="tel:+256414237498" className="text-gray-600 hover:text-[#2d5016] transition-colors text-sm block">
                   +256 393 228 160
                 </a>
                 </div>
@@ -195,7 +195,7 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <MapPin className="text-[#085e29]" size={32} />
+                  <MapPin className="text-[#2d5016]" size={32} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Address</h3>
@@ -211,7 +211,7 @@ export default function ContactPage() {
             <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
-                  <Clock className="text-[#085e29]" size={32} />
+                  <Clock className="text-[#2d5016]" size={32} />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-gray-900 mb-2">Office Hours</h3>
@@ -232,7 +232,7 @@ export default function ContactPage() {
                   href="https://www.facebook.com/pwatchug" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 hover:text-[#085e29] transition-colors"
+                  className="text-gray-600 hover:text-[#2d5016] transition-colors"
                   aria-label="Facebook"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -243,7 +243,7 @@ export default function ContactPage() {
                   href="https://x.com/pwatchug" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 hover:text-[#085e29] transition-colors"
+                  className="text-gray-600 hover:text-[#2d5016] transition-colors"
                   aria-label="X (Twitter)"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -254,7 +254,7 @@ export default function ContactPage() {
                   href="https://www.linkedin.com/company/cepa-_-parliament-watch-uganda" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 hover:text-[#085e29] transition-colors"
+                  className="text-gray-600 hover:text-[#2d5016] transition-colors"
                   aria-label="LinkedIn"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -265,7 +265,7 @@ export default function ContactPage() {
                   href="https://parliamentwatch.ug" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="text-gray-600 hover:text-[#085e29] transition-colors"
+                  className="text-gray-600 hover:text-[#2d5016] transition-colors"
                   aria-label="Website"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

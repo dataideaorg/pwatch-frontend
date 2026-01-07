@@ -34,7 +34,7 @@ export default function MPDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-gray-600">Loading MP details...</p>
@@ -46,14 +46,14 @@ export default function MPDetailPage() {
 
   if (error || !mp) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-red-600">{error || 'MP not found'}</p>
             <div className="mt-4 space-x-4">
               <button
                 onClick={loadMP}
-                className="bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+                className="bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
               >
                 Try Again
               </button>
@@ -71,14 +71,14 @@ export default function MPDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         {/* Back Button */}
         <div className="mb-6">
           <Link
             href="/trackers/mps"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] font-medium"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] font-medium"
           >
             <svg
               className="w-5 h-5 mr-2"
@@ -100,7 +100,7 @@ export default function MPDetailPage() {
         {/* MP Profile Card */}
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           {/* Header Section with Photo */}
-          <div className="bg-gradient-to-r from-[#085e29] to-[#064920] p-8 text-white">
+          <div className="bg-gradient-to-r from-[#2d5016] to-[#1b3d26] p-8 text-white">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
               {/* Photo */}
               <div className="w-32 h-32 rounded-full bg-white/20 flex items-center justify-center text-4xl font-bold overflow-hidden border-4 border-white">
@@ -162,9 +162,9 @@ export default function MPDetailPage() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {mp.email && (
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#f3eed4] rounded-lg">
                     <svg
-                      className="w-6 h-6 text-[#085e29] flex-shrink-0 mt-0.5"
+                      className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -180,7 +180,7 @@ export default function MPDetailPage() {
                       <p className="text-sm font-medium text-gray-600 mb-1">Email</p>
                       <a
                         href={`mailto:${mp.email}`}
-                        className="text-[#085e29] hover:underline break-all"
+                        className="text-[#2d5016] hover:underline break-all"
                       >
                         {mp.email}
                       </a>
@@ -189,9 +189,9 @@ export default function MPDetailPage() {
                 )}
 
                 {mp.phone_no && (
-                  <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#f3eed4] rounded-lg">
                     <svg
-                      className="w-6 h-6 text-[#085e29] flex-shrink-0 mt-0.5"
+                      className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -207,7 +207,7 @@ export default function MPDetailPage() {
                       <p className="text-sm font-medium text-gray-600 mb-1">Phone</p>
                       <a
                         href={`tel:${mp.phone_no}`}
-                        className="text-[#085e29] hover:underline"
+                        className="text-[#2d5016] hover:underline"
                       >
                         {mp.phone_no}
                       </a>
@@ -242,15 +242,15 @@ export default function MPDetailPage() {
                 Political Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="p-4 bg-[#f3eed4] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Party</p>
                   <p className="text-gray-800 font-semibold">{mp.party}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="p-4 bg-[#f3eed4] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Constituency</p>
                   <p className="text-gray-800 font-semibold">{mp.constituency}</p>
                 </div>
-                <div className="p-4 bg-gray-50 rounded-lg">
+                <div className="p-4 bg-[#f3eed4] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">District</p>
                   <p className="text-gray-800 font-semibold">{mp.district}</p>
                 </div>

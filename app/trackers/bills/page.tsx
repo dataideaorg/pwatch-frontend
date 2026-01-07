@@ -163,7 +163,7 @@ export default function BillsTrackerPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
 
       <main className="relative">
 
@@ -178,7 +178,7 @@ export default function BillsTrackerPage() {
               {steps.map((stepItem, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
                   <div className="relative mb-6">
-                    <div className="w-20 h-20 rounded-full bg-[#085e29] text-white flex items-center justify-center text-3xl font-bold shadow-lg">
+                    <div className="w-20 h-20 rounded-full bg-[#2d5016] text-white flex items-center justify-center text-3xl font-bold shadow-lg">
                       {stepItem.step}
                     </div>
                     {index < steps.length - 1 && (
@@ -186,7 +186,7 @@ export default function BillsTrackerPage() {
                     )}
                   </div>
 
-                  <h3 className="text-sm font-semibold text-[#085e29] mb-2 uppercase tracking-wide">
+                  <h3 className="text-sm font-semibold text-[#2d5016] mb-2 uppercase tracking-wide">
                     Step {stepItem.step}
                   </h3>
 
@@ -302,7 +302,7 @@ export default function BillsTrackerPage() {
             <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <Table>
-                  <TableHeader className="bg-gray-50">
+                  <TableHeader className="bg-[#f3eed4]">
                     <TableRow>
                       <TableHead 
                         className="cursor-pointer hover:bg-gray-100 transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -311,8 +311,8 @@ export default function BillsTrackerPage() {
                       >
                       <div className="flex items-center gap-2">
                         Title
-                        <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                          sortField === 'title' ? 'text-[#085e29]' : ''
+                        <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                          sortField === 'title' ? 'text-[#2d5016]' : ''
                         }`}>
                           {sortField === 'title' 
                             ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -328,8 +328,8 @@ export default function BillsTrackerPage() {
                       >
                         <div className="flex items-center gap-2">
                           Type
-                          <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                            sortField === 'bill_type' ? 'text-[#085e29]' : ''
+                          <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                            sortField === 'bill_type' ? 'text-[#2d5016]' : ''
                           }`}>
                             {sortField === 'bill_type' 
                               ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -345,8 +345,8 @@ export default function BillsTrackerPage() {
                       >
                         <div className="flex items-center gap-2">
                           Status
-                          <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                            sortField === 'status' ? 'text-[#085e29]' : ''
+                          <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                            sortField === 'status' ? 'text-[#2d5016]' : ''
                           }`}>
                             {sortField === 'status' 
                               ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -362,8 +362,8 @@ export default function BillsTrackerPage() {
                       >
                         <div className="flex items-center gap-2">
                           Year Introduced
-                          <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                            sortField === 'year_introduced' ? 'text-[#085e29]' : ''
+                          <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                            sortField === 'year_introduced' ? 'text-[#2d5016]' : ''
                           }`}>
                             {sortField === 'year_introduced' 
                               ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -379,8 +379,8 @@ export default function BillsTrackerPage() {
                       >
                         <div className="flex items-center gap-2">
                           Mover
-                          <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                            sortField === 'mover' ? 'text-[#085e29]' : ''
+                          <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                            sortField === 'mover' ? 'text-[#2d5016]' : ''
                           }`}>
                             {sortField === 'mover' 
                               ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -394,7 +394,7 @@ export default function BillsTrackerPage() {
                   </TableHeader>
                   <TableBody className="bg-white divide-y divide-gray-200">
                     {sortedBills.map((bill) => (
-                      <TableRow key={bill.id} className="hover:bg-gray-50 transition-colors">
+                      <TableRow key={bill.id} className="hover:bg-[#f3eed4] transition-colors">
                       <TableCell>
                         <div className="text-sm font-medium text-gray-900 max-w-md">
                           {bill.title}
@@ -407,7 +407,7 @@ export default function BillsTrackerPage() {
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           bill.status === 'assented'
                             ? 'bg-gray-100 text-gray-700'
-                            : 'bg-emerald-50 text-[#085e29]'
+                            : 'bg-emerald-50 text-[#2d5016]'
                         }`}>
                           {bill.status_display}
                         </span>
@@ -421,7 +421,7 @@ export default function BillsTrackerPage() {
                       <TableCell className="text-right">
                         <Link
                           href={`/trackers/bills/${bill.id}`}
-                          className="text-[#085e29] hover:text-[#064920] font-medium"
+                          className="text-[#2d5016] hover:text-[#1b3d26] font-medium"
                         >
                           View Details
                       </Link>

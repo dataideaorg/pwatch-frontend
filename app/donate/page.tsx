@@ -61,7 +61,7 @@ export default function DonatePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="mb-12 text-center">
@@ -119,7 +119,7 @@ export default function DonatePage() {
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="border-gray-300 focus-visible:ring-[#085e29] focus-visible:border-[#085e29]"
+                      className="border-gray-300 focus-visible:ring-[#2d5016] focus-visible:border-[#2d5016]"
                       required
                       disabled={isSubmitting}
                     />
@@ -134,7 +134,7 @@ export default function DonatePage() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="border-gray-300 focus-visible:ring-[#085e29] focus-visible:border-[#085e29]"
+                      className="border-gray-300 focus-visible:ring-[#2d5016] focus-visible:border-[#2d5016]"
                       required
                       disabled={isSubmitting}
                     />
@@ -150,7 +150,7 @@ export default function DonatePage() {
                       id="country"
                       value={formData.country}
                       onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#085e29] focus-visible:border-[#085e29]"
+                      className="w-full h-10 rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2d5016] focus-visible:border-[#2d5016]"
                       required
                       disabled={isSubmitting}
                     >
@@ -173,7 +173,7 @@ export default function DonatePage() {
                       type="text"
                       value={formData.address}
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-                      className="border-gray-300 focus-visible:ring-[#085e29] focus-visible:border-[#085e29]"
+                      className="border-gray-300 focus-visible:ring-[#2d5016] focus-visible:border-[#2d5016]"
                       placeholder="Street address, City, Postal code"
                       disabled={isSubmitting}
                     />
@@ -185,7 +185,7 @@ export default function DonatePage() {
                     Preferred Donation Method
                   </label>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#085e29] hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="mobile-money"
@@ -193,19 +193,19 @@ export default function DonatePage() {
                         value="mobile-money"
                         checked={formData.donationMethod === 'mobile-money'}
                         onChange={(e) => setFormData({ ...formData, donationMethod: e.target.value })}
-                        className="mt-1 h-4 w-4 text-[#085e29] focus:ring-[#085e29] border-gray-300"
+                        className="mt-1 h-4 w-4 text-[#2d5016] focus:ring-[#2d5016] border-gray-300"
                         disabled={isSubmitting}
                       />
                       <label htmlFor="mobile-money" className="flex-1 cursor-pointer">
                         <div className="flex items-center gap-2 mb-1">
-                          <Smartphone className="w-5 h-5 text-[#085e29]" />
+                          <Smartphone className="w-5 h-5 text-[#2d5016]" />
                           <span className="font-medium text-gray-900">Mobile Money</span>
                         </div>
                         <p className="text-sm text-gray-600">MTN: 0755588080 (UGX)</p>
                       </label>
                     </div>
 
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#085e29] hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="bank-transfer"
@@ -213,19 +213,19 @@ export default function DonatePage() {
                         value="bank-transfer"
                         checked={formData.donationMethod === 'bank-transfer'}
                         onChange={(e) => setFormData({ ...formData, donationMethod: e.target.value })}
-                        className="mt-1 h-4 w-4 text-[#085e29] focus:ring-[#085e29] border-gray-300"
+                        className="mt-1 h-4 w-4 text-[#2d5016] focus:ring-[#2d5016] border-gray-300"
                         disabled={isSubmitting}
                       />
                       <label htmlFor="bank-transfer" className="flex-1 cursor-pointer">
                         <div className="flex items-center gap-2 mb-1">
-                          <Building2 className="w-5 h-5 text-[#085e29]" />
+                          <Building2 className="w-5 h-5 text-[#2d5016]" />
                           <span className="font-medium text-gray-900">Bank Transfer</span>
                         </div>
                         <p className="text-sm text-gray-600">Account details will be provided upon submission</p>
                       </label>
                     </div>
 
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#085e29] hover:bg-gray-50 transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="other"
@@ -233,12 +233,12 @@ export default function DonatePage() {
                         value="other"
                         checked={formData.donationMethod === 'other'}
                         onChange={(e) => setFormData({ ...formData, donationMethod: e.target.value })}
-                        className="mt-1 h-4 w-4 text-[#085e29] focus:ring-[#085e29] border-gray-300"
+                        className="mt-1 h-4 w-4 text-[#2d5016] focus:ring-[#2d5016] border-gray-300"
                         disabled={isSubmitting}
                       />
                       <label htmlFor="other" className="flex-1 cursor-pointer">
                         <div className="flex items-center gap-2 mb-1">
-                          <Banknote className="w-5 h-5 text-[#085e29]" />
+                          <Banknote className="w-5 h-5 text-[#2d5016]" />
                           <span className="font-medium text-gray-900">Other Method</span>
                         </div>
                         <p className="text-sm text-gray-600">Please specify in the message field below</p>
@@ -256,7 +256,7 @@ export default function DonatePage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={4}
-                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#085e29] focus-visible:border-[#085e29] resize-none"
+                    className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-base shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#2d5016] focus-visible:border-[#2d5016] resize-none"
                     placeholder="Any additional information or special instructions..."
                     disabled={isSubmitting}
                   />

@@ -164,9 +164,9 @@ export default function BudgetsPage() {
   if (loading && allBudgets.length === 0) {
     return (
       <>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#085e29]"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
             <p className="text-gray-600">Loading budgets...</p>
           </div>
         </div>
@@ -177,7 +177,7 @@ export default function BudgetsPage() {
   if (error) {
     return (
       <>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center p-4">
           <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 max-w-md w-full">
             <h2 className="text-lg font-semibold mb-2">Error Loading Budgets</h2>
             <p className="mb-4">{error}</p>
@@ -194,12 +194,12 @@ export default function BudgetsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
             href="/trackers"
-            className="inline-flex items-center gap-2 text-[#085e29] hover:text-[#064920] transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-[#2d5016] hover:text-[#1b3d26] transition-colors mb-4"
           >
             <ArrowLeft size={20} />
             Back to Trackers
@@ -246,8 +246,8 @@ export default function BudgetsPage() {
                     <div className="flex items-center gap-2">
                       <FileText size={16} />
                       Document Name
-                      <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                        sortField === 'name' ? 'text-[#085e29]' : ''
+                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                        sortField === 'name' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'name' 
                           ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -263,8 +263,8 @@ export default function BudgetsPage() {
                   >
                     <div className="flex items-center gap-2">
                     Financial Year
-                      <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                        sortField === 'financial_year' ? 'text-[#085e29]' : ''
+                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                        sortField === 'financial_year' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'financial_year' 
                           ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -280,8 +280,8 @@ export default function BudgetsPage() {
                   >
                     <div className="flex items-center gap-2">
                     Total Amount
-                      <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                        sortField === 'budget_total_amount' ? 'text-[#085e29]' : ''
+                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                        sortField === 'budget_total_amount' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'budget_total_amount' 
                           ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -310,7 +310,7 @@ export default function BudgetsPage() {
                   </tr>
                 ) : (
                   paginatedBudgets.map((budget) => (
-                    <tr key={budget.id} className="hover:bg-gray-50 transition-colors">
+                    <tr key={budget.id} className="hover:bg-[#f3eed4] transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-medium text-gray-900">{budget.name}</div>
                       </td>
@@ -318,16 +318,16 @@ export default function BudgetsPage() {
                         {budget.financial_year}
                       </td>
                       <td className="px-6 py-4 text-gray-600">
-                        <span className="font-semibold text-[#085e29]">
+                        <span className="font-semibold text-[#2d5016]">
                           {formatCurrency(budget.budget_total_amount)}
                         </span>
                       </td>
                       <td className="px-6 py-4">
                         <a
-                          href={`${API_BASE_URL.replace('/api', '')}${budget.file}`}
+                          href={budget.file}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 bg-[#085e29] text-white px-4 py-2 rounded-md hover:bg-[#064920] transition-colors text-sm"
+                          className="inline-flex items-center gap-2 bg-[#2d5016] text-white px-4 py-2 rounded-md hover:bg-[#1b3d26] transition-colors text-sm"
                         >
                           <Download size={16} />
                           Download

@@ -173,10 +173,10 @@ export default function PodcastPage() {
 
   if (loading && allPodcasts.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#085e29]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
             <p className="mt-4 text-gray-600">Loading podcasts...</p>
           </div>
         </main>
@@ -186,7 +186,7 @@ export default function PodcastPage() {
 
   if (error && allPodcasts.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -204,13 +204,13 @@ export default function PodcastPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
           <Link
             href="/multimedia"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] transition-colors"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Multimedia
@@ -243,7 +243,7 @@ export default function PodcastPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#085e29] focus:border-transparent text-gray-900 bg-white"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-white"
               >
                 <option value="all">All Categories</option>
                 {categories.map((cat) => (
@@ -302,7 +302,7 @@ export default function PodcastPage() {
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gradient-to-br from-[#085e29] to-[#064920] flex items-center justify-center">
+                      <div className="w-full h-full bg-gradient-to-br from-[#2d5016] to-[#1b3d26] flex items-center justify-center">
                         <Play className="w-16 h-16 text-white" />
                       </div>
                     )}
@@ -313,14 +313,14 @@ export default function PodcastPage() {
                         rel="noopener noreferrer"
                         className="opacity-0 hover:opacity-100 transition-opacity"
                       >
-                        <div className="bg-[#085e29] rounded-full p-4">
+                        <div className="bg-[#2d5016] rounded-full p-4">
                           <Play className="w-8 h-8 text-white" />
                         </div>
                       </a>
                     </div>
                     {podcast.episode_number && (
                       <div className="absolute top-2 left-2">
-                        <span className="px-2 py-1 bg-[#085e29] text-white text-xs font-medium rounded">
+                        <span className="px-2 py-1 bg-[#2d5016] text-white text-xs font-medium rounded">
                           Episode {podcast.episode_number}
                         </span>
                       </div>
@@ -392,7 +392,7 @@ export default function PodcastPage() {
                       href={podcast.youtube_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#085e29] text-white text-sm font-medium rounded-md hover:bg-[#064920] transition-colors"
+                      className="w-full inline-flex items-center justify-center gap-2 px-4 py-2 bg-[#2d5016] text-white text-sm font-medium rounded-md hover:bg-[#1b3d26] transition-colors"
                     >
                       <Play className="w-4 h-4" />
                       Watch on YouTube

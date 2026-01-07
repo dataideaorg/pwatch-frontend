@@ -76,10 +76,10 @@ export default function DebtTrackerPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#085e29]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
             <p className="mt-4 text-gray-600">Loading debt tracker data...</p>
           </div>
         </main>
@@ -89,13 +89,13 @@ export default function DebtTrackerPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="mt-4 bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+              className="mt-4 bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
             >
               Try Again
             </button>
@@ -106,13 +106,13 @@ export default function DebtTrackerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
           <Link
             href="/trackers"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] transition-colors"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Trackers
@@ -130,21 +130,21 @@ export default function DebtTrackerPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">National Debt</h3>
-              <p className="text-2xl md:text-3xl font-bold text-[#085e29]">
+              <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.national_debt / 1000000).toLocaleString()}M
               </p>
               <p className="text-xs text-gray-500 mt-2">As of {latestData.year}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Interest</h3>
-              <p className="text-2xl md:text-3xl font-bold text-[#085e29]">
+              <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.interest / 1000000).toLocaleString()}M
               </p>
               <p className="text-xs text-gray-500 mt-2">As of {latestData.year}</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Total Expenditure</h3>
-              <p className="text-2xl md:text-3xl font-bold text-[#085e29]">
+              <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.total_expenditure / 1000000).toLocaleString()}M
               </p>
               <p className="text-xs text-gray-500 mt-2">As of {latestData.year}</p>
@@ -187,7 +187,7 @@ export default function DebtTrackerPage() {
                 <Area
                   type="monotone"
                   dataKey="gdp"
-                  stroke="#085e29"
+                  stroke="#2d5016"
                   fill="#c6ecd6"
                   name="GDP"
                   strokeWidth={2}
@@ -213,13 +213,13 @@ export default function DebtTrackerPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Debt Per Citizen</span>
-                    <span className="text-sm font-bold text-[#085e29]">
+                    <span className="text-sm font-bold text-[#2d5016]">
                       UGX {(latestData.debt_per_citizen / 1000000000).toFixed(1)}B
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
-                      className="bg-[#085e29] h-3 rounded-full transition-all duration-500"
+                      className="bg-[#2d5016] h-3 rounded-full transition-all duration-500"
                       style={{ width: '60%' }}
                     ></div>
                   </div>
@@ -229,13 +229,13 @@ export default function DebtTrackerPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">GDP Per Capita</span>
-                    <span className="text-sm font-bold text-[#085e29]">
+                    <span className="text-sm font-bold text-[#2d5016]">
                       UGX {(latestData.gdp_per_capita / 1000000000).toFixed(1)}B
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
-                      className="bg-[#085e29] h-3 rounded-full transition-all duration-500"
+                      className="bg-[#2d5016] h-3 rounded-full transition-all duration-500"
                       style={{ width: '100%' }}
                     ></div>
                   </div>
@@ -245,13 +245,13 @@ export default function DebtTrackerPage() {
                 <div>
                   <div className="flex justify-between mb-2">
                     <span className="text-sm font-medium text-gray-700">Per Capita Income</span>
-                    <span className="text-sm font-bold text-[#085e29]">
+                    <span className="text-sm font-bold text-[#2d5016]">
                       UGX {(latestData.per_capita_income / 1000000).toFixed(0)}M
                     </span>
                   </div>
                   <div className="w-full bg-gray-200 rounded-full h-3">
                     <div
-                      className="bg-[#085e29] h-3 rounded-full transition-all duration-500"
+                      className="bg-[#2d5016] h-3 rounded-full transition-all duration-500"
                       style={{ width: '20%' }}
                     ></div>
                   </div>

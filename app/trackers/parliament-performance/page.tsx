@@ -5,12 +5,12 @@ import { ArrowLeft, Clock } from 'lucide-react'
 
 export default function ParliamentPerformancePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
             href="/trackers"
-            className="inline-flex items-center gap-2 text-[#085e29] hover:text-[#064920] transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-[#2d5016] hover:text-[#1b3d26] transition-colors mb-4"
           >
             <ArrowLeft size={20} />
             Back to Trackers
@@ -21,8 +21,8 @@ export default function ParliamentPerformancePage() {
 
         <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-12">
           <div className="flex flex-col items-center justify-center text-center">
-            <div className="w-24 h-24 bg-[#085e29] bg-opacity-10 rounded-full flex items-center justify-center mb-6">
-              <Clock className="w-12 h-12 text-[#085e29]" />
+            <div className="w-24 h-24 bg-[#2d5016] bg-opacity-10 rounded-full flex items-center justify-center mb-6">
+              <Clock className="w-12 h-12 text-[#2d5016]" />
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-3">Coming Soon</h2>
             <p className="text-gray-600 max-w-md">

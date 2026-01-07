@@ -148,7 +148,7 @@ function SearchPageContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Searching...</p>
@@ -160,13 +160,13 @@ function SearchPageContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-red-600">{error}</p>
             <button
               onClick={loadSearchResults}
-              className="mt-4 bg-[#085e29] text-white px-6 py-2 rounded-md hover:bg-[#064920] transition-colors"
+              className="mt-4 bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
             >
               Try Again
             </button>
@@ -178,7 +178,7 @@ function SearchPageContent() {
 
   if (!query) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Please enter a search query</p>
@@ -190,7 +190,7 @@ function SearchPageContent() {
 
   if (!searchResults || searchResults.total_results === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">
             Search Results for &quot;{query}&quot;
@@ -205,7 +205,7 @@ function SearchPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Search Results for &quot;{query}&quot;
@@ -228,7 +228,7 @@ function SearchPageContent() {
                   {count > results.length && (
                     <Link
                       href={`${typeLinks[type]}?search=${encodeURIComponent(query)}`}
-                      className="text-[#085e29] hover:text-[#064920] text-sm font-medium"
+                      className="text-[#2d5016] hover:text-[#1b3d26] text-sm font-medium"
                     >
                       View all {count} {typeLabels[type]}
                     </Link>
@@ -246,7 +246,7 @@ function SearchPageContent() {
                         <Link
                           key={result.id}
                           href={getResultUrl(type, result)}
-                          className="block p-4 border border-gray-200 rounded-lg hover:border-[#085e29] hover:shadow-md transition-all"
+                          className="block p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:shadow-md transition-all"
                         >
                           <div className="flex gap-4">
                             <div className="w-24 h-24 flex-shrink-0 rounded overflow-hidden bg-gray-200">
@@ -261,7 +261,7 @@ function SearchPageContent() {
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <span className="text-xs font-semibold text-[#085e29] uppercase">
+                                <span className="text-xs font-semibold text-[#2d5016] uppercase">
                                   {result.category_display || result.category}
                                 </span>
                                 {result.published_date && (
@@ -292,7 +292,7 @@ function SearchPageContent() {
                         <Link
                           key={result.id}
                           href={getResultUrl(type, result)}
-                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-[#085e29] hover:bg-gray-50 transition-all"
+                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-all"
                         >
                           <Folder className="w-5 h-5 text-[#a0522d] flex-shrink-0" />
                           <div className="flex-1">
@@ -311,7 +311,7 @@ function SearchPageContent() {
                       return (
                         <div
                           key={result.id}
-                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"
+                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-[#f3eed4] transition-all"
                         >
                           <Folder className="w-5 h-5 text-[#a0522d] flex-shrink-0" />
                           <div className="flex-1">
@@ -322,7 +322,7 @@ function SearchPageContent() {
                                 rel="noopener noreferrer"
                                 className="block"
                               >
-                                <p className="font-medium text-gray-900 hover:text-[#085e29]">
+                                <p className="font-medium text-gray-900 hover:text-[#2d5016]">
                                   {getResultTitle(result)}
                                 </p>
                                 {result.description && (
@@ -353,7 +353,7 @@ function SearchPageContent() {
                       <Link
                         key={result.id}
                         href={getResultUrl(type, result)}
-                        className="block p-3 border border-gray-200 rounded-lg hover:border-[#085e29] hover:bg-gray-50 transition-all"
+                        className="block p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-all"
                       >
                         <p className="font-medium text-gray-900">
                           {getResultTitle(result)}
@@ -379,7 +379,7 @@ function SearchPageContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Loading search...</p>

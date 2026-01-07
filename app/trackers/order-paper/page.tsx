@@ -151,9 +151,9 @@ export default function OrderPaperPage() {
   if (loading && allOrderPapers.length === 0) {
     return (
       <>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#085e29]"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
             <p className="text-gray-600">Loading order papers...</p>
           </div>
         </div>
@@ -164,7 +164,7 @@ export default function OrderPaperPage() {
   if (error) {
     return (
       <>
-        <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center p-4">
           <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 max-w-md w-full">
             <h2 className="text-lg font-semibold mb-2">Error Loading Order Papers</h2>
             <p className="mb-4">{error}</p>
@@ -181,12 +181,12 @@ export default function OrderPaperPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
             href="/trackers"
-            className="inline-flex items-center gap-2 text-[#085e29] hover:text-[#064920] transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-[#2d5016] hover:text-[#1b3d26] transition-colors mb-4"
           >
             <ArrowLeft size={20} />
             Back to Trackers
@@ -233,8 +233,8 @@ export default function OrderPaperPage() {
                     <div className="flex items-center gap-2">
                       <FileText size={16} />
                       Document Name
-                      <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                        sortField === 'name' ? 'text-[#085e29]' : ''
+                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                        sortField === 'name' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'name' 
                           ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -253,8 +253,8 @@ export default function OrderPaperPage() {
                   >
                     <div className="flex items-center gap-2">
                     Date Added
-                      <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                        sortField === 'created_at' ? 'text-[#085e29]' : ''
+                      <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                        sortField === 'created_at' ? 'text-[#2d5016]' : ''
                       }`}>
                         {sortField === 'created_at' 
                           ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -283,7 +283,7 @@ export default function OrderPaperPage() {
                   </tr>
                 ) : (
                   paginatedOrderPapers.map((orderPaper) => (
-                    <tr key={orderPaper.id} className="hover:bg-gray-50 transition-colors">
+                    <tr key={orderPaper.id} className="hover:bg-[#f3eed4] transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-medium text-gray-900">{orderPaper.name}</div>
                       </td>
@@ -298,10 +298,10 @@ export default function OrderPaperPage() {
                       <td className="px-6 py-4">
                         {orderPaper.file ? (
                           <a
-                            href={`${API_BASE_URL.replace('/api', '')}${orderPaper.file}`}
+                            href={orderPaper.file}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-[#085e29] text-white px-4 py-2 rounded-md hover:bg-[#064920] transition-colors text-sm"
+                            className="inline-flex items-center gap-2 bg-[#2d5016] text-white px-4 py-2 rounded-md hover:bg-[#1b3d26] transition-colors text-sm"
                           >
                             <Download size={16} />
                             Download

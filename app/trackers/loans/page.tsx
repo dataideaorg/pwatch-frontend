@@ -38,7 +38,7 @@ interface SourceSummary {
   [key: string]: string | number;
 }
 
-const COLORS = ['#085e29', '#f97316', '#dc2626', '#3b82f6', '#8b5cf6', '#ec4899'];
+const COLORS = ['#2d5016', '#f97316', '#dc2626', '#3b82f6', '#8b5cf6', '#ec4899'];
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
@@ -200,10 +200,10 @@ export default function LoansTrackerPage() {
 
   if (loading && allLoans.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#085e29]"></div>
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
             <p className="mt-4 text-gray-600">Loading loans tracker data...</p>
           </div>
         </main>
@@ -213,7 +213,7 @@ export default function LoansTrackerPage() {
 
   if (error && allLoans.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-[#f3eed4]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -231,13 +231,13 @@ export default function LoansTrackerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#f3eed4]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
           <Link
             href="/trackers"
-            className="inline-flex items-center text-[#085e29] hover:text-[#064920] transition-colors"
+            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Trackers
@@ -294,8 +294,8 @@ export default function LoansTrackerPage() {
                     >
                       <div className="flex items-center gap-2">
                         Sector
-                        <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                          sortField === 'sector' ? 'text-[#085e29]' : ''
+                        <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                          sortField === 'sector' ? 'text-[#2d5016]' : ''
                         }`}>
                           {sortField === 'sector' 
                             ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -311,8 +311,8 @@ export default function LoansTrackerPage() {
                     >
                       <div className="flex items-center gap-2">
                         Label
-                        <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                          sortField === 'label' ? 'text-[#085e29]' : ''
+                        <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                          sortField === 'label' ? 'text-[#2d5016]' : ''
                         }`}>
                           {sortField === 'label' 
                             ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -328,8 +328,8 @@ export default function LoansTrackerPage() {
                     >
                       <div className="flex items-center gap-2">
                         Approved Amount
-                        <span className={`text-gray-400 group-hover:text-[#085e29] transition-colors text-xs ${
-                          sortField === 'approved_amount' ? 'text-[#085e29]' : ''
+                        <span className={`text-gray-400 group-hover:text-[#2d5016] transition-colors text-xs ${
+                          sortField === 'approved_amount' ? 'text-[#2d5016]' : ''
                         }`}>
                           {sortField === 'approved_amount' 
                             ? (sortDirection === 'asc' ? '↑' : '↓')
@@ -342,7 +342,7 @@ export default function LoansTrackerPage() {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {paginatedLoans.map((loan) => (
-                    <tr key={loan.id} className="hover:bg-gray-50 transition-colors">
+                    <tr key={loan.id} className="hover:bg-[#f3eed4] transition-colors">
                       <td className="px-4 py-4 text-sm text-gray-900">{loan.sector_display}</td>
                       <td className="px-4 py-4 text-sm text-gray-700">{loan.label}</td>
                       <td className="px-4 py-4 text-sm font-medium text-gray-900">
@@ -363,7 +363,7 @@ export default function LoansTrackerPage() {
                 <button
                   onClick={() => setPage(1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed"
                   title="First page"
                 >
                   <ChevronsLeft className="w-4 h-4" />
@@ -371,7 +371,7 @@ export default function LoansTrackerPage() {
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed"
                   title="Previous page"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -382,7 +382,7 @@ export default function LoansTrackerPage() {
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed"
                   title="Next page"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -390,7 +390,7 @@ export default function LoansTrackerPage() {
                 <button
                   onClick={() => setPage(totalPages)}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed"
                   title="Last page"
                 >
                   <ChevronsRight className="w-4 h-4" />
