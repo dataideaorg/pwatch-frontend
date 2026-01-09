@@ -263,25 +263,26 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {newsArticles.map((article) => (
                 <Link key={article.id} href={`/news/${article.slug}`}>
-                  <div className="h-full flex flex-col rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <div className="relative h-48 bg-gray-200 flex-shrink-0">
-                      <img
-                        src={article.image 
-                          ? (article.image.startsWith('http') ? article.image : `${API_BASE_URL.replace('/api', '')}${article.image}`)
-                          : '/images/default-news.jpg'
-                        }
-                        alt={article.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-4 bg-[#f3eed4] flex-1 flex flex-col">
-                      <span className="text-xs font-semibold text-[#2d5016] uppercase">
+                  <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full min-h-[300px] flex flex-col">
+                    <img
+                      src={article.image 
+                        ? (article.image.startsWith('http') ? article.image : `${API_BASE_URL.replace('/api', '')}${article.image}`)
+                        : '/images/default-news.jpg'
+                      }
+                      alt={article.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Dark gradient overlay at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    {/* Content overlay */}
+                    <div className="relative mt-auto p-4 z-10">
+                      <span className="text-xs font-semibold text-white/90 uppercase block mb-2">
                         {article.category_display || article.category}
                       </span>
-                      <h4 className="mt-2 text-sm font-semibold text-gray-800 line-clamp-2">
+                      <h4 className="text-sm font-semibold text-white line-clamp-2 mb-3">
                         {article.title}
                       </h4>
-                      <div className="mt-2 flex items-center gap-2 text-xs text-gray-500">
+                      <div className="flex items-center gap-2 text-xs text-white/90 mb-2">
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -297,7 +298,7 @@ export default function Home() {
                         </svg>
                         <span>{new Date(article.published_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                       </div>
-                      <div className="mt-1 flex items-center gap-2 text-xs text-gray-600">
+                      <div className="flex items-center gap-2 text-xs text-white/90">
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -820,26 +821,27 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {blogPosts.map((post) => (
                 <Link key={post.id} href={`/blogs/${post.slug}`}>
-                  <div className="h-full flex flex-col rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                    <div className="relative h-48 bg-gray-200 flex-shrink-0">
-                      <img
-                        src={post.image 
-                          ? (post.image.startsWith('http') ? post.image : `${API_BASE_URL.replace('/api', '')}${post.image}`)
-                          : '/images/default-blog.jpg'
-                        }
-                        alt={post.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-4 bg-[#f3eed4] flex-1 flex flex-col">
-                      <span className="text-xs font-semibold text-[#2d5016] uppercase mb-2">
+                  <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full min-h-[350px] flex flex-col">
+                    <img
+                      src={post.image 
+                        ? (post.image.startsWith('http') ? post.image : `${API_BASE_URL.replace('/api', '')}${post.image}`)
+                        : '/images/default-blog.jpg'
+                      }
+                      alt={post.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Dark gradient overlay at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    {/* Content overlay */}
+                    <div className="relative mt-auto p-4 z-10 flex-1 flex flex-col">
+                      <span className="text-xs font-semibold text-white/90 uppercase mb-2">
                         {post.category_display || post.category}
                       </span>
-                      <h4 className="text-sm font-semibold text-gray-800 line-clamp-2 mb-2">
+                      <h4 className="text-sm font-semibold text-white line-clamp-2 mb-3 flex-1">
                         {post.title}
                       </h4>
                       <div className="mt-auto space-y-1">
-                        <div className="flex items-center gap-2 text-xs text-gray-500">
+                        <div className="flex items-center gap-2 text-xs text-white/90">
                           <svg
                             className="w-4 h-4"
                             fill="none"
@@ -855,7 +857,7 @@ export default function Home() {
                           </svg>
                           <span>{new Date(post.published_date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                         </div>
-                        <div className="flex items-center gap-2 text-xs text-gray-600">
+                        <div className="flex items-center gap-2 text-xs text-white/90">
                           <svg
                             className="w-4 h-4"
                             fill="none"

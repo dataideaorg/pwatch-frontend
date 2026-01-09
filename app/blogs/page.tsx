@@ -168,28 +168,29 @@ export default function BlogsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                   {blogPosts.map((post) => (
                     <Link key={post.id} href={`/blogs/${post.slug}`}>
-                      <div className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full flex flex-col">
-                        <div className="relative h-64 bg-gray-200 flex-shrink-0">
-                          <img
-                            src={post.image 
-                              ? (post.image.startsWith('http') ? post.image : `${API_BASE_URL.replace('/api', '')}${post.image}`)
-                              : '/images/default-blog.jpg'
-                            }
-                            alt={post.title}
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                        <div className="p-4 flex-1 flex flex-col">
+                      <div className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow cursor-pointer h-full min-h-[350px] flex flex-col">
+                        <img
+                          src={post.image 
+                            ? (post.image.startsWith('http') ? post.image : `${API_BASE_URL.replace('/api', '')}${post.image}`)
+                            : '/images/default-blog.jpg'
+                          }
+                          alt={post.title}
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        {/* Dark gradient overlay at bottom */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                        {/* Content overlay */}
+                        <div className="relative mt-auto p-4 z-10 flex-1 flex flex-col">
                           <div className="mb-2">
-                            <span className="text-xs font-semibold text-[#2d5016] uppercase">
+                            <span className="text-xs font-semibold text-white/90 uppercase">
                               {post.category_display || post.category}
                             </span>
                           </div>
-                          <h3 className="font-bold text-gray-800 text-base mb-3 line-clamp-2 flex-1">
+                          <h3 className="font-bold text-white text-base mb-3 line-clamp-2 flex-1">
                             {post.title}
                           </h3>
                           <div className="mt-auto space-y-1">
-                            <div className="flex items-center gap-2 text-xs text-gray-500">
+                            <div className="flex items-center gap-2 text-xs text-white/90">
                               <svg
                                 className="w-4 h-4"
                                 fill="none"
@@ -205,7 +206,7 @@ export default function BlogsPage() {
                               </svg>
                               <span>{formatDate(post.published_date)}</span>
                             </div>
-                            <div className="flex items-center gap-2 text-xs text-gray-600">
+                            <div className="flex items-center gap-2 text-xs text-white/90">
                               <svg
                                 className="w-4 h-4"
                                 fill="none"
