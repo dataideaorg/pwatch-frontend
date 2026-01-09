@@ -808,6 +808,91 @@ export async function fetchTeamMembers(): Promise<TeamMember[]> {
   return Array.isArray(data) ? data : data.results || [];
 }
 
+export interface WhoWeAre {
+  id: number;
+  title: string;
+  content: string;
+  image: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface OurStory {
+  id: number;
+  title: string;
+  content: string;
+  image: string | null;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface WhatSetsUsApart {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Partner {
+  id: number;
+  name: string;
+  description: string;
+  logo: string | null;
+  website_url: string;
+  order: number;
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchWhoWeAre(): Promise<WhoWeAre | null> {
+  const response = await fetch(`${API_BASE_URL}/about/who-we-are/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch who we are');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  const results = Array.isArray(data) ? data : data.results || [];
+  return results.length > 0 ? results[0] : null;
+}
+
+export async function fetchOurStory(): Promise<OurStory | null> {
+  const response = await fetch(`${API_BASE_URL}/about/our-story/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch our story');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  const results = Array.isArray(data) ? data : data.results || [];
+  return results.length > 0 ? results[0] : null;
+}
+
+export async function fetchWhatSetsUsApart(): Promise<WhatSetsUsApart[]> {
+  const response = await fetch(`${API_BASE_URL}/about/what-sets-us-apart/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch what sets us apart');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
+
+export async function fetchPartners(): Promise<Partner[]> {
+  const response = await fetch(`${API_BASE_URL}/about/partners/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch partners');
+  }
+  const data = await response.json();
+  // Handle both array response and paginated response
+  return Array.isArray(data) ? data : data.results || [];
+}
+
 // Home API
 export interface HeroImage {
   id: number;
