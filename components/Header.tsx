@@ -286,6 +286,41 @@ export default function Header() {
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
+            <Link href="/news" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
+              News&Update
+            </Link>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
+                  Resources
+                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-56">
+                <DropdownMenuItem asChild>
+                  <a href="https://www.youtube.com/@Centre4PolicyAnalysis" target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer">Explainers</a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/resources/reports-briefs" className="w-full cursor-pointer">Reports &amp; Briefs</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/resources/partner-publications" className="w-full cursor-pointer">Partner Publications</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/resources/statements" className="w-full cursor-pointer">Statements</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/resources/committees" className="w-full cursor-pointer">Committees</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href="/chatbot" className="w-full cursor-pointer">Chatbot</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
@@ -345,42 +380,8 @@ export default function Header() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm h-auto p-0">
-                  Resources
-                  <svg className="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="w-56">
-                <DropdownMenuItem asChild>
-                  <a href="https://www.youtube.com/@Centre4PolicyAnalysis" target="_blank" rel="noopener noreferrer" className="w-full cursor-pointer">Explainers</a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/resources/reports-briefs" className="w-full cursor-pointer">Reports &amp; Briefs</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/resources/partner-publications" className="w-full cursor-pointer">Partner Publications</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/resources/statements" className="w-full cursor-pointer">Statements</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/resources/committees" className="w-full cursor-pointer">Committees</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link href="/chatbot" className="w-full cursor-pointer">Chatbot</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
             <Link href="/citizens-voice" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               Citizens' Voice
-            </Link>
-            <Link href="/news" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
-              News&Update
             </Link>
             <Link href="/blogs" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm">
               Blogs
@@ -408,6 +409,81 @@ export default function Header() {
         {isMobileMenuOpen && (
           <div className="md:hidden border-t bg-[#f3eed4]">
             <nav className="px-4 py-4 space-y-4">
+              {/* News Link */}
+              <Link 
+                href="/news" 
+                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                News&Update
+              </Link>
+
+              {/* Resources Dropdown */}
+              <div>
+                <button
+                  onClick={() => setOpenMobileDropdown(openMobileDropdown === 'resources' ? null : 'resources')}
+                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
+                >
+                  Resources
+                  <svg 
+                    className={`w-4 h-4 transition-transform ${openMobileDropdown === 'resources' ? 'rotate-180' : ''}`} 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {openMobileDropdown === 'resources' && (
+                  <div className="pl-4 space-y-2 mt-2">
+                    <a 
+                      href="https://www.youtube.com/@Centre4PolicyAnalysis" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Explainers
+                    </a>
+                    <Link 
+                      href="/resources/reports-briefs" 
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Reports & Briefs
+                    </Link>
+                    <Link 
+                      href="/resources/partner-publications" 
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Partner Publications
+                    </Link>
+                    <Link 
+                      href="/resources/statements" 
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Statements
+                    </Link>
+                    <Link 
+                      href="/resources/committees" 
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Committees
+                    </Link>
+                    <Link 
+                      href="/chatbot" 
+                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Chatbot
+                    </Link>
+                  </div>
+                )}
+              </div>
+
               {/* Trackers Dropdown */}
               <div>
                 <button
@@ -529,72 +605,6 @@ export default function Header() {
                 )}
               </div>
 
-              {/* Resources Dropdown */}
-              <div>
-                <button
-                  onClick={() => setOpenMobileDropdown(openMobileDropdown === 'resources' ? null : 'resources')}
-                  className="w-full flex items-center justify-between text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
-                >
-                  Resources
-                  <svg 
-                    className={`w-4 h-4 transition-transform ${openMobileDropdown === 'resources' ? 'rotate-180' : ''}`} 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                {openMobileDropdown === 'resources' && (
-                  <div className="pl-4 space-y-2 mt-2">
-                    <a 
-                      href="https://www.youtube.com/@Centre4PolicyAnalysis" 
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Explainers
-                    </a>
-                    <Link 
-                      href="/resources/reports-briefs" 
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Reports & Briefs
-                    </Link>
-                    <Link 
-                      href="/resources/partner-publications" 
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Partner Publications
-                    </Link>
-                    <Link 
-                      href="/resources/statements" 
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Statements
-                    </Link>
-                    <Link 
-                      href="/resources/committees" 
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Committees
-                    </Link>
-                    <Link 
-                      href="/chatbot" 
-                      className="block text-gray-600 hover:text-[#2d5016] text-sm py-1"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      Chatbot
-                    </Link>
-                  </div>
-                )}
-              </div>
-
               {/* Direct Links */}
               <Link 
                 href="/citizens-voice" 
@@ -602,13 +612,6 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Citizens' Voice
-              </Link>
-              <Link 
-                href="/news" 
-                className="block text-gray-700 hover:text-[#2d5016] font-medium text-sm py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                News&Update
               </Link>
               <Link 
                 href="/blogs" 
