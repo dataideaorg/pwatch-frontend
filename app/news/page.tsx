@@ -260,23 +260,24 @@ export default function NewsPage() {
                   <Link
                     key={article.id}
                     href={`/news/${article.slug}`}
-                    className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+                    className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer h-full min-h-[300px] flex flex-col"
                   >
-                    <div className="relative h-48 bg-gradient-to-br from-orange-400 to-pink-500">
-                      <img
-                        src={article.image 
-                          ? (article.image.startsWith('http') ? article.image : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:8000'}${article.image}`)
-                          : '/images/default-news.jpg'
-                        }
-                        alt={article.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <h3 className="font-bold text-gray-800 text-sm mb-3 line-clamp-3">
+                    <img
+                      src={article.image 
+                        ? (article.image.startsWith('http') ? article.image : `${process.env.NEXT_PUBLIC_API_URL?.replace('/api', '') || 'http://localhost:8000'}${article.image}`)
+                        : '/images/default-news.jpg'
+                      }
+                      alt={article.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    {/* Dark gradient overlay at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    {/* Content overlay */}
+                    <div className="relative mt-auto p-4 z-10">
+                      <h3 className="font-bold text-white text-sm mb-3 line-clamp-3">
                         {article.title}
                       </h3>
-                      <div className="flex items-center gap-2 text-xs text-gray-600 mb-2">
+                      <div className="flex items-center gap-2 text-xs text-white/90 mb-2">
                         <svg
                           className="w-4 h-4"
                           fill="none"
@@ -292,7 +293,7 @@ export default function NewsPage() {
                         </svg>
                         <span>{formatDate(article.published_date)}</span>
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-gray-600">
+                      <div className="flex items-center gap-2 text-xs text-white/90">
                         <svg
                           className="w-4 h-4"
                           fill="none"
