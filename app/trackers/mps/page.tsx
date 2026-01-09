@@ -15,7 +15,33 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Input } from '@/components/ui/input';
 
-const PARTY_COLORS = ['#2d5016', '#f97316', '#2563eb', '#9333ea', '#ef4444', '#14b8a6', '#f59e0b'];
+// Party color mapping
+const PARTY_COLORS: Record<string, string> = {
+  'NRM': '#FCD34D',      // Yellow
+  'NUP': '#EF4444',      // Red
+  'FDC': '#7DD3FC',      // Sky Blue
+  'DP': '#22C55E',       // Green
+  'UPC': '#000000',      // Black
+  'ANT': '#A855F7',      // Purple
+  'JEEMA': '#3B82F6',    // Blue
+  'UFA': '#93C5FD',      // Light Blue
+  'PPP': '#FCA5A5',      // Light Red
+  'EPU': '#6EE7B7',      // Light Green
+  'PPF': '#B91C1C',      // Dark Red
+  'INDP.': '#9CA3AF',    // Gray
+  'INDEP.': '#9CA3AF',   // Gray (alternative spelling)
+  'INDEPENDENT': '#9CA3AF', // Gray (full word)
+};
+
+// Fallback color for unknown parties
+const DEFAULT_PARTY_COLOR = '#6B7280';
+
+// Function to get color for a party
+const getPartyColor = (party: string): string => {
+  if (!party) return DEFAULT_PARTY_COLOR;
+  const normalizedParty = party.toUpperCase().trim();
+  return PARTY_COLORS[normalizedParty] || DEFAULT_PARTY_COLOR;
+};
 
 export default function MPsPage() {
   // Store all MPs loaded from the server
@@ -748,8 +774,8 @@ export default function MPsPage() {
                           paddingAngle={1}
                           label={({ value }) => `${value}%`}
                         >
-                          {summary.party_distribution.map((entry, index) => (
-                            <Cell key={entry.party} fill={PARTY_COLORS[index % PARTY_COLORS.length]} />
+                          {summary.party_distribution.map((entry) => (
+                            <Cell key={entry.party} fill={getPartyColor(entry.party)} />
                           ))}
                         </Pie>
                         <Tooltip
@@ -768,12 +794,12 @@ export default function MPsPage() {
                     </ResponsiveContainer>
                   </div>
                   <div className="space-y-2">
-                    {summary.party_distribution.map((item, index) => (
+                    {summary.party_distribution.map((item) => (
                       <div key={item.party} className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <span
                             className="w-3 h-3 rounded-full"
-                            style={{ backgroundColor: PARTY_COLORS[index % PARTY_COLORS.length] }}
+                            style={{ backgroundColor: getPartyColor(item.party) }}
                           />
                           <div>
                             <p className="text-sm font-semibold text-gray-900">{item.party || 'Unknown'}</p>
