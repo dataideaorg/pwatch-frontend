@@ -208,7 +208,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
           {/* Search */}
           <div className="mb-6">
             <div className="flex gap-3 items-center">
@@ -227,7 +227,7 @@ export default function HansardsTrackerPage() {
                 <Button
                   variant="outline"
                   onClick={() => setSearchQuery('')}
-                  className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                 >
                   Clear
                 </Button>
@@ -238,10 +238,10 @@ export default function HansardsTrackerPage() {
           {/* Table */}
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-[#ddd0b8]">
+              <thead className="bg-[#fafaf8]">
                 <tr>
                   <th 
-                    className="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                    className="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                     onClick={() => handleSort('name')}
                     title="Click to sort"
                   >
@@ -259,7 +259,7 @@ export default function HansardsTrackerPage() {
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                    className="px-6 py-4 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                     onClick={() => handleSort('date')}
                     title="Click to sort"
                   >
@@ -371,7 +371,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Hansards</h3>
           <p className="text-sm text-gray-600">
             Hansards are the official transcripts of parliamentary debates and proceedings in Uganda.

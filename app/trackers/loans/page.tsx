@@ -253,7 +253,7 @@ export default function LoansTrackerPage() {
         {/* Main Content - Table and Chart */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Loan Debt Table */}
-          <div className="lg:col-span-2 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="lg:col-span-2 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-4">LOAN DEBT</h2>
 
             {/* Search */}
@@ -274,7 +274,7 @@ export default function LoansTrackerPage() {
                   <Button
                     variant="outline"
                     onClick={() => setSearchQuery('')}
-                    className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                    className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                   >
                     Clear
                   </Button>
@@ -285,10 +285,10 @@ export default function LoansTrackerPage() {
             {/* Table */}
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-[#ddd0b8]">
+                <thead className="bg-[#fafaf8]">
                   <tr>
                     <th 
-                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                       onClick={() => handleSort('sector')}
                       title="Click to sort"
                     >
@@ -305,7 +305,7 @@ export default function LoansTrackerPage() {
                       </div>
                     </th>
                     <th 
-                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                       onClick={() => handleSort('label')}
                       title="Click to sort"
                     >
@@ -322,7 +322,7 @@ export default function LoansTrackerPage() {
                       </div>
                     </th>
                     <th 
-                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                      className="px-4 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                       onClick={() => handleSort('approved_amount')}
                       title="Click to sort"
                     >
@@ -400,7 +400,7 @@ export default function LoansTrackerPage() {
           </div>
 
           {/* Loan Sources Chart */}
-          <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-6">LOAN SOURCES</h2>
 
             {sourcesSummary.length > 0 ? (
@@ -461,7 +461,7 @@ export default function LoansTrackerPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About This Data</h3>
           <p className="text-sm text-gray-600">
             Loan data includes government-approved loans and development projects from various international and bilateral sources.

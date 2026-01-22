@@ -59,7 +59,7 @@ export default function MPDetailPage() {
               </button>
               <Link
                 href="/trackers/mps"
-                className="inline-block bg-[#d2c4b0] text-gray-700 px-6 py-2 rounded-md hover:bg-[#c4b5a0] transition-colors"
+                className="inline-block bg-[#fafaf8] text-gray-700 px-6 py-2 rounded-md hover:bg-[#f5f0e8] transition-colors"
               >
                 Back to MPs
               </Link>
@@ -98,7 +98,7 @@ export default function MPDetailPage() {
         </div>
 
         {/* MP Profile Card */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-md overflow-hidden">
+        <div className="bg-[#fafaf8] rounded-lg shadow-md overflow-hidden">
           {/* Header Section with Photo */}
           <div className="bg-gradient-to-r from-[#2d5016] to-[#1b3d26] p-8 text-white">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -162,7 +162,7 @@ export default function MPDetailPage() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {mp.email && (
-                  <div className="flex items-start gap-3 p-4 bg-[#f5f0e8] rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#fafaf8] rounded-lg">
                     <svg
                       className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
@@ -189,7 +189,7 @@ export default function MPDetailPage() {
                 )}
 
                 {mp.phone_no && (
-                  <div className="flex items-start gap-3 p-4 bg-[#f5f0e8] rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#fafaf8] rounded-lg">
                     <svg
                       className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
@@ -242,15 +242,15 @@ export default function MPDetailPage() {
                 Political Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-[#f5f0e8] rounded-lg">
+                <div className="p-4 bg-[#fafaf8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Party</p>
                   <p className="text-gray-800 font-semibold">{mp.party}</p>
                 </div>
-                <div className="p-4 bg-[#f5f0e8] rounded-lg">
+                <div className="p-4 bg-[#fafaf8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Constituency</p>
                   <p className="text-gray-800 font-semibold">{mp.constituency}</p>
                 </div>
-                <div className="p-4 bg-[#f5f0e8] rounded-lg">
+                <div className="p-4 bg-[#fafaf8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">District</p>
                   <p className="text-gray-800 font-semibold">{mp.district}</p>
                 </div>
@@ -263,7 +263,7 @@ export default function MPDetailPage() {
         <div className="mt-6 flex justify-center">
           <Link
             href="/trackers/mps"
-            className="bg-[#d2c4b0] text-gray-700 px-8 py-3 rounded-md hover:bg-[#c4b5a0] transition-colors font-medium"
+            className="bg-[#fafaf8] text-gray-700 px-8 py-3 rounded-md hover:bg-[#f5f0e8] transition-colors font-medium"
           >
             View All MPs
           </Link>

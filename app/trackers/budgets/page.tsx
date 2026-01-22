@@ -208,7 +208,7 @@ export default function BudgetsPage() {
           <p className="text-gray-600 mt-2">National budget documents and financial plans</p>
         </div>
 
-        <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#fafaf8] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -226,7 +226,7 @@ export default function BudgetsPage() {
                 <Button
                   variant="outline"
                   onClick={() => setSearchQuery('')}
-                  className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                 >
                   Clear
                 </Button>
@@ -236,10 +236,10 @@ export default function BudgetsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-[#ddd0b8]">
+              <thead className="bg-[#fafaf8]">
                 <tr>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                     onClick={() => handleSort('name')}
                     title="Click to sort"
                   >
@@ -257,7 +257,7 @@ export default function BudgetsPage() {
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                     onClick={() => handleSort('financial_year')}
                     title="Click to sort"
                   >
@@ -274,7 +274,7 @@ export default function BudgetsPage() {
                     </div>
                   </th>
                   <th 
-                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#d2c4b0] transition-colors group"
+                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer hover:bg-[#f5f0e8] transition-colors group"
                     onClick={() => handleSort('budget_total_amount')}
                     title="Click to sort"
                   >
@@ -349,7 +349,7 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="First page"
                 >
                   <ChevronsLeft size={20} />
@@ -357,7 +357,7 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Previous page"
                 >
                   <ChevronLeft size={20} />
@@ -368,7 +368,7 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={page === totalPages}
-                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Next page"
                 >
                   <ChevronRight size={20} />
@@ -376,7 +376,7 @@ export default function BudgetsPage() {
                 <button
                   onClick={() => setPage(totalPages)}
                   disabled={page === totalPages}
-                  className="p-2 rounded-md hover:bg-[#ddd0b8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Last page"
                 >
                   <ChevronsRight size={20} />
@@ -389,7 +389,7 @@ export default function BudgetsPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#fafaf8] rounded-lg border border-gray-200 shadow-sm p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">About Budget Documents</h2>
           <p className="text-gray-600">
             Access official national budget documents and supplementary budgets. These documents provide detailed

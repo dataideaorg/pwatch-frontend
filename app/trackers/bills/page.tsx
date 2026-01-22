@@ -168,7 +168,7 @@ export default function BillsTrackerPage() {
       <main className="relative">
 
         {/* How a Bill Becomes an Act Section */}
-        <div className="bg-[#f5f0e8] border-b">
+        <div className="bg-[#fafaf8] border-b">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h2 className="text-2xl font-semibold text-slate-800 text-center mb-8">
               How a Bill Becomes an Act
@@ -208,7 +208,7 @@ export default function BillsTrackerPage() {
 
           {/* Statistics Cards */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">1st Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -216,7 +216,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['1st_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">2nd Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -224,7 +224,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['2nd_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">3rd Reading</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -232,7 +232,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.['3rd_reading'] ?? 0}</p>
               )}
             </div>
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Waiting Assent</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -240,7 +240,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.passed ?? 0}</p>
               )}
             </div>
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Assented</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -248,7 +248,7 @@ export default function BillsTrackerPage() {
                 <p className="text-3xl font-bold text-gray-900 mt-1">{summary?.assented ?? 0}</p>
               )}
             </div>
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm p-5 border border-gray-200">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm p-5 border border-gray-200">
               <p className="text-sm text-gray-500">Withdrawn</p>
               {loading ? (
                 <div className="h-8 w-20 mt-2 bg-gray-200 animate-pulse rounded" />
@@ -275,7 +275,7 @@ export default function BillsTrackerPage() {
                 <Button
                   variant="outline"
                   onClick={() => setSearchQuery('')}
-                  className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                 >
                   Clear
                 </Button>
@@ -299,13 +299,13 @@ export default function BillsTrackerPage() {
               </Button>
             </div>
           ) : sortedBills.length > 0 ? (
-            <div className="bg-[#f5f0e8] rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-[#fafaf8] rounded-lg shadow-sm overflow-hidden">
               <div className="overflow-x-auto">
                 <Table>
-                  <TableHeader className="bg-[#f5f0e8]">
+                  <TableHeader className="bg-[#fafaf8]">
                     <TableRow>
                       <TableHead 
-                        className="cursor-pointer hover:bg-[#ddd0b8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="cursor-pointer hover:bg-[#f5f0e8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
                         onClick={() => handleSort('title')}
                         title="Click to sort"
                       >
@@ -322,7 +322,7 @@ export default function BillsTrackerPage() {
                       </div>
                     </TableHead>
                       <TableHead 
-                        className="cursor-pointer hover:bg-[#ddd0b8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="cursor-pointer hover:bg-[#f5f0e8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
                         onClick={() => handleSort('bill_type')}
                         title="Click to sort"
                       >
@@ -339,7 +339,7 @@ export default function BillsTrackerPage() {
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="cursor-pointer hover:bg-[#ddd0b8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="cursor-pointer hover:bg-[#f5f0e8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
                         onClick={() => handleSort('status')}
                         title="Click to sort"
                       >
@@ -356,7 +356,7 @@ export default function BillsTrackerPage() {
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="cursor-pointer hover:bg-[#ddd0b8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="cursor-pointer hover:bg-[#f5f0e8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
                         onClick={() => handleSort('year_introduced')}
                         title="Click to sort"
                       >
@@ -373,7 +373,7 @@ export default function BillsTrackerPage() {
                         </div>
                       </TableHead>
                       <TableHead 
-                        className="cursor-pointer hover:bg-[#ddd0b8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
+                        className="cursor-pointer hover:bg-[#f5f0e8] transition-colors group text-xs font-medium text-gray-500 uppercase tracking-wider"
                         onClick={() => handleSort('mover')}
                         title="Click to sort"
                       >
@@ -392,7 +392,7 @@ export default function BillsTrackerPage() {
                       <TableHead className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</TableHead>
                   </TableRow>
                   </TableHeader>
-                  <TableBody className="bg-[#f5f0e8] divide-y divide-gray-200">
+                  <TableBody className="bg-[#fafaf8] divide-y divide-gray-200">
                     {sortedBills.map((bill) => (
                       <TableRow key={bill.id} className="hover:bg-[#f5f0e8] transition-colors">
                       <TableCell>
@@ -406,7 +406,7 @@ export default function BillsTrackerPage() {
                       <TableCell className="whitespace-nowrap">
                         <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                           bill.status === 'assented'
-                            ? 'bg-[#ddd0b8] text-gray-700'
+                            ? 'bg-[#f5f0e8] text-gray-700'
                             : 'bg-emerald-50 text-[#2d5016]'
                         }`}>
                           {bill.status_display}
@@ -433,7 +433,7 @@ export default function BillsTrackerPage() {
               </div>
             </div>
           ) : (
-            <div className="text-center py-16 bg-[#f5f0e8] rounded-lg border border-slate-200">
+            <div className="text-center py-16 bg-[#fafaf8] rounded-lg border border-slate-200">
               <p className="text-slate-600">
                 {searchQuery 
                   ? `No bills found matching "${searchQuery}". Try a different search term.`
