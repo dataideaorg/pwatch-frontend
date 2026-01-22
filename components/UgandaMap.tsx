@@ -100,12 +100,41 @@ const getDistrictColor = (region: string, mpCount: number): string => {
   return baseColor + '99' // Slightly transparent for districts with no MPs
 }
 
+// Map view types
+type MapView = 'light' | 'satellite' | 'street' | 'terrain'
+
+// Tile layer configurations
+const TILE_LAYERS: Record<MapView, { url: string; attribution: string; name: string }> = {
+  light: {
+    url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    name: 'Light',
+  },
+  satellite: {
+    url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    attribution: '&copy; <a href="https://www.esri.com/">Esri</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    name: 'Satellite',
+  },
+  street: {
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    name: 'Street',
+  },
+  terrain: {
+    url: 'https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',
+    attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a>',
+    name: 'Terrain',
+  },
+}
+
 export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, selectedDistrict }: UgandaMapProps) {
   const mapRef = useRef<L.Map | null>(null)
   const mapContainerRef = useRef<HTMLDivElement>(null)
   const geoJsonLayerRef = useRef<L.GeoJSON | null>(null)
+  const tileLayerRef = useRef<L.TileLayer | null>(null)
   const [geoData, setGeoData] = useState<any>(null)
   const [isMapReady, setIsMapReady] = useState(false)
+  const [mapView, setMapView] = useState<MapView>('light')
   
   // Store callback in ref to avoid recreating GeoJSON layer
   const onDistrictClickRef = useRef(onDistrictClick)
@@ -131,13 +160,7 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
 
     console.log('Initializing map...')
     
-    // Uganda bounds
-    const ugandaBounds = L.latLngBounds(
-      L.latLng(-1.5, 29.5),  // Southwest corner
-      L.latLng(4.3, 35.0)    // Northeast corner
-    )
-    
-    // Create map centered on Uganda - no zoom allowed
+    // Create map - no zoom, no drag
     const map = L.map(mapContainerRef.current, {
       center: [1.3733, 32.2903],
       zoom: 7,
@@ -148,18 +171,17 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
       boxZoom: false,
       keyboard: false,
       dragging: false,
-      maxBounds: ugandaBounds,
-      maxBoundsViscosity: 1.0,
+      attributionControl: true,
     })
 
-    // Fit map to Uganda bounds
-    map.fitBounds(ugandaBounds)
-
-    // Add simple tile layer
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap'
+    // Add default tile layer (Light/CartoDB Positron)
+    const defaultLayer = TILE_LAYERS['light']
+    const tileLayer = L.tileLayer(defaultLayer.url, {
+      attribution: defaultLayer.attribution,
+      maxZoom: 19,
     }).addTo(map)
 
+    tileLayerRef.current = tileLayer
     mapRef.current = map
     setIsMapReady(true)
 
@@ -171,6 +193,21 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
       }
     }
   }, [])
+
+  // Update tile layer when map view changes
+  useEffect(() => {
+    if (!mapRef.current || !tileLayerRef.current || !isMapReady) return
+
+    const newLayerConfig = TILE_LAYERS[mapView]
+    const newTileLayer = L.tileLayer(newLayerConfig.url, {
+      attribution: newLayerConfig.attribution,
+      maxZoom: 19,
+    })
+
+    mapRef.current.removeLayer(tileLayerRef.current)
+    newTileLayer.addTo(mapRef.current)
+    tileLayerRef.current = newTileLayer
+  }, [mapView, isMapReady])
 
   // Add GeoJSON layer when data is loaded
   useEffect(() => {
@@ -207,13 +244,20 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
         // Bind tooltip
         layer.bindTooltip(
           `<strong>${districtName}</strong><br/>Region: ${region}<br/>MPs: ${mpCount}`,
-          { sticky: true, className: 'district-tooltip' }
+          { sticky: false, className: 'district-tooltip' }
         )
 
         // Click handler
         layer.on('click', (e) => {
           console.log('District clicked:', districtName)
           L.DomEvent.stopPropagation(e)
+          L.DomEvent.preventDefault(e)
+          // Close any open tooltips
+          layer.closeTooltip()
+          // Close any open popups
+          if (mapRef.current) {
+            mapRef.current.closePopup()
+          }
           onDistrictClickRef.current(districtName)
         })
 
@@ -237,6 +281,10 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
 
     geoJsonLayer.addTo(mapRef.current)
     geoJsonLayerRef.current = geoJsonLayer
+    
+    // Fit map to Uganda bounds with padding to show surrounding countries
+    const bounds = geoJsonLayer.getBounds()
+    mapRef.current.fitBounds(bounds, { padding: [50, 50] })
     
     console.log('GeoJSON layer added')
 
@@ -277,12 +325,33 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
   }, [selectedDistrict, districtMPCounts])
 
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       <div 
         ref={mapContainerRef} 
-        className="w-full h-[500px] rounded-lg border border-gray-200 shadow-sm"
-        style={{ zIndex: 1 }}
+        className="w-full h-[calc(100vh-250px)] min-h-[700px] rounded-lg border border-gray-200 shadow-sm"
+        style={{ zIndex: 1, backgroundColor: '#f8f9fa' }}
       />
+      
+      {/* Map View Switcher */}
+      <div className="absolute top-4 right-4 z-[1000] bg-white rounded-lg shadow-lg border border-gray-200 p-1">
+        <div className="flex flex-col gap-1">
+          {(Object.keys(TILE_LAYERS) as MapView[]).map((view) => (
+            <button
+              key={view}
+              onClick={() => setMapView(view)}
+              className={`px-3 py-2 text-sm font-medium rounded transition-colors ${
+                mapView === view
+                  ? 'bg-[#2d5016] text-white'
+                  : 'text-gray-700 hover:bg-gray-100'
+              }`}
+              title={`Switch to ${TILE_LAYERS[view].name} view`}
+            >
+              {TILE_LAYERS[view].name}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <style jsx global>{`
         .district-tooltip {
           background: white;

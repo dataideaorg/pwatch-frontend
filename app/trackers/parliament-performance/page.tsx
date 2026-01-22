@@ -49,7 +49,6 @@ export default function ParliamentPerformancePage() {
   const [allMps, setAllMps] = useState<MP[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null)
-  const [showMPsPanel, setShowMPsPanel] = useState(false)
 
   // Fetch all MPs
   useEffect(() => {
@@ -92,12 +91,10 @@ export default function ParliamentPerformancePage() {
   // Handle district click
   const handleDistrictClick = useCallback((district: string) => {
     setSelectedDistrict(district)
-    setShowMPsPanel(true)
   }, [])
 
-  // Close MPs panel
-  const closeMPsPanel = () => {
-    setShowMPsPanel(false)
+  // Clear selected district
+  const clearSelectedDistrict = () => {
     setSelectedDistrict(null)
   }
 
@@ -168,7 +165,7 @@ export default function ParliamentPerformancePage() {
         <div className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Map Section */}
-            <div className={`${showMPsPanel ? 'lg:col-span-2' : 'lg:col-span-3'} transition-all duration-300`}>
+            <div className="lg:col-span-2">
               <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Uganda District Map</h2>
                 <p className="text-sm text-gray-600 mb-4">
@@ -220,87 +217,100 @@ export default function ParliamentPerformancePage() {
               </div>
             </div>
 
-            {/* MPs Panel */}
-            {showMPsPanel && (
-              <div className="lg:col-span-1">
-                <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full">
-                  <div className="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{selectedDistrict} District</h3>
-                      <p className="text-sm text-gray-600">{districtMPs.length} Member{districtMPs.length !== 1 ? 's' : ''} of Parliament</p>
-                    </div>
+            {/* MPs Panel - Always visible */}
+            <div className="lg:col-span-1">
+              <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full">
+                <div className="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      {selectedDistrict ? `${selectedDistrict} District` : 'District MPs'}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      {selectedDistrict 
+                        ? `${districtMPs.length} Member${districtMPs.length !== 1 ? 's' : ''} of Parliament`
+                        : 'Select a district on the map'
+                      }
+                    </p>
+                  </div>
+                  {selectedDistrict && (
                     <Button
                       variant="ghost"
                       size="sm"
-                      onClick={closeMPsPanel}
+                      onClick={clearSelectedDistrict}
                       className="text-gray-500 hover:text-gray-700"
                     >
                       <X size={20} />
                     </Button>
-                  </div>
-                  
-                  <div className="p-4 max-h-[500px] overflow-y-auto">
-                    {districtMPs.length === 0 ? (
-                      <div className="text-center py-8 text-gray-500">
-                        <Users className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                        <p>No MPs found for this district.</p>
-                      </div>
-                    ) : (
-                      <div className="space-y-4">
-                        {districtMPs.map(mp => (
-                          <Link
-                            key={mp.id}
-                            href={`/trackers/mps/${mp.id}`}
-                            className="block bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors"
-                          >
-                            <div className="flex items-start gap-4">
-                              <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
-                                {mp.photo ? (
-                                  <Image
-                                    src={mp.photo}
-                                    alt={mp.name}
-                                    width={64}
-                                    height={64}
-                                    className="w-full h-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                                    <Users size={24} />
-                                  </div>
-                                )}
-                              </div>
-                              <div className="flex-1 min-w-0">
-                                <h4 className="font-semibold text-gray-900 truncate">{mp.name}</h4>
-                                <p className="text-sm text-gray-600 truncate">{mp.constituency || 'N/A'}</p>
-                                <div className="mt-2 flex items-center gap-2">
-                                  <span
-                                    className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-white"
-                                    style={{ backgroundColor: getPartyColor(mp.party) }}
-                                  >
-                                    {mp.party || 'N/A'}
-                                  </span>
+                  )}
+                </div>
+                
+                <div className="p-4 max-h-[500px] overflow-y-auto">
+                  {!selectedDistrict ? (
+                    <div className="text-center py-12 text-gray-500">
+                      <MapPin className="w-16 h-16 mx-auto mb-4 opacity-30" />
+                      <p className="text-lg font-medium mb-2">Select a District</p>
+                      <p className="text-sm">Click on any district on the map to view its Members of Parliament.</p>
+                    </div>
+                  ) : districtMPs.length === 0 ? (
+                    <div className="text-center py-8 text-gray-500">
+                      <Users className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                      <p>No MPs found for this district.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {districtMPs.map(mp => (
+                        <Link
+                          key={mp.id}
+                          href={`/trackers/mps/${mp.id}`}
+                          className="block bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition-colors"
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="w-16 h-16 rounded-full bg-gray-200 overflow-hidden flex-shrink-0">
+                              {mp.photo ? (
+                                <Image
+                                  src={mp.photo}
+                                  alt={mp.name}
+                                  width={64}
+                                  height={64}
+                                  className="w-full h-full object-cover"
+                                />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                                  <Users size={24} />
                                 </div>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-semibold text-gray-900 truncate">{mp.name}</h4>
+                              <p className="text-sm text-gray-600 truncate">{mp.constituency || 'N/A'}</p>
+                              <div className="mt-2 flex items-center gap-2">
+                                <span
+                                  className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium text-white"
+                                  style={{ backgroundColor: getPartyColor(mp.party) }}
+                                >
+                                  {mp.party || 'N/A'}
+                                </span>
                               </div>
                             </div>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-
-                  {districtMPs.length > 0 && (
-                    <div className="p-4 border-t border-gray-200">
-                      <Link
-                        href={`/trackers/mps?district=${encodeURIComponent(selectedDistrict || '')}`}
-                        className="block w-full text-center py-2 px-4 bg-[#2d5016] text-white rounded-lg hover:bg-[#1b3d26] transition-colors text-sm font-medium"
-                      >
-                        View All in MPs Tracker
-                      </Link>
+                          </div>
+                        </Link>
+                      ))}
                     </div>
                   )}
                 </div>
+
+                {selectedDistrict && districtMPs.length > 0 && (
+                  <div className="p-4 border-t border-gray-200">
+                    <Link
+                      href={`/trackers/mps?district=${encodeURIComponent(selectedDistrict || '')}`}
+                      className="block w-full text-center py-2 px-4 bg-[#2d5016] text-white rounded-lg hover:bg-[#1b3d26] transition-colors text-sm font-medium"
+                    >
+                      View All in MPs Tracker
+                    </Link>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         </div>
 
