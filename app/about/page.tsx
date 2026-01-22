@@ -143,7 +143,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {whatSetsUsApart.map((item, index) => (
-                <div key={item.id} className="bg-[#f5f0e8] rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
+                <div key={item.id} className="bg-[#fafaf8] rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-16 h-16 bg-[#2d5016] rounded-full flex items-center justify-center text-white">
                       {item.icon ? (
@@ -175,7 +175,7 @@ export default function AboutPage() {
               {partners.map((partner) => (
                 <div
                   key={partner.id}
-                  className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center text-center"
+                  className="bg-[#fafaf8] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center text-center"
                 >
                   {partner.logo ? (
                     <a
@@ -213,7 +213,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member) => (
-                <div key={member.id} className="bg-[#f5f0e8] rounded-lg overflow-hidden shadow-xl group">
+                <div key={member.id} className="bg-[#fafaf8] rounded-lg overflow-hidden shadow-xl group">
                   <div className="relative h-64 bg-gray-300">
                     {member.photo ? (
                       <img

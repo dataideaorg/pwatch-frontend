@@ -137,7 +137,7 @@ export default function BlogsPage() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                  className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] flex-1 md:flex-none md:w-64"
+                  className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-gray-400 flex-1 md:flex-none md:w-64"
                 />
                 <select
                   value={selectedCategory}

@@ -195,7 +195,7 @@ export default function CitizensVoicePage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -205,7 +205,7 @@ export default function CitizensVoicePage() {
                   placeholder="Search polls..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400"
+                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400 border-gray-300 focus:border-gray-400"
                   style={{ color: '#111827' }}
                 />
               </div>
@@ -214,7 +214,7 @@ export default function CitizensVoicePage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -224,7 +224,7 @@ export default function CitizensVoicePage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
               >
                 <option value="all">All Categories</option>
                 {categories.map((cat) => (
@@ -239,7 +239,7 @@ export default function CitizensVoicePage() {
                   const value = e.target.value;
                   setFeaturedFilter(value === 'all' ? null : value === 'featured');
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
               >
                 <option value="all">All Polls</option>
                 <option value="featured">Featured Only</option>
@@ -253,7 +253,7 @@ export default function CitizensVoicePage() {
                     setCategoryFilter('all');
                     setFeaturedFilter(null);
                   }}
-                  className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                 >
                   Clear
                 </Button>
@@ -264,7 +264,7 @@ export default function CitizensVoicePage() {
 
         {/* Polls Grid */}
         {filteredPolls.length === 0 ? (
-          <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No polls found</p>
             {(searchQuery || statusFilter !== 'all' || categoryFilter !== 'all' || featuredFilter !== null) && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -280,7 +280,7 @@ export default function CitizensVoicePage() {
               return (
                 <div
                   key={poll.id}
-                  className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                  className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {/* Header */}
                   <div className="p-6 border-b border-gray-200">
@@ -297,7 +297,7 @@ export default function CitizensVoicePage() {
                     )}
                     <div className="flex items-center gap-4 text-xs text-gray-500">
                       {poll.category && (
-                        <span className="px-2 py-1 bg-[#ddd0b8] rounded">{poll.category}</span>
+                        <span className="px-2 py-1 bg-[#f5f0e8] rounded">{poll.category}</span>
                       )}
                       <div className="flex items-center gap-1">
                         {poll.is_active ? (
@@ -390,7 +390,7 @@ export default function CitizensVoicePage() {
                                     <span>{voteCount} votes</span>
                                     <span>{percentage}%</span>
                                   </div>
-                                  <div className="w-full bg-[#d2c4b0] rounded-full h-2">
+                                  <div className="w-full bg-[#f5f0e8] rounded-full h-2">
                                     <div
                                       className="bg-[#2d5016] h-2 rounded-full transition-all duration-300"
                                       style={{ width: `${percentage}%` }}
@@ -433,7 +433,7 @@ export default function CitizensVoicePage() {
         )}
 
         {/* Info Section */}
-        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">About Citizens Voice</h3>
           <p className="text-gray-600 text-sm mb-3">
             Citizens Voice is a platform for democratic engagement where you can participate in polls on various

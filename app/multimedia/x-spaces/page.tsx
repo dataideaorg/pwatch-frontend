@@ -159,9 +159,9 @@ export default function XSpacesPage() {
       case 'completed':
         return 'bg-green-100 text-green-800';
       case 'cancelled':
-        return 'bg-[#ddd0b8] text-gray-800';
+        return 'bg-[#f5f0e8] text-gray-800';
       default:
-        return 'bg-[#ddd0b8] text-gray-800';
+        return 'bg-[#f5f0e8] text-gray-800';
     }
   };
 
@@ -218,7 +218,7 @@ export default function XSpacesPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -228,7 +228,7 @@ export default function XSpacesPage() {
                   placeholder="Search X Spaces..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400"
+                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400 border-gray-300 focus:border-gray-400"
                   style={{ color: '#111827' }}
                 />
               </div>
@@ -237,7 +237,7 @@ export default function XSpacesPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
               >
                 <option value="all">All Status</option>
                 <option value="upcoming">Upcoming</option>
@@ -252,7 +252,7 @@ export default function XSpacesPage() {
                     setSearchQuery('');
                     setStatusFilter('all');
                   }}
-                  className="bg-[#d2c4b0] text-gray-700 hover:bg-[#c4b5a0] border-gray-300"
+                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
                 >
                   Clear
                 </Button>
@@ -263,7 +263,7 @@ export default function XSpacesPage() {
 
         {/* X Spaces Grid */}
         {sortedXSpaces.length === 0 ? (
-          <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No X Spaces found</p>
             {(searchQuery || statusFilter !== 'all') && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -274,7 +274,7 @@ export default function XSpacesPage() {
             {sortedXSpaces.map((space) => (
               <div
                 key={space.id}
-                className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
               >
                 {/* Thumbnail */}
                 {space.thumbnail ? (
@@ -337,7 +337,7 @@ export default function XSpacesPage() {
                         {space.topics.split(',').slice(0, 3).map((topic, idx) => (
                           <span
                             key={idx}
-                            className="px-2 py-1 bg-[#ddd0b8] text-gray-700 text-xs rounded"
+                            className="px-2 py-1 bg-[#f5f0e8] text-gray-700 text-xs rounded"
                           >
                             {topic.trim()}
                           </span>
@@ -381,7 +381,7 @@ export default function XSpacesPage() {
         )}
 
         {/* Footer Info */}
-        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About X Spaces</h3>
           <p className="text-sm text-gray-600">
             X Spaces are live audio conversations on X (formerly Twitter). Join our discussions on parliamentary
