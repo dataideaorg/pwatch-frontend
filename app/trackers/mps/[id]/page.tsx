@@ -34,7 +34,7 @@ export default function MPDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-gray-600">Loading MP details...</p>
@@ -46,7 +46,7 @@ export default function MPDetailPage() {
 
   if (error || !mp) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-red-600">{error || 'MP not found'}</p>
@@ -71,7 +71,7 @@ export default function MPDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         {/* Back Button */}
@@ -98,7 +98,7 @@ export default function MPDetailPage() {
         </div>
 
         {/* MP Profile Card */}
-        <div className="bg-[#f3eed4] rounded-lg shadow-md overflow-hidden">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-md overflow-hidden">
           {/* Header Section with Photo */}
           <div className="bg-gradient-to-r from-[#2d5016] to-[#1b3d26] p-8 text-white">
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
@@ -162,7 +162,7 @@ export default function MPDetailPage() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4">Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {mp.email && (
-                  <div className="flex items-start gap-3 p-4 bg-[#f3eed4] rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#f5f0e8] rounded-lg">
                     <svg
                       className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
@@ -189,7 +189,7 @@ export default function MPDetailPage() {
                 )}
 
                 {mp.phone_no && (
-                  <div className="flex items-start gap-3 p-4 bg-[#f3eed4] rounded-lg">
+                  <div className="flex items-start gap-3 p-4 bg-[#f5f0e8] rounded-lg">
                     <svg
                       className="w-6 h-6 text-[#2d5016] flex-shrink-0 mt-0.5"
                       fill="none"
@@ -242,15 +242,15 @@ export default function MPDetailPage() {
                 Political Information
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="p-4 bg-[#f3eed4] rounded-lg">
+                <div className="p-4 bg-[#f5f0e8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Party</p>
                   <p className="text-gray-800 font-semibold">{mp.party}</p>
                 </div>
-                <div className="p-4 bg-[#f3eed4] rounded-lg">
+                <div className="p-4 bg-[#f5f0e8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">Constituency</p>
                   <p className="text-gray-800 font-semibold">{mp.constituency}</p>
                 </div>
-                <div className="p-4 bg-[#f3eed4] rounded-lg">
+                <div className="p-4 bg-[#f5f0e8] rounded-lg">
                   <p className="text-sm font-medium text-gray-600 mb-1">District</p>
                   <p className="text-gray-800 font-semibold">{mp.district}</p>
                 </div>

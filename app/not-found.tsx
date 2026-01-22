@@ -6,9 +6,9 @@ import { Button } from '@/components/ui/button'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-12">
+        <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-12">
           <div className="flex flex-col items-center justify-center text-center">
             <div className="w-24 h-24 bg-[#2d5016] bg-opacity-10 rounded-full flex items-center justify-center mb-6">
               <FileX className="w-12 h-12 text-[#2d5016]" />

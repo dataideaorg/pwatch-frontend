@@ -80,7 +80,7 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -101,7 +101,7 @@ export default function ChatbotPage() {
         </div>
 
         {/* Chat Interface */}
-        <div className="bg-[#f3eed4] rounded-lg shadow-lg border border-gray-200 flex flex-col h-[600px]">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-lg border border-gray-200 flex flex-col h-[600px]">
           {/* Chat History */}
           <div className="flex-1 overflow-y-auto p-6 space-y-6">
             {chatHistory.length === 0 && !response && !error && (
@@ -221,7 +221,7 @@ export default function ChatbotPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">How it works</h2>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-start gap-2">

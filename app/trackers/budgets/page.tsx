@@ -164,7 +164,7 @@ export default function BudgetsPage() {
   if (loading && allBudgets.length === 0) {
     return (
       <>
-        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center">
+        <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center">
           <div className="flex flex-col items-center gap-4">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
             <p className="text-gray-600">Loading budgets...</p>
@@ -177,7 +177,7 @@ export default function BudgetsPage() {
   if (error) {
     return (
       <>
-        <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center p-4">
+        <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center p-4">
           <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 max-w-md w-full">
             <h2 className="text-lg font-semibold mb-2">Error Loading Budgets</h2>
             <p className="mb-4">{error}</p>
@@ -194,7 +194,7 @@ export default function BudgetsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
@@ -208,7 +208,7 @@ export default function BudgetsPage() {
           <p className="text-gray-600 mt-2">National budget documents and financial plans</p>
         </div>
 
-        <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm">
+        <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm">
           <div className="p-4 border-b border-gray-200">
             <div className="flex gap-3 items-center">
               <div className="relative flex-1">
@@ -310,7 +310,7 @@ export default function BudgetsPage() {
                   </tr>
                 ) : (
                   paginatedBudgets.map((budget) => (
-                    <tr key={budget.id} className="hover:bg-[#f3eed4] transition-colors">
+                    <tr key={budget.id} className="hover:bg-[#f5f0e8] transition-colors">
                       <td className="px-6 py-4">
                         <div className="font-medium text-gray-900">{budget.name}</div>
                       </td>
@@ -389,7 +389,7 @@ export default function BudgetsPage() {
           )}
         </div>
 
-        <div className="mt-6 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-6 bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-2">About Budget Documents</h2>
           <p className="text-gray-600">
             Access official national budget documents and supplementary budgets. These documents provide detailed

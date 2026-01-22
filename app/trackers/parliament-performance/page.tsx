@@ -110,7 +110,7 @@ export default function ParliamentPerformancePage() {
   }, [allMps])
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-6">
           <Link
@@ -126,7 +126,7 @@ export default function ParliamentPerformancePage() {
 
         {/* Summary Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md p-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-[#2d5016] bg-opacity-10 rounded-full flex items-center justify-center">
                 <Users className="w-6 h-6 text-[#2d5016]" />
@@ -137,7 +137,7 @@ export default function ParliamentPerformancePage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md p-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
                 <MapPin className="w-6 h-6 text-blue-600" />
@@ -148,7 +148,7 @@ export default function ParliamentPerformancePage() {
               </div>
             </div>
           </div>
-          <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md p-6">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center">
                 <Building2 className="w-6 h-6 text-purple-600" />
@@ -166,7 +166,7 @@ export default function ParliamentPerformancePage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Map Section */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm p-4">
+              <div className="bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md p-4">
                 <h2 className="text-lg font-semibold text-gray-900 mb-4">Uganda District Map</h2>
                 <p className="text-sm text-gray-600 mb-4">
                   Click on a district to view its Members of Parliament. Districts are colored by region.
@@ -175,28 +175,28 @@ export default function ParliamentPerformancePage() {
                 {/* Region Legend */}
                 <div className="flex flex-wrap gap-3 mb-4">
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#4CAF50' }}></div>
-                    <span>Central</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#6B8E5A' }}></div>
+                    <span className="text-gray-900 font-medium">Central</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#2196F3' }}></div>
-                    <span>Eastern</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#5B8FA8' }}></div>
+                    <span className="text-gray-900 font-medium">Eastern</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#FF9800' }}></div>
-                    <span>Northern</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#C99A6B' }}></div>
+                    <span className="text-gray-900 font-medium">Northern</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#9C27B0' }}></div>
-                    <span>Western</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#8B6F9E' }}></div>
+                    <span className="text-gray-900 font-medium">Western</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#F44336' }}></div>
-                    <span>West Nile</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#B87A7A' }}></div>
+                    <span className="text-gray-900 font-medium">West Nile</span>
                   </div>
                   <div className="flex items-center gap-2 text-sm">
-                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#795548' }}></div>
-                    <span>Karamoja</span>
+                    <div className="w-4 h-4 rounded" style={{ backgroundColor: '#8B7D6B' }}></div>
+                    <span className="text-gray-900 font-medium">Karamoja</span>
                   </div>
                 </div>
 
@@ -219,8 +219,8 @@ export default function ParliamentPerformancePage() {
 
             {/* MPs Panel - Always visible */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-lg border border-gray-200 shadow-sm h-full">
-                <div className="p-4 border-b border-gray-200 flex items-center justify-between sticky top-0 bg-white z-10">
+              <div className="bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md h-full">
+                <div className="p-4 border-b border-gray-300 flex items-center justify-between sticky top-0 bg-[#f5f0e8] z-10">
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900">
                       {selectedDistrict ? `${selectedDistrict} District` : 'District MPs'}
@@ -315,7 +315,7 @@ export default function ParliamentPerformancePage() {
         </div>
 
         {/* Instructions */}
-        <div className="mt-8 bg-white rounded-lg border border-gray-200 shadow-sm p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg border border-gray-300 shadow-md p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">How to Use</h3>
           <ul className="list-disc list-inside text-gray-600 space-y-2 text-sm">
             <li>Hover over a district to see its name, region, and number of MPs</li>

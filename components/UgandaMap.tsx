@@ -65,14 +65,14 @@ const DISTRICT_REGIONS: { [key: string]: string } = {
   'Bunyangabu': 'Western', 'Rwampara': 'Western', 'Kazo': 'Western',
 }
 
-// Region colors
+// Region colors - Muted palette that harmonizes with antique white theme
 const REGION_COLORS: { [key: string]: string } = {
-  'Central': '#4CAF50',
-  'Eastern': '#2196F3',
-  'Northern': '#FF9800',
-  'Western': '#9C27B0',
-  'West Nile': '#F44336',
-  'Karamoja': '#795548',
+  'Central': '#6B8E5A',      // Muted sage green
+  'Eastern': '#5B8FA8',       // Muted blue-gray
+  'Northern': '#C99A6B',      // Muted terracotta
+  'Western': '#8B6F9E',       // Muted lavender
+  'West Nile': '#B87A7A',     // Muted rose
+  'Karamoja': '#8B7D6B',      // Muted taupe
 }
 
 const getDistrictRegion = (districtName: string): string => {
@@ -251,7 +251,9 @@ export default function UgandaMap({ onDistrictClick, districtMPCounts = {}, sele
         layer.on('click', (e) => {
           console.log('District clicked:', districtName)
           L.DomEvent.stopPropagation(e)
-          L.DomEvent.preventDefault(e)
+          if (e.originalEvent) {
+            L.DomEvent.preventDefault(e.originalEvent)
+          }
           // Close any open tooltips
           layer.closeTooltip()
           // Close any open popups

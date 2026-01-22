@@ -158,7 +158,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
 
       <main className="max-w-7xl mx-auto px-4 py-6 pb-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -257,8 +257,8 @@ export default function Home() {
 
           {/* Hot in Parliament Section - Only visible on large screens */}
           <div className="hidden lg:block">
-            <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-4 h-[400px] overflow-y-auto">
-              <h3 className="text-xl font-bold text-gray-900 mb-4 sticky top-0 bg-[#f3eed4] pb-2 border-b border-gray-300">
+            <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-4 h-[400px] overflow-y-auto">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 sticky top-0 bg-[#f5f0e8] pb-2 border-b border-gray-300">
                 Latest in Parliament
               </h3>
               {hotInParliament.length === 0 ? (
@@ -414,7 +414,7 @@ export default function Home() {
               onClick={() => setActiveTab('mps')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'mps'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -424,7 +424,7 @@ export default function Home() {
               onClick={() => setActiveTab('bills')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'bills'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -434,7 +434,7 @@ export default function Home() {
               onClick={() => setActiveTab('loans')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'loans'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -444,7 +444,7 @@ export default function Home() {
               onClick={() => setActiveTab('budgets')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'budgets'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -454,7 +454,7 @@ export default function Home() {
               onClick={() => setActiveTab('hansards')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'hansards'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -464,7 +464,7 @@ export default function Home() {
               onClick={() => setActiveTab('order-paper')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeTab === 'order-paper'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -473,7 +473,7 @@ export default function Home() {
           </div>
 
           {/* Content Area */}
-          <div className="bg-[#f3eed4] p-4">
+          <div className="bg-[#f5f0e8] p-4">
             {trackersLoading ? (
               <div className="text-center py-8">
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>
@@ -494,7 +494,7 @@ export default function Home() {
                           <Link
                             key={mp.id}
                             href={`/trackers/mps/${mp.id}`}
-                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f3eed4] transition-colors cursor-pointer"
+                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f5f0e8] transition-colors cursor-pointer"
                           >
                             <Folder className="w-4 h-4 text-[#a0522d] flex-shrink-0" />
                             <div className="flex-1 min-w-0">
@@ -529,7 +529,7 @@ export default function Home() {
                           <Link
                             key={bill.id}
                             href={`/trackers/bills/${bill.id}`}
-                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f3eed4] transition-colors cursor-pointer"
+                            className="flex items-center gap-3 py-2 border-b border-gray-200 last:border-0 hover:bg-[#f5f0e8] transition-colors cursor-pointer"
                           >
                             <Folder className="w-4 h-4 text-[#a0522d] flex-shrink-0" />
                             <div className="flex-1 min-w-0">
@@ -723,7 +723,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('reports')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'reports'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -733,7 +733,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('partner-publications')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'partner-publications'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -743,7 +743,7 @@ export default function Home() {
               onClick={() => setActiveResourceTab('statements')}
               className={`px-4 py-2 text-sm font-medium rounded-t-lg transition-colors ${
                 activeResourceTab === 'statements'
-                  ? 'bg-[#f3eed4] text-gray-900'
+                  ? 'bg-[#f5f0e8] text-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
@@ -752,7 +752,7 @@ export default function Home() {
           </div>
 
           {/* Content Area */}
-          <div className="bg-[#f3eed4] p-4">
+          <div className="bg-[#f5f0e8] p-4">
             {resourcesLoading ? (
               <div className="text-center py-8">
                 <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-[#2d5016]"></div>

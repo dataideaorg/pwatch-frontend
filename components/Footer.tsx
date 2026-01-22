@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* About Section */}
           <div>
-            <Link href="/" className="inline-block mb-4 bg-[#f3eed4] p-2 rounded">
+            <Link href="/" className="inline-block mb-4 bg-[#f5f0e8] p-2 rounded">
               <Image
                 src="/images/logo.png"
                 alt="Parliament Watch Uganda Logo"

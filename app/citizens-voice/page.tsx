@@ -157,7 +157,7 @@ export default function CitizensVoicePage() {
 
   if (loading && allPolls.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
@@ -170,7 +170,7 @@ export default function CitizensVoicePage() {
 
   if (error && allPolls.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -184,7 +184,7 @@ export default function CitizensVoicePage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Header */}
         <div className="mb-8">
@@ -195,7 +195,7 @@ export default function CitizensVoicePage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -214,7 +214,7 @@ export default function CitizensVoicePage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f3eed4]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
               >
                 <option value="all">All Status</option>
                 <option value="active">Active</option>
@@ -224,7 +224,7 @@ export default function CitizensVoicePage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f3eed4]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
               >
                 <option value="all">All Categories</option>
                 {categories.map((cat) => (
@@ -239,7 +239,7 @@ export default function CitizensVoicePage() {
                   const value = e.target.value;
                   setFeaturedFilter(value === 'all' ? null : value === 'featured');
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f3eed4]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
               >
                 <option value="all">All Polls</option>
                 <option value="featured">Featured Only</option>
@@ -264,7 +264,7 @@ export default function CitizensVoicePage() {
 
         {/* Polls Grid */}
         {filteredPolls.length === 0 ? (
-          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No polls found</p>
             {(searchQuery || statusFilter !== 'all' || categoryFilter !== 'all' || featuredFilter !== null) && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -280,7 +280,7 @@ export default function CitizensVoicePage() {
               return (
                 <div
                   key={poll.id}
-                  className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
+                  className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow"
                 >
                   {/* Header */}
                   <div className="p-6 border-b border-gray-200">
@@ -355,7 +355,7 @@ export default function CitizensVoicePage() {
                               <div className="flex items-center justify-between">
                                 <label
                                   className={`flex-1 cursor-pointer ${
-                                    poll.is_active && !hasVoted ? 'hover:bg-[#f3eed4]' : ''
+                                    poll.is_active && !hasVoted ? 'hover:bg-[#f5f0e8]' : ''
                                   } p-3 rounded-lg border ${
                                     hasVoted && optionResults
                                       ? 'border-[#2d5016] bg-green-50'
@@ -433,7 +433,7 @@ export default function CitizensVoicePage() {
         )}
 
         {/* Info Section */}
-        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-3">About Citizens Voice</h3>
           <p className="text-gray-600 text-sm mb-3">
             Citizens Voice is a platform for democratic engagement where you can participate in polls on various

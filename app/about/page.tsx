@@ -55,7 +55,7 @@ export default function AboutPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-red-600">Error: {error}</p>
@@ -85,7 +85,7 @@ export default function AboutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Who We Are Section */}
         {whoWeAre && (
@@ -143,7 +143,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {whatSetsUsApart.map((item, index) => (
-                <div key={item.id} className="bg-[#f3eed4] rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
+                <div key={item.id} className="bg-[#f5f0e8] rounded-lg p-6 shadow-lg border-2 border-gray-100 hover:border-[#2d5016] transition-colors">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-16 h-16 bg-[#2d5016] rounded-full flex items-center justify-center text-white">
                       {item.icon ? (
@@ -213,7 +213,7 @@ export default function AboutPage() {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {teamMembers.map((member) => (
-                <div key={member.id} className="bg-[#f3eed4] rounded-lg overflow-hidden shadow-xl group">
+                <div key={member.id} className="bg-[#f5f0e8] rounded-lg overflow-hidden shadow-xl group">
                   <div className="relative h-64 bg-gray-300">
                     {member.photo ? (
                       <img

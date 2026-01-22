@@ -76,7 +76,7 @@ export default function DebtTrackerPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
@@ -89,7 +89,7 @@ export default function DebtTrackerPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -106,7 +106,7 @@ export default function DebtTrackerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
@@ -128,21 +128,21 @@ export default function DebtTrackerPage() {
         {/* Top Stats Cards */}
         {latestData && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-8">
-            <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">National Debt</h3>
               <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.national_debt / 1000000).toLocaleString()}M
               </p>
               <p className="text-xs text-gray-500 mt-2">As of {latestData.year}</p>
             </div>
-            <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Interest</h3>
               <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.interest / 1000000).toLocaleString()}M
               </p>
               <p className="text-xs text-gray-500 mt-2">As of {latestData.year}</p>
             </div>
-            <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+            <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
               <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">Total Expenditure</h3>
               <p className="text-2xl md:text-3xl font-bold text-[#2d5016]">
                 UGX {(latestData.total_expenditure / 1000000).toLocaleString()}M
@@ -155,7 +155,7 @@ export default function DebtTrackerPage() {
         {/* Main Content - Chart and Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Chart Section */}
-          <div className="lg:col-span-2 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="lg:col-span-2 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
             <h2 className="text-xl font-bold text-gray-900 mb-6">GDP and National Debt Trends</h2>
             <ResponsiveContainer width="100%" height={400}>
               <AreaChart
@@ -206,7 +206,7 @@ export default function DebtTrackerPage() {
 
           {/* Sidebar Metrics */}
           {latestData && (
-            <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+            <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
               <h3 className="text-lg font-bold text-gray-900 mb-6">Per Capita Metrics</h3>
               <div className="space-y-6">
                 {/* Debt Per Citizen */}
@@ -274,7 +274,7 @@ export default function DebtTrackerPage() {
         </div>
 
         {/* Data Source Footer */}
-        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About This Data</h3>
           <p className="text-sm text-gray-600">
             National debt and economic data is collected from official government sources and updated annually.

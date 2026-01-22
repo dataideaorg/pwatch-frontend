@@ -61,7 +61,7 @@ export default function DonatePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-12">
         {/* Page Header */}
         <div className="mb-12 text-center">
@@ -76,7 +76,7 @@ export default function DonatePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Donation Form */}
           <div className="lg:col-span-2">
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-8">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-8">
               <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Donation Information</h2>
                 <p className="text-gray-600">
@@ -185,7 +185,7 @@ export default function DonatePage() {
                     Preferred Donation Method
                   </label>
                   <div className="space-y-3">
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f5f0e8] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="mobile-money"
@@ -205,7 +205,7 @@ export default function DonatePage() {
                       </label>
                     </div>
 
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f5f0e8] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="bank-transfer"
@@ -225,7 +225,7 @@ export default function DonatePage() {
                       </label>
                     </div>
 
-                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-colors cursor-pointer">
+                    <div className="flex items-start gap-3 p-4 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f5f0e8] transition-colors cursor-pointer">
                       <input
                         type="radio"
                         id="other"
@@ -284,7 +284,7 @@ export default function DonatePage() {
           <div className="space-y-6">
 
             {/* Contact Information */}
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Contact Information</h3>
               <div className="space-y-3 text-sm text-gray-600">
                 <p>

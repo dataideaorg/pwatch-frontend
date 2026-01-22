@@ -33,9 +33,9 @@ export default async function CommitteeDetailPage({
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       {/* Page Header */}
-      <div className="bg-[#f3eed4] border-b">
+      <div className="bg-[#f5f0e8] border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <Link 
             href="/resources/committees" 

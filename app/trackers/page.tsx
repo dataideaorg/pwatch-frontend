@@ -23,7 +23,7 @@ export default function TrackersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
 
       <main className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -63,7 +63,7 @@ export default function TrackersPage() {
             </div>
           </div>
 
-          <div className="bg-[#f3eed4] rounded-lg p-8 shadow-lg">
+          <div className="bg-[#f5f0e8] rounded-lg p-8 shadow-lg">
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center gap-4">
                 <div className="flex flex-col items-center">
@@ -136,7 +136,7 @@ export default function TrackersPage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mb-2">
-                  <div className="w-10 h-10 rounded-full bg-[#f3eed4] flex items-center justify-center text-[#2d5016] font-bold">
+                  <div className="w-10 h-10 rounded-full bg-[#f5f0e8] flex items-center justify-center text-[#2d5016] font-bold">
                     {index + 1}<sup className="text-xs">st</sup>
                   </div>
                   <span className="font-bold text-xl">{reading.stage}</span>

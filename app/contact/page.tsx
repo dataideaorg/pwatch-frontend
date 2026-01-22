@@ -46,7 +46,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
 
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
@@ -57,7 +57,7 @@ export default function ContactPage() {
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Contact Form */}
-          <div className="lg:col-span-2 bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+          <div className="lg:col-span-2 bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Send us a Message</h2>
             <p className="text-gray-600 mb-6">
               Fill out the form below and we will get back to you within 48 hours.
@@ -164,7 +164,7 @@ export default function ContactPage() {
 
           {/* Contact Information Cards - Vertical */}
           <div className="space-y-6">
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <Mail className="text-[#2d5016]" size={32} />
@@ -178,7 +178,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <Phone className="text-[#2d5016]" size={32} />
@@ -192,7 +192,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <MapPin className="text-[#2d5016]" size={32} />
@@ -208,7 +208,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <div className="flex items-start gap-4">
                 <div className="flex-shrink-0">
                   <Clock className="text-[#2d5016]" size={32} />
@@ -225,7 +225,7 @@ export default function ContactPage() {
             </div>
 
             {/* Social Media Links */}
-            <div className="bg-[#f3eed4] rounded-lg border border-gray-200 shadow-sm p-6">
+            <div className="bg-[#f5f0e8] rounded-lg border border-gray-200 shadow-sm p-6">
               <h3 className="font-semibold text-gray-900 mb-4">Follow Us</h3>
               <div className="flex items-center gap-4">
                 <a 

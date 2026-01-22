@@ -65,7 +65,7 @@ export default function CommitteesPage() {
 
   if (loading && committees.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center">
+      <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
           <p className="text-gray-600">Loading committees...</p>
@@ -76,7 +76,7 @@ export default function CommitteesPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#f3eed4] flex items-center justify-center p-4">
+      <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center p-4">
         <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 max-w-md w-full">
           <h2 className="text-lg font-semibold mb-2">Error Loading Committees</h2>
           <p className="mb-4">{error}</p>
@@ -92,7 +92,7 @@ export default function CommitteesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
           <Link href="/resources" className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] mb-4 transition-colors">

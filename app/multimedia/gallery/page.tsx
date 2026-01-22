@@ -172,7 +172,7 @@ export default function GalleryPage() {
 
   if (loading && allImages.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
@@ -185,7 +185,7 @@ export default function GalleryPage() {
 
   if (error && allImages.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -203,7 +203,7 @@ export default function GalleryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
@@ -223,7 +223,7 @@ export default function GalleryPage() {
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1">
               <div className="relative">
@@ -242,7 +242,7 @@ export default function GalleryPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f3eed4]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
               >
                 <option value="all">All Categories</option>
                 {categories.map((cat) => (
@@ -257,7 +257,7 @@ export default function GalleryPage() {
                   const value = e.target.value;
                   setFeaturedFilter(value === 'all' ? null : value === 'featured');
                 }}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f3eed4]"
+                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#f5f0e8]"
               >
                 <option value="all">All Images</option>
                 <option value="featured">Featured Only</option>
@@ -282,7 +282,7 @@ export default function GalleryPage() {
 
         {/* Gallery Grid */}
         {sortedImages.length === 0 ? (
-          <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+          <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No images found</p>
             {(searchQuery || categoryFilter !== 'all' || featuredFilter !== null) && (
               <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
@@ -293,7 +293,7 @@ export default function GalleryPage() {
             {sortedImages.map((image) => (
               <div
                 key={image.id}
-                className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
+                className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
                 onClick={() => setSelectedImage(image)}
               >
                 {/* Image */}
@@ -348,7 +348,7 @@ export default function GalleryPage() {
             onClick={() => setSelectedImage(null)}
           >
             <div
-              className="bg-[#f3eed4] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto"
+              className="bg-[#f5f0e8] rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -429,7 +429,7 @@ export default function GalleryPage() {
         )}
 
         {/* Footer Info */}
-        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Our Gallery</h3>
           <p className="text-sm text-gray-600">
             Our gallery showcases photographs from parliamentary events, activities, and important moments.

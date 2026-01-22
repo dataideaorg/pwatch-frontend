@@ -45,7 +45,7 @@ export default function NewsDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-gray-600">Loading news article...</p>
@@ -57,7 +57,7 @@ export default function NewsDetailPage() {
 
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-5xl mx-auto px-4 py-8">
           <div className="text-center">
             <p className="text-red-600">{error || 'News article not found'}</p>
@@ -82,7 +82,7 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         {/* Back Button */}
@@ -109,7 +109,7 @@ export default function NewsDetailPage() {
         </div>
 
         {/* News Article */}
-        <article className="bg-[#f3eed4] rounded-lg shadow-md overflow-hidden">
+        <article className="bg-[#f5f0e8] rounded-lg shadow-md overflow-hidden">
           {/* Header Image */}
           <div className="relative h-96 bg-[#d2c4b0]">
             <img

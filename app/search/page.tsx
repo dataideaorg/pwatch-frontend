@@ -148,7 +148,7 @@ function SearchPageContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Searching...</p>
@@ -160,7 +160,7 @@ function SearchPageContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-red-600">{error}</p>
@@ -178,7 +178,7 @@ function SearchPageContent() {
 
   if (!query) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Please enter a search query</p>
@@ -190,7 +190,7 @@ function SearchPageContent() {
 
   if (!searchResults || searchResults.total_results === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">
             Search Results for &quot;{query}&quot;
@@ -205,7 +205,7 @@ function SearchPageContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-12">
         <h1 className="text-2xl font-bold text-gray-800 mb-2">
           Search Results for &quot;{query}&quot;
@@ -220,7 +220,7 @@ function SearchPageContent() {
             const count = searchResults.counts[type as keyof typeof searchResults.counts] || 0;
 
             return (
-              <div key={type} className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+              <div key={type} className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h2 className="text-xl font-bold text-gray-800">
                     {typeLabels[type] || type}
@@ -303,7 +303,7 @@ function SearchPageContent() {
                         <Link
                           key={result.id}
                           href={getResultUrl(type, result)}
-                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-all"
+                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f5f0e8] transition-all"
                         >
                           <Folder className="w-5 h-5 text-[#a0522d] flex-shrink-0" />
                           <div className="flex-1">
@@ -322,7 +322,7 @@ function SearchPageContent() {
                       return (
                         <div
                           key={result.id}
-                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-[#f3eed4] transition-all"
+                          className="flex items-center gap-3 p-3 border border-gray-200 rounded-lg hover:bg-[#f5f0e8] transition-all"
                         >
                           <Folder className="w-5 h-5 text-[#a0522d] flex-shrink-0" />
                           <div className="flex-1">
@@ -364,7 +364,7 @@ function SearchPageContent() {
                       <Link
                         key={result.id}
                         href={getResultUrl(type, result)}
-                        className="block p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f3eed4] transition-all"
+                        className="block p-3 border border-gray-200 rounded-lg hover:border-[#2d5016] hover:bg-[#f5f0e8] transition-all"
                       >
                         <p className="font-medium text-gray-900">
                           {getResultTitle(result)}
@@ -390,7 +390,7 @@ function SearchPageContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-12">
           <div className="text-center">
             <p className="text-gray-600">Loading search...</p>

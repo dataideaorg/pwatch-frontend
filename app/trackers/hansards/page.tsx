@@ -157,7 +157,7 @@ export default function HansardsTrackerPage() {
 
   if (loading && allHansards.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
@@ -170,7 +170,7 @@ export default function HansardsTrackerPage() {
 
   if (error && allHansards.length === 0) {
     return (
-      <div className="min-h-screen bg-[#f3eed4]">
+      <div className="min-h-screen bg-[#f5f0e8]">
         <main className="max-w-7xl mx-auto px-4 py-8">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-800">Error: {error}</p>
@@ -188,7 +188,7 @@ export default function HansardsTrackerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f3eed4]">
+    <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
         {/* Breadcrumb Navigation */}
         <div className="mb-6">
@@ -208,7 +208,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Main Content */}
-        <div className="bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           {/* Search */}
           <div className="mb-6">
             <div className="flex gap-3 items-center">
@@ -283,7 +283,7 @@ export default function HansardsTrackerPage() {
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {paginatedHansards.map((hansard) => (
-                  <tr key={hansard.id} className="hover:bg-[#f3eed4] transition-colors">
+                  <tr key={hansard.id} className="hover:bg-[#f5f0e8] transition-colors">
                     <td className="px-6 py-4">
                           <p className="text-sm font-medium text-gray-900">{hansard.name}</p>
                     </td>
@@ -333,7 +333,7 @@ export default function HansardsTrackerPage() {
                 <button
                   onClick={() => setPage(1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="First page"
                 >
                   <ChevronsLeft className="w-4 h-4" />
@@ -341,7 +341,7 @@ export default function HansardsTrackerPage() {
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Previous page"
                 >
                   <ChevronLeft className="w-4 h-4" />
@@ -352,7 +352,7 @@ export default function HansardsTrackerPage() {
                 <button
                   onClick={() => setPage(page + 1)}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Next page"
                 >
                   <ChevronRight className="w-4 h-4" />
@@ -360,7 +360,7 @@ export default function HansardsTrackerPage() {
                 <button
                   onClick={() => setPage(totalPages)}
                   disabled={page >= totalPages}
-                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f3eed4] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="p-2 rounded-md border border-gray-300 hover:bg-[#f5f0e8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   title="Last page"
                 >
                   <ChevronsRight className="w-4 h-4" />
@@ -371,7 +371,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Footer Info */}
-        <div className="mt-8 bg-[#f3eed4] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
           <h3 className="text-sm font-semibold text-gray-700 mb-2">About Hansards</h3>
           <p className="text-sm text-gray-600">
             Hansards are the official transcripts of parliamentary debates and proceedings in Uganda.
