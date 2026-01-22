@@ -80,30 +80,30 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8]">
-      <main className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#f5f0e8] flex flex-col">
+      <main className="max-w-4xl mx-auto px-4 py-4 md:py-8 w-full flex-1 flex flex-col min-h-0">
         {/* Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
+        <div className="mb-4 md:mb-6 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
               Parliamentary Chatbot
             </h1>
-            <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded">
+            <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded self-start sm:self-center">
               ALPHA VERSION
             </span>
           </div>
-          <p className="text-gray-600 text-lg mb-2">
+          <p className="text-gray-600 text-base md:text-lg mb-2">
             Ask questions about parliamentary proceedings, bills, and documents
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-xs md:text-sm text-gray-500">
             Currently supports question and answer only
           </p>
         </div>
 
         {/* Chat Interface */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-lg border border-gray-200 flex flex-col h-[600px]">
+        <div className="bg-[#f5f0e8] rounded-lg shadow-lg border border-gray-200 flex flex-col" style={{ height: 'calc(100vh - 280px)', minHeight: '400px', maxHeight: '700px' }}>
           {/* Chat History */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
+          <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6 min-h-0">
             {chatHistory.length === 0 && !response && !error && (
               <div className="text-center py-12 text-gray-600">
                 <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
@@ -117,15 +117,15 @@ export default function ChatbotPage() {
               <div key={index} className="space-y-4">
                 {/* User Query */}
                 <div className="flex justify-end">
-                  <div className="bg-[#e0f2f1] text-gray-900 rounded-lg p-3 max-w-md">
-                    <p className="font-medium text-sm mb-1">You:</p>
-                    <p className="text-sm whitespace-pre-wrap">{item.query}</p>
+                  <div className="bg-[#e0f2f1] text-gray-900 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md">
+                    <p className="font-medium text-xs md:text-sm mb-1">You:</p>
+                    <p className="text-xs md:text-sm whitespace-pre-wrap break-words">{item.query}</p>
                   </div>
                 </div>
 
                 {/* Bot Response */}
                 <div className="flex justify-start">
-                  <div className="bg-blue-50 text-gray-800 rounded-lg p-3 max-w-md space-y-2">
+                  <div className="bg-blue-50 text-gray-800 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md space-y-2">
                     <p className="font-medium text-sm mb-1">Bot:</p>
                     <p className="text-sm whitespace-pre-wrap">{item.response.answer}</p>
                     {item.response.document_url && (
@@ -147,7 +147,7 @@ export default function ChatbotPage() {
             {/* Current Response (if not yet added to history) */}
             {response && chatHistory.length === 0 && (
               <div className="flex justify-start">
-                <div className="bg-blue-50 text-gray-800 rounded-lg p-3 max-w-md space-y-2">
+                <div className="bg-blue-50 text-gray-800 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md space-y-2">
                   <p className="font-medium text-sm mb-1">Bot:</p>
                   <p className="text-sm whitespace-pre-wrap">{response.answer}</p>
                   {response.document_url && (
@@ -168,9 +168,9 @@ export default function ChatbotPage() {
             {/* Loading Indicator */}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-700 rounded-lg p-3 max-w-md flex items-center gap-2">
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  <p className="text-sm">Thinking...</p>
+                <div className="bg-gray-100 text-gray-700 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md flex items-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
+                  <p className="text-xs md:text-sm">Thinking...</p>
                 </div>
               </div>
             )}
@@ -178,33 +178,34 @@ export default function ChatbotPage() {
             {/* Error Message */}
             {error && (
               <div className="flex justify-start">
-                <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 max-w-md">
-                  <p className="text-sm">{error}</p>
+                <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md">
+                  <p className="text-xs md:text-sm break-words">{error}</p>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Input Form */}
-          <div className="border-t border-gray-200 p-6">
-            <form onSubmit={handleSubmit} className="flex items-center gap-3">
+          {/* Input Form - Always visible at bottom */}
+          <div className="border-t border-gray-200 p-4 md:p-6 bg-[#f5f0e8] flex-shrink-0">
+            <form onSubmit={handleSubmit} className="flex items-center gap-2 md:gap-3">
               <Input
                 type="text"
                 placeholder="Ask a question..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="flex-1 text-base text-gray-900 placeholder:text-gray-400"
+                className="flex-1 text-sm md:text-base text-gray-900 placeholder:text-gray-400 border-gray-300 focus:border-gray-400"
                 disabled={loading}
               />
               <Button
                 type="submit"
                 disabled={loading || !query.trim()}
-                className="bg-[#2d5016] hover:bg-[#1b3d26] text-white px-4 py-2"
+                className="bg-[#2d5016] hover:bg-[#1b3d26] text-white px-3 md:px-4 py-2 flex-shrink-0"
+                aria-label="Send message"
               >
                 {loading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
+                  <Loader2 className="w-4 h-4 md:w-5 md:h-5 animate-spin" />
                 ) : (
-                  <Send className="w-5 h-5" />
+                  <Send className="w-4 h-4 md:w-5 md:h-5" />
                 )}
               </Button>
               <Button
@@ -212,7 +213,8 @@ export default function ChatbotPage() {
                 variant="outline"
                 onClick={clearHistory}
                 disabled={chatHistory.length === 0 && !response && !error}
-                className="bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 px-4 py-2"
+                className="bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 px-3 md:px-4 py-2 flex-shrink-0 hidden sm:inline-flex"
+                aria-label="Clear chat history"
               >
                 Clear
               </Button>
@@ -221,7 +223,7 @@ export default function ChatbotPage() {
         </div>
 
         {/* Info Section */}
-        <div className="mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-6">
+        <div className="mt-4 md:mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 flex-shrink-0">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">How it works</h2>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-start gap-2">
