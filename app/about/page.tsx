@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { 
   fetchWhoWeAre, 
   fetchOurStory, 
@@ -24,10 +25,52 @@ export default function AboutPage() {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentPartnerSlide, setCurrentPartnerSlide] = useState(0);
+  const partnerCarouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     loadData();
   }, []);
+
+  // Auto-slide partners carousel
+  useEffect(() => {
+    if (partners.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setCurrentPartnerSlide((prev) => {
+        const cardsPerView = getCardsPerView();
+        const maxSlide = Math.max(0, Math.ceil(partners.length / cardsPerView) - 1);
+        return (prev + 1) % (maxSlide + 1);
+      });
+    }, 4000); // Change slide every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [partners.length]);
+
+  const getCardsPerView = () => {
+    if (typeof window === 'undefined') return 4;
+    if (window.innerWidth >= 1024) return 4; // lg
+    if (window.innerWidth >= 768) return 3; // md
+    return 2; // sm
+  };
+
+  const getMaxSlide = () => {
+    if (partners.length === 0) return 0;
+    const cardsPerView = getCardsPerView();
+    return Math.max(0, Math.ceil(partners.length / cardsPerView) - 1);
+  };
+
+  const goToPreviousPartner = () => {
+    if (partners.length === 0) return;
+    const maxSlide = getMaxSlide();
+    setCurrentPartnerSlide((prev) => (prev - 1 + (maxSlide + 1)) % (maxSlide + 1));
+  };
+
+  const goToNextPartner = () => {
+    if (partners.length === 0) return;
+    const maxSlide = getMaxSlide();
+    setCurrentPartnerSlide((prev) => (prev + 1) % (maxSlide + 1));
+  };
 
   const loadData = async () => {
     try {
@@ -171,36 +214,91 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">
               Our Partners
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {partners.map((partner) => (
-                <div
-                  key={partner.id}
-                  className="bg-[#fafaf8] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center text-center"
+            <div className="relative">
+              {/* Navigation Buttons */}
+              <button
+                onClick={goToPreviousPartner}
+                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-[#2d5016] text-white p-2 rounded-full shadow-lg hover:bg-[#1b3d26] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Previous partners"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={goToNextPartner}
+                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-[#2d5016] text-white p-2 rounded-full shadow-lg hover:bg-[#1b3d26] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                aria-label="Next partners"
+              >
+                <ChevronRight size={24} />
+              </button>
+
+              {/* Carousel Container */}
+              <div 
+                ref={partnerCarouselRef}
+                className="overflow-hidden px-12"
+              >
+                <div 
+                  className="flex transition-transform duration-500 ease-in-out"
+                  style={{
+                    transform: `translateX(calc(-${currentPartnerSlide} * (100% / ${getCardsPerView()})))`,
+                  }}
                 >
-                  {partner.logo ? (
-                    <a
-                      href={partner.website_url || '#'}
-                      target={partner.website_url ? '_blank' : undefined}
-                      rel={partner.website_url ? 'noopener noreferrer' : undefined}
-                      className="block w-full"
-                    >
-                      <img
-                        src={partner.logo.startsWith('http') ? partner.logo : `${API_BASE_URL.replace('/api', '')}${partner.logo}`}
-                        alt={partner.name}
-                        className="w-full h-24 object-contain mb-4"
-                      />
-                    </a>
-                  ) : (
-                    <div className="w-full h-24 flex items-center justify-center mb-4">
-                      <span className="text-gray-400 font-semibold">{partner.name}</span>
-                    </div>
-                  )}
-                  <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
-                  {partner.description && (
-                    <p className="text-xs text-gray-600 line-clamp-3">{partner.description}</p>
-                  )}
+                  {partners.map((partner) => {
+                    const cardsPerView = getCardsPerView();
+                    const cardWidth = `calc((100% - ${(cardsPerView - 1) * 1.5}rem) / ${cardsPerView})`;
+                    return (
+                      <div
+                        key={partner.id}
+                        className="flex-shrink-0 pr-6"
+                        style={{
+                          width: cardWidth,
+                          minWidth: cardWidth,
+                        }}
+                      >
+                        <div className="bg-[#fafaf8] rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow flex flex-col items-center justify-center text-center h-full">
+                          {partner.logo ? (
+                            <a
+                              href={partner.website_url || '#'}
+                              target={partner.website_url ? '_blank' : undefined}
+                              rel={partner.website_url ? 'noopener noreferrer' : undefined}
+                              className="block w-full"
+                            >
+                              <img
+                                src={partner.logo.startsWith('http') ? partner.logo : `${API_BASE_URL.replace('/api', '')}${partner.logo}`}
+                                alt={partner.name}
+                                className="w-full h-24 object-contain mb-4"
+                              />
+                            </a>
+                          ) : (
+                            <div className="w-full h-24 flex items-center justify-center mb-4">
+                              <span className="text-gray-400 font-semibold">{partner.name}</span>
+                            </div>
+                          )}
+                          <h3 className="font-semibold text-gray-900 mb-2">{partner.name}</h3>
+                          {partner.description && (
+                            <p className="text-xs text-gray-600 line-clamp-3">{partner.description}</p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center gap-2 mt-6">
+                {Array.from({ length: getMaxSlide() + 1 }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentPartnerSlide(index)}
+                    className={`h-2 rounded-full transition-all ${
+                      index === currentPartnerSlide
+                        ? 'bg-[#2d5016] w-8'
+                        : 'bg-gray-300 hover:bg-gray-400 w-2'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </section>
         )}

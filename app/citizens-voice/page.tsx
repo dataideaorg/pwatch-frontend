@@ -1,10 +1,10 @@
 'use client';
 
 import { useState, useEffect, useMemo } from 'react';
-import { Search, Calendar, CheckCircle, XCircle, TrendingUp, Users, BarChart3 } from 'lucide-react';
+import { Search, Calendar, CheckCircle, XCircle, TrendingUp, Users, BarChart3, MessageSquare, Send, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { fetchPolls, voteOnPoll, fetchPollResults, Poll, PollOption } from '@/lib/api';
+import { fetchPolls, voteOnPoll, fetchPollResults, Poll, PollOption, submitFeedback, FeedbackSubmission } from '@/lib/api';
 
 export default function CitizensVoicePage() {
   const [allPolls, setAllPolls] = useState<Poll[]>([]);
@@ -17,6 +17,15 @@ export default function CitizensVoicePage() {
   const [votedPolls, setVotedPolls] = useState<Set<number>>(new Set());
   const [pollResults, setPollResults] = useState<Record<number, any>>({});
   const [votingPollId, setVotingPollId] = useState<number | null>(null);
+  
+  // Feedback form state
+  const [feedbackForm, setFeedbackForm] = useState<FeedbackSubmission>({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [isSubmittingFeedback, setIsSubmittingFeedback] = useState(false);
+  const [feedbackStatus, setFeedbackStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
 
   useEffect(() => {
     loadAllPolls();

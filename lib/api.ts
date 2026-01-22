@@ -835,6 +835,38 @@ export async function submitDonationForm(data: DonationSubmission): Promise<Dona
   return response.json();
 }
 
+// Feedback API
+export interface FeedbackSubmission {
+  id?: number;
+  name: string;
+  email: string;
+  message: string;
+  created_at?: string;
+}
+
+export interface FeedbackSubmissionResponse {
+  success: boolean;
+  message: string;
+  id?: number;
+}
+
+export async function submitFeedback(data: FeedbackSubmission): Promise<FeedbackSubmissionResponse> {
+  const response = await fetch(`${API_BASE_URL}/contact/feedback/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json();
+    throw new Error(error.message || error.detail || 'Failed to submit feedback');
+  }
+
+  return response.json();
+}
+
 // About API
 export interface Objective {
   id: number;
