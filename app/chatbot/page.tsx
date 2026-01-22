@@ -80,28 +80,28 @@ export default function ChatbotPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f0e8] flex flex-col">
-      <main className="max-w-4xl mx-auto px-4 py-4 md:py-8 w-full flex-1 flex flex-col min-h-0">
+    <div className="h-screen bg-[#f5f0e8] flex flex-col overflow-hidden">
+      <main className="max-w-4xl mx-auto px-4 py-4 md:py-6 w-full flex-1 flex flex-col min-h-0 overflow-hidden">
         {/* Header */}
-        <div className="mb-4 md:mb-6 flex-shrink-0">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+        <div className="mb-3 md:mb-4 flex-shrink-0">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-1 md:mb-2">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
               Parliamentary Chatbot
             </h1>
-            <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded self-start sm:self-center">
+            <span className="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2 md:px-3 py-1 rounded self-start sm:self-center">
               ALPHA VERSION
             </span>
           </div>
-          <p className="text-gray-600 text-base md:text-lg mb-2">
+          <p className="text-gray-600 text-sm md:text-base mb-1">
             Ask questions about parliamentary proceedings, bills, and documents
           </p>
-          <p className="text-xs md:text-sm text-gray-500">
+          <p className="text-xs text-gray-500">
             Currently supports question and answer only
           </p>
         </div>
 
         {/* Chat Interface */}
-        <div className="bg-[#f5f0e8] rounded-lg shadow-lg border border-gray-200 flex flex-col" style={{ height: 'calc(100vh - 280px)', minHeight: '400px', maxHeight: '700px' }}>
+        <div className="bg-[#fafaf8] rounded-lg shadow-lg border border-gray-200 flex flex-col flex-1 min-h-0 overflow-hidden">
           {/* Chat History */}
           <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6 min-h-0">
             {chatHistory.length === 0 && !response && !error && (
@@ -168,7 +168,7 @@ export default function ChatbotPage() {
             {/* Loading Indicator */}
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-700 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md flex items-center gap-2">
+                <div className="bg-[#fafaf8] text-gray-700 rounded-lg p-2 md:p-3 max-w-[85%] sm:max-w-md flex items-center gap-2 border border-gray-200">
                   <Loader2 className="w-4 h-4 animate-spin flex-shrink-0" />
                   <p className="text-xs md:text-sm">Thinking...</p>
                 </div>
@@ -186,7 +186,7 @@ export default function ChatbotPage() {
           </div>
 
           {/* Input Form - Always visible at bottom */}
-          <div className="border-t border-gray-200 p-4 md:p-6 bg-[#f5f0e8] flex-shrink-0">
+          <div className="border-t border-gray-200 p-3 md:p-4 bg-[#fafaf8] flex-shrink-0">
             <form onSubmit={handleSubmit} className="flex items-center gap-2 md:gap-3">
               <Input
                 type="text"
@@ -213,7 +213,7 @@ export default function ChatbotPage() {
                 variant="outline"
                 onClick={clearHistory}
                 disabled={chatHistory.length === 0 && !response && !error}
-                className="bg-gray-200 text-gray-700 hover:bg-gray-300 border-gray-300 px-3 md:px-4 py-2 flex-shrink-0 hidden sm:inline-flex"
+                className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300 px-3 md:px-4 py-2 flex-shrink-0 hidden sm:inline-flex"
                 aria-label="Clear chat history"
               >
                 Clear
@@ -222,8 +222,8 @@ export default function ChatbotPage() {
           </div>
         </div>
 
-        {/* Info Section */}
-        <div className="mt-4 md:mt-8 bg-[#f5f0e8] rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 flex-shrink-0">
+        {/* Info Section - Hidden on small screens, shown on larger screens */}
+        <div className="hidden md:block mt-3 md:mt-4 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-3 md:p-4 flex-shrink-0 overflow-y-auto max-h-[120px]">
           <h2 className="text-lg font-semibold text-gray-900 mb-3">How it works</h2>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-start gap-2">
