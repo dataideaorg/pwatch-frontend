@@ -14,11 +14,11 @@ export default function Footer() {
           <div>
             <Link href="/" className="inline-block mb-4 bg-[#f5f0e8] p-2 rounded">
               <Image
-                src="/images/logo.png"
+                src="/images/PWATCH LOGO.png"
                 alt="Parliament Watch Uganda Logo"
-                width={200}
-                height={67}
-                className="h-12 w-auto"
+                width={280}
+                height={93}
+                className="h-auto w-auto"
                 priority
               />
             </Link>
