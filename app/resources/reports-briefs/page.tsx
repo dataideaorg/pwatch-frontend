@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Download, FileText } from 'lucide-react'
-import { Input } from '@/components/ui/input'
+import { ArrowLeft, Calendar, FileText } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 
 interface Report {
@@ -26,42 +25,41 @@ interface PaginatedResponse {
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
 
 export default function ReportsBriefsPage() {
-  const [reports, setReports] = useState<Report[]>([])
+  const [allReports, setAllReports] = useState<Report[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [searchQuery, setSearchQuery] = useState('')
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(1)
-  const [totalCount, setTotalCount] = useState(0)
-  const pageSize = 15
 
   useEffect(() => {
-    fetchReports()
-  }, [page, searchQuery])
+    loadAllReports()
+  }, [])
 
-  const fetchReports = async () => {
+  const loadAllReports = async () => {
     try {
       setLoading(true)
       setError(null)
+      
+      let allResults: Report[] = []
+      let currentPage = 1
+      let hasMore = true
 
-      const params = new URLSearchParams({
-        page: page.toString(),
-        page_size: pageSize.toString(),
-      })
+      while (hasMore) {
+        const params = new URLSearchParams({
+          page: currentPage.toString(),
+          page_size: '100',
+        })
 
-      if (searchQuery.trim()) {
-        params.append('search', searchQuery.trim())
+        const response = await fetch(`${API_BASE_URL}/resources/reports/?${params}`)
+        if (!response.ok) {
+          throw new Error('Failed to fetch reports')
+        }
+        
+        const data: PaginatedResponse = await response.json()
+        allResults = [...allResults, ...data.results]
+        hasMore = data.next !== null
+        currentPage++
       }
 
-      const response = await fetch(`${API_BASE_URL}/resources/reports/?${params}`)
-      if (!response.ok) {
-        throw new Error('Failed to fetch reports')
-      }
-
-      const data: PaginatedResponse = await response.json()
-      setReports(data.results)
-      setTotalCount(data.count)
-      setTotalPages(Math.ceil(data.count / pageSize))
+      setAllReports(allResults)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred')
       console.error('Error fetching reports:', err)
@@ -70,206 +68,142 @@ export default function ReportsBriefsPage() {
     }
   }
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault()
-    setPage(1)
-    fetchReports()
+  // Extract unique years from reports
+  const years = useMemo(() => {
+    const yearSet = new Set<number>()
+    
+    allReports.forEach((report) => {
+      if (report.date_received) {
+        const year = new Date(report.date_received).getFullYear()
+        if (!isNaN(year)) {
+          yearSet.add(year)
+        }
+      }
+    })
+
+    return Array.from(yearSet).sort((a, b) => b - a)
+  }, [allReports])
+
+  // Count reports per year
+  const getReportCountForYear = (year: number) => {
+    return allReports.filter((report) => {
+      if (!report.date_received) return false
+      return new Date(report.date_received).getFullYear() === year
+    }).length
   }
 
-  const formatDate = (dateString: string): string => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-  }
-
-  if (loading && reports.length === 0) {
+  if (loading && allReports.length === 0) {
     return (
-      <>
-        <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center">
-          <div className="flex flex-col items-center gap-4">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#2d5016]"></div>
-            <p className="text-gray-600">Loading reports...</p>
+      <div className="min-h-screen bg-[#f5f0e8]">
+        <main className="max-w-7xl mx-auto px-4 py-8">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
+            <p className="mt-4 text-gray-600">Loading reports...</p>
           </div>
-        </div>
-      </>
+        </main>
+      </div>
     )
   }
 
-  if (error) {
+  if (error && allReports.length === 0) {
     return (
-      <>
-        <div className="min-h-screen bg-[#f5f0e8] flex items-center justify-center p-4">
-          <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 max-w-md w-full">
-            <h2 className="text-lg font-semibold mb-2">Error Loading Reports</h2>
-            <p className="mb-4">{error}</p>
+      <div className="min-h-screen bg-[#f5f0e8]">
+        <main className="max-w-7xl mx-auto px-4 py-8">
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <p className="text-red-800">Error: {error}</p>
             <Button
-              onClick={fetchReports}
+              onClick={() => loadAllReports()}
+              className="mt-4"
               variant="green"
             >
               Try Again
             </Button>
           </div>
-        </div>
-      </>
+        </main>
+      </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-[#f5f0e8]">
       <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
+        <div className="mb-6">
           <Link href="/resources" className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] mb-4 transition-colors">
             <ArrowLeft className="mr-2" size={20} />
             Back to Resources
           </Link>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Reports & Briefs</h1>
-          <p className="text-gray-600 mt-2">Research reports, policy briefs, and analysis documents</p>
         </div>
 
-        <div className="bg-[#fafaf8] rounded-lg border border-gray-200 shadow-sm">
-          <div className="p-4 border-b border-gray-200">
-            <div className="flex gap-3 items-center">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10" size={20} />
-                <Input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={`Search through ${totalCount} reports...`}
-                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400 border-gray-300 focus:border-gray-400"
-                  style={{ color: '#111827' }}
-                />
-              </div>
-              {searchQuery && (
-                <Button
-                  variant="outline"
-                  onClick={() => setSearchQuery('')}
-                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
-                >
-                  Clear
-                </Button>
-              )}
-            </div>
-          </div>
+        <div className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Reports & Briefs</h1>
+          <p className="text-gray-600 text-lg">Select a year to view research reports, policy briefs, and analysis documents</p>
+        </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-[#fafaf8]">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    <div className="flex items-center gap-2">
-                      <FileText size={16} />
-                      Document Name
-                    </div>
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Description
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Date Received
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {reports.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="px-6 py-12 text-center">
-                      <div className="flex flex-col items-center gap-3 text-gray-500">
-                        <FileText size={48} className="text-gray-300" />
-                        <p className="text-lg font-medium">No reports found</p>
-                        {searchQuery && (
-                          <p className="text-sm">Try adjusting your search query</p>
-                        )}
+        {/* Year Cards Grid */}
+        {years.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {years.map((year) => {
+              const count = getReportCountForYear(year)
+              return (
+                <Link
+                  key={year}
+                  href={`/resources/reports-briefs/${year}`}
+                  className="relative bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-8 hover:shadow-xl hover:border-[#2d5016] hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
+                >
+                  {/* Decorative background pattern */}
+                  <div className="absolute top-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <div className="absolute inset-0 bg-[#2d5016] rounded-full blur-3xl"></div>
+                  </div>
+                  
+                  {/* Document icon pattern in background */}
+                  <div className="absolute bottom-0 right-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <FileText className="w-24 h-24 text-[#2d5016] transform rotate-12" />
+                  </div>
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Icon container */}
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="p-3 bg-white/60 rounded-lg group-hover:bg-white/80 transition-colors shadow-sm">
+                        <Calendar className="w-8 h-8 text-[#2d5016] group-hover:scale-110 transition-transform" />
                       </div>
-                    </td>
-                  </tr>
-                ) : (
-                  reports.map((report) => (
-                    <tr key={report.id} className="hover:bg-[#fafaf8] transition-colors">
-                      <td className="px-6 py-4">
-                        <div className="font-medium text-gray-900">{report.name}</div>
-                      </td>
-                      <td className="px-6 py-4 text-gray-600">
-                        <div className="max-w-md">
-                          {report.description || 'No description available'}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 text-gray-600">
-                        {report.date_received ? formatDate(report.date_received) : 'N/A'}
-                      </td>
-                      <td className="px-6 py-4">
-                        {report.file ? (
-                          <a
-                            href={report.file}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-[#2d5016] text-white px-4 py-2 rounded-md hover:bg-[#1b3d26] transition-colors text-sm"
-                          >
-                            <Download size={16} />
-                            Download
-                          </a>
-                        ) : (
-                          <span className="text-gray-400 text-sm">No file</span>
-                        )}
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                    </div>
+                    
+                    {/* Year */}
+                    <h2 className="text-3xl font-bold text-gray-900 mb-3 group-hover:text-[#2d5016] transition-colors">
+                      {year}
+                    </h2>
+                    
+                    {/* Count */}
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-[#2d5016]"></div>
+                      <p className="text-sm font-medium text-gray-700">
+                        {count} {count === 1 ? 'report' : 'reports'}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Hover arrow indicator */}
+                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-8 h-8 rounded-full bg-[#2d5016] flex items-center justify-center">
+                      <ArrowLeft className="w-4 h-4 text-white rotate-180" />
+                    </div>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
+        ) : (
+          <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
+            <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+            <p className="text-gray-500 text-lg">No reports available</p>
+            <p className="text-gray-400 text-sm mt-2">Check back later for new reports</p>
+          </div>
+        )}
 
-          {reports.length > 0 && (
-            <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-              <div className="text-sm text-gray-600">
-                Showing {((page - 1) * pageSize) + 1} to {Math.min(page * pageSize, totalCount)} of {totalCount} reports
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setPage(1)}
-                  disabled={page === 1}
-                  className="p-2 rounded-md text-gray-600 hover:bg-[#fafaf8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  aria-label="First page"
-                >
-                  <ChevronsLeft size={20} />
-                </button>
-                <button
-                  onClick={() => setPage(page - 1)}
-                  disabled={page === 1}
-                  className="p-2 rounded-md text-gray-600 hover:bg-[#fafaf8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  aria-label="Previous page"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <span className="text-sm text-gray-600 px-2">
-                  Page {page} of {totalPages}
-                </span>
-                <button
-                  onClick={() => setPage(page + 1)}
-                  disabled={page === totalPages}
-                  className="p-2 rounded-md text-gray-600 hover:bg-[#fafaf8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  aria-label="Next page"
-                >
-                  <ChevronRight size={20} />
-                </button>
-                <button
-                  onClick={() => setPage(totalPages)}
-                  disabled={page === totalPages}
-                  className="p-2 rounded-md text-gray-600 hover:bg-[#fafaf8] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                  aria-label="Last page"
-                >
-                  <ChevronsRight size={20} />
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="mt-6 bg-[#fafaf8] rounded-lg border border-gray-200 shadow-sm p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2">About Reports & Briefs</h3>
-          <p className="text-gray-600">
+        <div className="mt-8 bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 className="text-sm font-semibold text-gray-700 mb-2">About Reports & Briefs</h3>
+          <p className="text-sm text-gray-600">
             In-depth research reports, policy briefs, and analytical documents covering parliamentary activities and governance issues.
           </p>
         </div>
