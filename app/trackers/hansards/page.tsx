@@ -93,6 +93,11 @@ export default function HansardsTrackerPage() {
     }).length;
   };
 
+  // Count hansards without dates
+  const undatedCount = useMemo(() => {
+    return allHansards.filter((hansard) => !hansard.date).length;
+  }, [allHansards]);
+
   if (loading && allHansards.length === 0) {
     return (
       <div className="min-h-screen bg-[#f5f0e8]">
@@ -146,7 +151,7 @@ export default function HansardsTrackerPage() {
         </div>
 
         {/* Year Cards Grid */}
-        {years.length > 0 ? (
+        {(years.length > 0 || undatedCount > 0) ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {years.map((year) => {
               const count = getHansardCountForYear(year);
@@ -198,6 +203,54 @@ export default function HansardsTrackerPage() {
                 </Link>
               );
             })}
+            
+            {/* Undated Card */}
+            {undatedCount > 0 && (
+              <Link
+                href="/trackers/hansards/undated"
+                className="relative bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl shadow-md border border-gray-300 p-8 hover:shadow-xl hover:border-gray-400 hover:-translate-y-1 transition-all duration-300 group overflow-hidden"
+              >
+                {/* Decorative background pattern */}
+                <div className="absolute top-0 right-0 w-32 h-32 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <div className="absolute inset-0 bg-gray-600 rounded-full blur-3xl"></div>
+                </div>
+                
+                {/* Document icon pattern in background */}
+                <div className="absolute bottom-0 right-0 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <FileText className="w-24 h-24 text-gray-600 transform rotate-12" />
+                </div>
+
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon container */}
+                  <div className="mb-4 flex items-center justify-between">
+                    <div className="p-3 bg-white/60 rounded-lg group-hover:bg-white/80 transition-colors shadow-sm">
+                      <FileText className="w-8 h-8 text-gray-600 group-hover:scale-110 transition-transform" />
+                    </div>
+                  </div>
+                  
+                  {/* Label */}
+                  <h2 className="text-2xl font-bold text-gray-700 mb-3 group-hover:text-gray-900 transition-colors">
+                    Undated
+                  </h2>
+                  
+                  {/* Count */}
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-gray-600"></div>
+                    <p className="text-sm font-medium text-gray-600">
+                      {undatedCount} {undatedCount === 1 ? 'hansard' : 'hansards'}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Hover arrow indicator */}
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-8 h-8 rounded-full bg-gray-600 flex items-center justify-center">
+                    <ArrowLeft className="w-4 h-4 text-white rotate-180" />
+                  </div>
+                </div>
+              </Link>
+            )}
           </div>
         ) : (
           <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
