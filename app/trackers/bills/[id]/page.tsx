@@ -312,7 +312,7 @@ export default async function BillDetailsPage({
           <Link href="/trackers/bills">
             <button
               type="button"
-              className="w-full max-w-xs bg-[#2d5016] text-white py-3 rounded-lg hover:bg-[#1b3d26] transition-colors font-medium shadow-sm hover:shadow-md"
+              className="px-8 py-3 bg-[#2d5016] text-white rounded-lg hover:bg-[#1b3d26] transition-colors font-medium shadow-sm hover:shadow-md"
             >
               View All Bills
             </button>
