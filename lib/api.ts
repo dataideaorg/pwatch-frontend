@@ -101,6 +101,7 @@ export interface NewsArticle {
 export interface NewsDetail extends NewsArticle {
   content: string;
   status: string;
+  view_count: number;
   created_at: string;
   updated_at: string;
 }
@@ -237,6 +238,7 @@ export interface BlogPost {
 export interface BlogDetail extends BlogPost {
   content: string;
   status: string;
+  view_count: number;
   created_at: string;
   updated_at: string;
 }

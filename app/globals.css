@@ -28,6 +28,18 @@ body {
   font-family: var(--font-gabarito), sans-serif;
 }
 
+/* Ensure inputs and textareas always have readable dark text */
+input,
+textarea {
+  background-color: #fff;
+  color: #111827;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}
+
 @keyframes marquee {
   0% {
     transform: translateX(0%);

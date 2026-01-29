@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Clock, Share2, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Clock, Share2, MessageCircle, Eye } from 'lucide-react';
 import { fetchNewsArticle, NewsDetail, fetchNewsComments, submitNewsComment, NewsCommentItem } from '@/lib/api';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
@@ -208,6 +208,10 @@ export default function NewsDetailPage() {
                     <span className="text-sm">{readingTime} min read</span>
                   </div>
                 )}
+                <div className="flex items-center gap-2">
+                  <Eye className="w-4 h-4" />
+                  <span className="text-sm">{article.view_count ?? 0} views</span>
+                </div>
                 <button
                   onClick={handleShare}
                   className="flex items-center gap-2 hover:text-white transition-colors"
@@ -260,7 +264,7 @@ export default function NewsDetailPage() {
                   placeholder="Your name"
                   value={commentForm.author_name}
                   onChange={(e) => setCommentForm((f) => ({ ...f, author_name: e.target.value }))}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none bg-white text-gray-900 placeholder:text-gray-500"
                   required
                 />
                 <input
@@ -268,7 +272,7 @@ export default function NewsDetailPage() {
                   placeholder="Your email"
                   value={commentForm.author_email}
                   onChange={(e) => setCommentForm((f) => ({ ...f, author_email: e.target.value }))}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none bg-white text-gray-900 placeholder:text-gray-500"
                   required
                 />
               </div>
@@ -277,7 +281,7 @@ export default function NewsDetailPage() {
                 value={commentForm.body}
                 onChange={(e) => setCommentForm((f) => ({ ...f, body: e.target.value }))}
                 rows={4}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none resize-y"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none resize-y bg-white text-gray-900 placeholder:text-gray-500"
                 required
               />
               {commentError && <p className="text-sm text-red-600">{commentError}</p>}
