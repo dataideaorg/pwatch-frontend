@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import Link from 'next/link';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { ArrowLeft, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, DollarSign, Building2, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, DollarSign, Building2 } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
@@ -252,7 +252,7 @@ export default function LoansTrackerPage() {
 
         {/* Statistics Cards */}
         {!loading && allLoans.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Total Loans */}
             <div className="relative bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-6 overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 opacity-5">
@@ -285,31 +285,6 @@ export default function LoansTrackerPage() {
                 <div className="flex-1 min-w-0">
                   <p className="text-gray-600 text-sm mb-1">Loan Sources</p>
                   <p className="text-2xl font-bold text-gray-900">{sourcesSummary.length}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Total Amount */}
-            <div className="relative bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-6 overflow-hidden">
-              <div className="absolute top-0 right-0 w-24 h-24 opacity-5">
-                <div className="absolute inset-0 bg-[#2d5016] rounded-full blur-2xl"></div>
-              </div>
-              <div className="relative z-10 flex items-center gap-4">
-                <div className="flex-shrink-0">
-                  <div className="p-3 bg-white/60 rounded-lg shadow-sm">
-                    <TrendingUp className="w-6 h-6 text-[#2d5016]" />
-                  </div>
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-gray-600 text-sm mb-1">Total Amount</p>
-                  <p className="text-xl font-bold text-gray-900">
-                    {filteredLoans.length > 0 
-                      ? formatCurrency(
-                          filteredLoans.reduce((sum, loan) => sum + (loan.approved_amount || 0), 0),
-                          filteredLoans[0].currency
-                        )
-                      : 'N/A'}
-                  </p>
                 </div>
               </div>
             </div>
@@ -413,7 +388,11 @@ export default function LoansTrackerPage() {
                   {paginatedLoans.map((loan) => (
                     <tr key={loan.id} className="hover:bg-[#fafaf8] transition-colors">
                       <td className="px-4 py-4 text-sm font-medium text-gray-900">{loan.sector_display}</td>
-                      <td className="px-4 py-4 text-sm text-gray-700">{loan.label}</td>
+                      <td className="px-4 py-4 text-sm text-gray-700">
+                        <Link href={`/trackers/loans/${loan.id}`} className="text-[#2d5016] hover:text-[#1b3d26] hover:underline">
+                          {loan.label}
+                        </Link>
+                      </td>
                       <td className="px-4 py-4 text-sm font-semibold text-gray-900">
                         {formatCurrency(loan.approved_amount, loan.currency)}
                       </td>

@@ -553,6 +553,41 @@ export async function fetchHomeTrackersSummary(): Promise<HomeTrackersSummary> {
   return response.json();
 }
 
+// Loan detail API
+export interface LoanDocumentItem {
+  id: number;
+  label: string;
+  file: string;
+  created_at: string;
+}
+
+export interface LoanDetail {
+  id: number;
+  sector: string;
+  sector_display: string;
+  label: string;
+  approved_amount: number;
+  currency: string;
+  currency_display: string;
+  lender: number | null;
+  lender_display: string;
+  source: string;
+  source_display: string;
+  approval_date: string | null;
+  description: string;
+  documents: LoanDocumentItem[];
+  created_at: string;
+  updated_at: string;
+}
+
+export async function fetchLoan(id: string): Promise<LoanDetail> {
+  const response = await fetch(`${API_BASE_URL}/trackers/loans/${id}/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch loan');
+  }
+  return response.json();
+}
+
 // X Spaces API
 export interface XSpace {
   id: number;
