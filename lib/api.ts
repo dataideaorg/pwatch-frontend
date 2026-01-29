@@ -145,6 +145,38 @@ export async function fetchNewsArticle(slug: string): Promise<NewsDetail> {
   return response.json();
 }
 
+// News comments (no login required)
+export interface NewsCommentItem {
+  id: number;
+  author_name: string;
+  body: string;
+  created_at: string;
+}
+
+export async function fetchNewsComments(slug: string): Promise<NewsCommentItem[]> {
+  const response = await fetch(`${API_BASE_URL}/news/${slug}/comments/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch news comments');
+  }
+  return response.json();
+}
+
+export async function submitNewsComment(
+  slug: string,
+  data: { author_name: string; author_email: string; body: string }
+): Promise<NewsCommentItem> {
+  const response = await fetch(`${API_BASE_URL}/news/${slug}/comments/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error((err as { detail?: string }).detail || 'Failed to submit comment');
+  }
+  return response.json();
+}
+
 // Home page news summary - optimized and cached
 export interface HomeNewsSummaryResponse {
   results: NewsArticle[];
@@ -247,6 +279,38 @@ export async function fetchBlog(slug: string): Promise<BlogDetail> {
   const response = await fetch(`${API_BASE_URL}/blog/${slug}/`);
   if (!response.ok) {
     throw new Error('Failed to fetch blog post');
+  }
+  return response.json();
+}
+
+// Blog comments (no login required)
+export interface BlogCommentItem {
+  id: number;
+  author_name: string;
+  body: string;
+  created_at: string;
+}
+
+export async function fetchBlogComments(slug: string): Promise<BlogCommentItem[]> {
+  const response = await fetch(`${API_BASE_URL}/blog/${slug}/comments/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch blog comments');
+  }
+  return response.json();
+}
+
+export async function submitBlogComment(
+  slug: string,
+  data: { author_name: string; author_email: string; body: string }
+): Promise<BlogCommentItem> {
+  const response = await fetch(`${API_BASE_URL}/blog/${slug}/comments/`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error((err as { detail?: string }).detail || 'Failed to submit comment');
   }
   return response.json();
 }

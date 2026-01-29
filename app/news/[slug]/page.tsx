@@ -3,8 +3,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Clock, Share2 } from 'lucide-react';
-import { fetchNewsArticle, NewsDetail } from '@/lib/api';
+import { ArrowLeft, Calendar, User, Clock, Share2, MessageCircle } from 'lucide-react';
+import { fetchNewsArticle, NewsDetail, fetchNewsComments, submitNewsComment, NewsCommentItem } from '@/lib/api';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
@@ -14,12 +14,59 @@ export default function NewsDetailPage() {
   const [article, setArticle] = useState<NewsDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [comments, setComments] = useState<NewsCommentItem[]>([]);
+  const [commentsLoading, setCommentsLoading] = useState(false);
+  const [commentForm, setCommentForm] = useState({ author_name: '', author_email: '', body: '' });
+  const [commentSubmitting, setCommentSubmitting] = useState(false);
+  const [commentError, setCommentError] = useState<string | null>(null);
+  const [commentSuccess, setCommentSuccess] = useState(false);
 
   useEffect(() => {
     if (params.slug) {
       loadArticle();
     }
   }, [params.slug]);
+
+  useEffect(() => {
+    if (params.slug && article) {
+      loadComments();
+    }
+  }, [params.slug, article]);
+
+  const loadComments = async () => {
+    if (!params.slug) return;
+    try {
+      setCommentsLoading(true);
+      const data = await fetchNewsComments(params.slug as string);
+      setComments(data);
+    } catch {
+      setComments([]);
+    } finally {
+      setCommentsLoading(false);
+    }
+  };
+
+  const handleSubmitComment = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!params.slug || !commentForm.author_name.trim() || !commentForm.author_email.trim() || !commentForm.body.trim()) return;
+    setCommentError(null);
+    setCommentSuccess(false);
+    try {
+      setCommentSubmitting(true);
+      const newComment = await submitNewsComment(params.slug as string, {
+        author_name: commentForm.author_name.trim(),
+        author_email: commentForm.author_email.trim(),
+        body: commentForm.body.trim(),
+      });
+      setComments((prev) => [newComment, ...prev]);
+      setCommentForm({ author_name: '', author_email: '', body: '' });
+      setCommentSuccess(true);
+    } catch (err) {
+      setCommentError(err instanceof Error ? err.message : 'Failed to submit comment.');
+    } finally {
+      setCommentSubmitting(false);
+    }
+  };
 
   const loadArticle = async () => {
     try {
@@ -195,6 +242,77 @@ export default function NewsDetailPage() {
             />
           </div>
         </article>
+
+        {/* Comments */}
+        <section className="mt-8 bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-gradient-to-r from-[#2d5016] to-[#1b3d26] px-6 md:px-12 py-4 flex items-center gap-2">
+            <MessageCircle className="w-5 h-5 text-white" />
+            <h2 className="text-xl font-semibold text-white">
+              Comments {comments.length > 0 && `(${comments.length})`}
+            </h2>
+          </div>
+          <div className="max-w-4xl mx-auto px-6 md:px-12 py-8">
+            <form onSubmit={handleSubmitComment} className="mb-8 space-y-4">
+              <p className="text-sm text-gray-600">Leave a comment. No login required.</p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={commentForm.author_name}
+                  onChange={(e) => setCommentForm((f) => ({ ...f, author_name: e.target.value }))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none"
+                  required
+                />
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  value={commentForm.author_email}
+                  onChange={(e) => setCommentForm((f) => ({ ...f, author_email: e.target.value }))}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none"
+                  required
+                />
+              </div>
+              <textarea
+                placeholder="Your comment"
+                value={commentForm.body}
+                onChange={(e) => setCommentForm((f) => ({ ...f, body: e.target.value }))}
+                rows={4}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2d5016] focus:border-[#2d5016] outline-none resize-y"
+                required
+              />
+              {commentError && <p className="text-sm text-red-600">{commentError}</p>}
+              {commentSuccess && <p className="text-sm text-[#2d5016]">Comment posted successfully.</p>}
+              <button
+                type="submit"
+                disabled={commentSubmitting}
+                className="bg-[#2d5016] text-white px-6 py-2 rounded-lg hover:bg-[#1b3d26] transition-colors disabled:opacity-60 font-medium"
+              >
+                {commentSubmitting ? 'Posting...' : 'Post comment'}
+              </button>
+            </form>
+
+            {commentsLoading ? (
+              <p className="text-gray-500 text-sm">Loading comments...</p>
+            ) : comments.length === 0 ? (
+              <p className="text-gray-500 text-sm">No comments yet. Be the first to comment.</p>
+            ) : (
+              <ul className="space-y-6">
+                {comments.map((c) => (
+                  <li key={c.id} className="flex gap-4 pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-[#2d5016]/20 to-[#1b3d26]/20 flex items-center justify-center text-[#2d5016] font-semibold">
+                      {c.author_name.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-semibold text-gray-900">{c.author_name}</p>
+                      <p className="text-xs text-gray-500 mb-1">{formatDate(c.created_at)}</p>
+                      <p className="text-gray-700 whitespace-pre-wrap">{c.body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
 
         {/* Navigation */}
         <div className="mt-12 flex justify-center">

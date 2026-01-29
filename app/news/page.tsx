@@ -94,8 +94,8 @@ export default function NewsPage() {
   // Show full page loading only on initial load
   if (initialLoad && loading) {
     return (
-      <div className="min-h-screen bg-[#f5f0e8]">
-        <main className="bg-[#f5f0e8] py-12">
+      <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
+        <main className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center">
               <p className="text-gray-600">Loading news articles...</p>
@@ -108,8 +108,8 @@ export default function NewsPage() {
 
   if (error && newsArticles.length === 0 && !initialLoad) {
     return (
-      <div className="min-h-screen bg-[#f5f0e8]">
-        <main className="bg-[#f5f0e8] py-12">
+      <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
+        <main className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] py-12">
           <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-8">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
@@ -118,7 +118,81 @@ export default function NewsPage() {
             </div>
 
             {/* Search and Filter Section */}
-            <div className="mb-8 flex flex-col md:flex-row gap-4">
+            <div className="mb-8 bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-6">
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Search Input */}
+                <div className="flex-1">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      placeholder="Search news articles..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white shadow-sm"
+                    />
+                    <svg
+                      className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Category Filter */}
+                <div className="md:w-64">
+                  <select
+                    value={selectedCategory}
+                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white cursor-pointer shadow-sm"
+                  >
+                    {NEWS_CATEGORIES.map((category) => (
+                      <option key={category.value} value={category.value}>
+                        {category.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 shadow-sm inline-block mb-4">
+                <p className="font-medium">{error}</p>
+              </div>
+              <button
+                onClick={loadNews}
+                className="bg-[#2d5016] text-white px-6 py-2 rounded-lg hover:bg-[#1b3d26] transition-colors shadow-sm hover:shadow-md"
+              >
+                Try Again
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
+      <main className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+              If it happened in Parliament, it&apos;s right here
+            </h1>
+          </div>
+
+          {/* Search and Filter Section */}
+          <div className="mb-8 bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-6">
+            <div className="flex flex-col md:flex-row gap-4">
               {/* Search Input */}
               <div className="flex-1">
                 <div className="relative">
@@ -127,7 +201,7 @@ export default function NewsPage() {
                     placeholder="Search news articles..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white"
+                    className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white shadow-sm"
                   />
                   <svg
                     className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -150,7 +224,7 @@ export default function NewsPage() {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white cursor-pointer"
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white cursor-pointer shadow-sm"
                 >
                   {NEWS_CATEGORIES.map((category) => (
                     <option key={category.value} value={category.value}>
@@ -160,83 +234,16 @@ export default function NewsPage() {
                 </select>
               </div>
             </div>
-
-            <div className="text-center">
-              <p className="text-red-600">{error}</p>
-              <button
-                onClick={loadNews}
-                className="mt-4 bg-[#2d5016] text-white px-6 py-2 rounded-md hover:bg-[#1b3d26] transition-colors"
-              >
-                Try Again
-              </button>
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
-
-  return (
-    <div className="min-h-screen bg-[#f5f0e8]">
-      <main className="bg-[#f5f0e8] py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
-              If it happened in Parliament, it&apos;s right here
-            </h1>
-          </div>
-
-          {/* Search and Filter Section */}
-          <div className="mb-8 flex flex-col md:flex-row gap-4">
-            {/* Search Input */}
-            <div className="flex-1">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder="Search news articles..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 pl-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white"
-                />
-                <svg
-                  className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </div>
-            </div>
-
-            {/* Category Filter */}
-            <div className="md:w-64">
-              <select
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-800 bg-white cursor-pointer"
-              >
-                {NEWS_CATEGORIES.map((category) => (
-                  <option key={category.value} value={category.value}>
-                    {category.label}
-                  </option>
-                ))}
-              </select>
-            </div>
           </div>
 
           {loading ? (
             <div className="text-center py-12">
-              <p className="text-gray-600">Loading news articles...</p>
+              <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]"></div>
+              <p className="text-gray-600 mt-4">Loading news articles...</p>
             </div>
           ) : newsArticles.length === 0 ? (
-            <div className="text-center text-gray-600 py-12">
-              <p className="text-lg mb-2">
+            <div className="text-center text-gray-600 py-12 bg-white rounded-xl shadow-md border border-gray-200">
+              <p className="text-lg mb-2 font-medium">
                 {debouncedSearch || selectedCategory
                   ? 'No news articles found matching your criteria.'
                   : 'No news articles available at the moment.'}
@@ -247,7 +254,7 @@ export default function NewsPage() {
                     setSearchQuery('');
                     setSelectedCategory('');
                   }}
-                  className="mt-4 text-[#2d5016] hover:underline"
+                  className="mt-4 text-[#2d5016] hover:text-[#1b3d26] font-medium hover:underline transition-colors"
                 >
                   Clear filters
                 </button>
@@ -260,7 +267,7 @@ export default function NewsPage() {
                   <Link
                     key={article.id}
                     href={`/news/${article.slug}`}
-                    className="relative rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer h-full min-h-[300px] flex flex-col hover:scale-[1.02] hover:-translate-y-1 animate-fade-in-up group"
+                    className="relative rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer h-full min-h-[300px] flex flex-col hover:scale-[1.02] hover:-translate-y-1 animate-fade-in-up group"
                     style={{ animationDelay: `${index * 50}ms`, animationFillMode: 'both' }}
                   >
                     <img
@@ -320,9 +327,19 @@ export default function NewsPage() {
                   <button
                     onClick={loadMore}
                     disabled={loadingMore}
-                    className="bg-[#2d5016] text-white px-8 py-3 rounded-md hover:bg-[#1b3d26] transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="bg-[#2d5016] text-white px-8 py-3 rounded-lg hover:bg-[#1b3d26] transition-all font-medium disabled:opacity-50 disabled:cursor-not-allowed shadow-sm hover:shadow-md"
                   >
-                    {loadingMore ? 'Loading...' : 'Load More Articles'}
+                    {loadingMore ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Loading...
+                      </span>
+                    ) : (
+                      'Load More Articles'
+                    )}
                   </button>
                 </div>
               )}
@@ -330,8 +347,10 @@ export default function NewsPage() {
           )}
 
           {error && newsArticles.length > 0 && (
-            <div className="mt-4 text-center text-red-600">
-              <p>{error}</p>
+            <div className="mt-4 text-center">
+              <div className="bg-red-50 border border-red-200 text-red-800 rounded-xl p-4 shadow-sm inline-block">
+                <p className="font-medium">{error}</p>
+              </div>
             </div>
           )}
         </div>

@@ -289,7 +289,7 @@ export default function Header() {
 
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/news" className="text-gray-700 hover:text-[#2d5016] font-medium text-sm transition-colors relative group">
-              News&Update
+              News & Updates
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#2d5016] transition-all group-hover:w-full"></span>
             </Link>
 
