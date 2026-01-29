@@ -62,9 +62,9 @@ export default async function LoanDetailPage({
           <p className="text-gray-600 mt-2">Loan details, lender, amount, and documents</p>
         </div>
 
-        <div className="space-y-8">
-          {/* Loan information table */}
-          <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left: Loan information table (1/3) */}
+          <div className="lg:col-span-1 bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
             <div className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] px-6 py-4 border-b border-gray-200">
               <h2 className="text-2xl font-bold text-gray-900">Loan information</h2>
             </div>
@@ -102,16 +102,21 @@ export default async function LoanDetailPage({
             </div>
           </div>
 
-          {/* Details and documents */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Right: Details and documents (2/3) */}
+          <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-xl shadow-md border border-gray-200 overflow-hidden">
               <div className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] px-6 py-4 border-b border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-900">Details</h2>
               </div>
               <div className="p-6">
-                <p className="text-gray-600 whitespace-pre-wrap">
-                  {loan.description || 'No description available.'}
-                </p>
+                {loan.description ? (
+                  <div
+                    className="blog-content prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-[#2d5016] prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md"
+                    dangerouslySetInnerHTML={{ __html: loan.description }}
+                  />
+                ) : (
+                  <p className="text-gray-600">No description available.</p>
+                )}
               </div>
             </div>
 
@@ -140,7 +145,6 @@ export default async function LoanDetailPage({
                 )}
               </div>
             </div>
-          </div>
           </div>
         </div>
 
