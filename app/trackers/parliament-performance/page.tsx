@@ -50,14 +50,23 @@ export default function ParliamentPerformancePage() {
   const [loading, setLoading] = useState(true)
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null)
 
-  // Fetch all MPs
+  // Fetch all MPs (paginate like MPs page: backend max_page_size is 100)
   useEffect(() => {
     const loadMPs = async () => {
       try {
         setLoading(true)
-        // Fetch all MPs (with a large page size to get all)
-        const response = await fetchMPs(1, 1000)
-        setAllMps(response.results)
+        let allResults: MP[] = []
+        let currentPage = 1
+        let hasMore = true
+
+        while (hasMore) {
+          const data = await fetchMPs(currentPage, 100)
+          allResults = [...allResults, ...data.results]
+          hasMore = data.next !== null
+          currentPage++
+        }
+
+        setAllMps(allResults)
       } catch (error) {
         console.error('Error fetching MPs:', error)
       } finally {
