@@ -111,7 +111,7 @@ export default function NewsPage() {
 
   if (initialLoad && loading) {
     return (
-      <div className="min-h-screen bg-[#fafaf8]">
+      <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
         <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
           <div className="border-b border-gray-200 pb-6 mb-8">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">News</h1>
@@ -128,14 +128,14 @@ export default function NewsPage() {
 
   if (error && newsArticles.length === 0 && !initialLoad) {
     return (
-      <div className="min-h-screen bg-[#fafaf8]">
+      <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
         <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
           <header className="border-b border-gray-200 pb-6 mb-8">
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">News</h1>
             <p className="text-gray-600 text-sm sm:text-base mb-6">
               If it happened in Parliament, it&apos;s right here.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4">
               <div className="flex-1 relative">
                 <input
                   type="search"
@@ -148,17 +148,22 @@ export default function NewsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
               </div>
-              <div className="sm:w-48">
-                <select
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2d5016]/40 focus:border-[#2d5016]"
+            </div>
+            <div className="flex flex-wrap gap-2" role="tablist" aria-label="News categories">
+              {NEWS_CATEGORIES.map((category) => (
+                <button
+                  key={category.value}
+                  type="button"
+                  role="tab"
+                  aria-selected={selectedCategory === category.value}
+                  onClick={() => setSelectedCategory(category.value)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedCategory === category.value ? 'bg-[#2d5016] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
                 >
-                  {NEWS_CATEGORIES.map((category) => (
-                    <option key={category.value} value={category.value}>{category.label}</option>
-                  ))}
-                </select>
-              </div>
+                  {category.label}
+                </button>
+              ))}
             </div>
           </header>
           <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-4">
@@ -176,7 +181,7 @@ export default function NewsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fafaf8]">
+    <div className="min-h-screen bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8]">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 pb-12">
         {/* News-style page header: title + search/filter bar */}
         <header className="border-b border-gray-200 pb-6 mb-8">
@@ -184,7 +189,7 @@ export default function NewsPage() {
           <p className="text-gray-600 text-sm sm:text-base mb-6">
             If it happened in Parliament, it&apos;s right here.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-4">
             <label htmlFor="news-search" className="sr-only">Search news</label>
             <div className="flex-1 relative">
               <input
@@ -206,22 +211,24 @@ export default function NewsPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </div>
-            <div className="sm:w-48">
-              <label htmlFor="news-category" className="sr-only">Category</label>
-              <select
-                id="news-category"
-                value={selectedCategory}
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-lg border border-gray-300 bg-white text-gray-900 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#2d5016]/40 focus:border-[#2d5016]"
-                aria-label="Filter by category"
+          </div>
+          <div className="flex flex-wrap gap-2" role="tablist" aria-label="News categories">
+            {NEWS_CATEGORIES.map((category) => (
+              <button
+                key={category.value}
+                type="button"
+                role="tab"
+                aria-selected={selectedCategory === category.value}
+                onClick={() => setSelectedCategory(category.value)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedCategory === category.value
+                    ? 'bg-[#2d5016] text-white'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
               >
-                {NEWS_CATEGORIES.map((category) => (
-                  <option key={category.value} value={category.value}>
-                    {category.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+                {category.label}
+              </button>
+            ))}
           </div>
         </header>
 
