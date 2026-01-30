@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import { ArrowLeft, X, Users, MapPin, Building2 } from 'lucide-react'
-import { fetchMPs, MP } from '@/lib/api'
+import { fetchMPs, fetchParliamentTerms, MP, ParliamentTerm } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 
 // Dynamically import the map component to avoid SSR issues with Leaflet
@@ -49,18 +49,25 @@ export default function ParliamentPerformancePage() {
   const [allMps, setAllMps] = useState<MP[]>([])
   const [loading, setLoading] = useState(true)
   const [selectedDistrict, setSelectedDistrict] = useState<string | null>(null)
+  const [parliamentTerms, setParliamentTerms] = useState<ParliamentTerm[]>([])
+  const [selectedParliamentTermId, setSelectedParliamentTermId] = useState<number | null>(null)
+
+  useEffect(() => {
+    fetchParliamentTerms().then(setParliamentTerms).catch(() => {})
+  }, [])
 
   // Fetch all MPs (paginate like MPs page: backend max_page_size is 100)
   useEffect(() => {
     const loadMPs = async () => {
       try {
         setLoading(true)
+        const filters = selectedParliamentTermId != null ? { parliament_term: selectedParliamentTermId } : undefined
         let allResults: MP[] = []
         let currentPage = 1
         let hasMore = true
 
         while (hasMore) {
-          const data = await fetchMPs(currentPage, 100)
+          const data = await fetchMPs(currentPage, 100, filters)
           allResults = [...allResults, ...data.results]
           hasMore = data.next !== null
           currentPage++
@@ -75,7 +82,7 @@ export default function ParliamentPerformancePage() {
     }
 
     loadMPs()
-  }, [])
+  }, [selectedParliamentTermId])
 
   // Calculate MP counts per district
   const districtMPCounts = useMemo(() => {
@@ -132,6 +139,28 @@ export default function ParliamentPerformancePage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Parliament Performance Tracker</h1>
           <p className="text-gray-600 mt-2">Explore Members of Parliament by district. Click on any district to see its representatives.</p>
         </div>
+
+        {/* Parliament / Term selector */}
+        {parliamentTerms.length > 0 && (
+          <div className="mb-6">
+            <label htmlFor="parliament-term" className="block text-sm font-medium text-gray-700 mb-2">
+              Parliament / Term
+            </label>
+            <select
+              id="parliament-term"
+              value={selectedParliamentTermId ?? ''}
+              onChange={(e) => setSelectedParliamentTermId(e.target.value === '' ? null : Number(e.target.value))}
+              className="w-full max-w-xs rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-[#2d5016] focus:outline-none focus:ring-2 focus:ring-[#2d5016]/40"
+            >
+              <option value="">Current Parliament</option>
+              {parliamentTerms.map((term) => (
+                <option key={term.id} value={term.id}>
+                  {term.name} ({term.start_year}-{term.end_year}){term.is_current ? ' (current)' : ''}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/* Summary Stats */}
         {!loading && allMps.length > 0 && (

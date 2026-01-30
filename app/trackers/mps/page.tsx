@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { Users, Building2, MapPin, ArrowLeft } from 'lucide-react';
-import { fetchMPs, fetchMPSummary, MP, MPSummary } from '@/lib/api';
+import { fetchMPs, fetchMPSummary, fetchParliamentTerms, MP, MPSummary, ParliamentTerm } from '@/lib/api';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -52,6 +52,8 @@ export default function MPsPage() {
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const pageSize = 20;
+  const [parliamentTerms, setParliamentTerms] = useState<ParliamentTerm[]>([]);
+  const [selectedParliamentTermId, setSelectedParliamentTermId] = useState<number | null>(null);
   const [selectedParties, setSelectedParties] = useState<string[]>([]);
   const [selectedDistricts, setSelectedDistricts] = useState<string[]>([]);
   const [selectedSearchTerms, setSelectedSearchTerms] = useState<string[]>([]);
@@ -220,10 +222,13 @@ export default function MPsPage() {
   }, [filteredMps]);
 
   useEffect(() => {
-    // Load all MPs on mount (fetch all pages)
+    fetchParliamentTerms().then(setParliamentTerms).catch(() => {});
+  }, []);
+
+  useEffect(() => {
     loadAllMPs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [selectedParliamentTermId]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -234,15 +239,14 @@ export default function MPsPage() {
     try {
       setLoading(true);
       setError(null);
-      
-      // Fetch all MPs by requesting a large page size
-      // The backend max_page_size is 100, so we'll fetch in chunks if needed
+
+      const filters = selectedParliamentTermId != null ? { parliament_term: selectedParliamentTermId } : undefined;
       let allResults: MP[] = [];
       let currentPage = 1;
       let hasMore = true;
 
       while (hasMore) {
-        const data = await fetchMPs(currentPage, 100); // Use max page size
+        const data = await fetchMPs(currentPage, 100, filters);
         allResults = [...allResults, ...data.results];
         hasMore = data.next !== null;
         currentPage++;
@@ -356,6 +360,28 @@ export default function MPsPage() {
             </div>
           </div>
         </div>
+
+        {/* Parliament / Term selector */}
+        {parliamentTerms.length > 0 && (
+          <div className="mb-6">
+            <label htmlFor="parliament-term" className="block text-sm font-medium text-gray-700 mb-2">
+              Parliament / Term
+            </label>
+            <select
+              id="parliament-term"
+              value={selectedParliamentTermId ?? ''}
+              onChange={(e) => setSelectedParliamentTermId(e.target.value === '' ? null : Number(e.target.value))}
+              className="w-full max-w-xs rounded-lg border border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-[#2d5016] focus:outline-none focus:ring-2 focus:ring-[#2d5016]/40"
+            >
+              <option value="">Current Parliament</option>
+              {parliamentTerms.map((term) => (
+                <option key={term.id} value={term.id}>
+                  {term.name} ({term.start_year}-{term.end_year}){term.is_current ? ' (current)' : ''}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/* Summary Section */}
         {!loading && allMps.length > 0 && (

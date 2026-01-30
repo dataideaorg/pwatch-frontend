@@ -361,6 +361,23 @@ export async function fetchHomeBlogSummary(): Promise<HomeBlogSummaryResponse> {
   return response.json();
 }
 
+// Parliament terms API
+export interface ParliamentTerm {
+  id: number;
+  name: string;
+  start_year: number;
+  end_year: number;
+  is_current: boolean;
+}
+
+export async function fetchParliamentTerms(): Promise<ParliamentTerm[]> {
+  const response = await fetch(`${API_BASE_URL}/trackers/parliament-terms/`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch parliament terms');
+  }
+  return response.json();
+}
+
 // MPs API
 export interface MP {
   id: number;
@@ -406,6 +423,7 @@ export async function fetchMPs(
   page: number = 1,
   pageSize: number = 20,
   filters?: {
+    parliament_term?: number;
     party?: string;
     district?: string;
     constituency?: string;
@@ -418,6 +436,7 @@ export async function fetchMPs(
     page_size: pageSize.toString(),
   });
 
+  if (filters?.parliament_term != null) params.append('parliament_term', String(filters.parliament_term));
   if (filters?.party) params.append('party', filters.party);
   if (filters?.district) params.append('district', filters.district);
   if (filters?.constituency) params.append('constituency', filters.constituency);
@@ -433,6 +452,7 @@ export async function fetchMPs(
 
 export async function fetchMPSummary(
   filters?: {
+    parliament_term?: number;
     party?: string;
     district?: string;
     constituency?: string;
@@ -441,6 +461,7 @@ export async function fetchMPSummary(
 ): Promise<MPSummary> {
   const params = new URLSearchParams();
 
+  if (filters?.parliament_term != null) params.append('parliament_term', String(filters.parliament_term));
   if (filters?.party) params.append('party', filters.party);
   if (filters?.district) params.append('district', filters.district);
   if (filters?.constituency) params.append('constituency', filters.constituency);
