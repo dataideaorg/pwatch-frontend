@@ -63,7 +63,7 @@ export default function ContactPage() {
             </div>
             <div className="p-6">
               <p className="text-gray-600 mb-6">
-                Fill out the form below and we will get back to you within 48 hours.
+                Fill out the form below and we will get back to you as soon as possible.
               </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
