@@ -1,10 +1,21 @@
 'use client';
 
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
-import { submitContactForm } from '@/lib/api';
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react';
+import { submitContactForm, fetchPageHeroImage } from '@/lib/api';
 
 export default function ContactPage() {
+  const [heroImage, setHeroImage] = useState<string>('/images/contact.jpg');
+
+  useEffect(() => {
+    fetchPageHeroImage('contact').then((data) => {
+      if (data?.image) {
+        setHeroImage(data.image);
+      }
+    });
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,10 +59,33 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-[#f5f0e8]">
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900">Contact Us</h1>
-          <p className="text-gray-600 mt-2">Get in touch with the Centre for Policy Analysis team</p>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Hero Section */}
+        <div className="relative mb-10 h-[400px] overflow-hidden rounded-2xl shadow-xl">
+          <Image
+            src={heroImage}
+            alt="Contact Us - Get in touch with Parliament Watch Uganda"
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+            unoptimized={heroImage.startsWith('http')}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 z-10 px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
+            <div className="max-w-2xl">
+              <div className="inline-flex items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 mb-3">
+                <MessageCircle className="w-4 h-4 text-white" />
+                <span className="text-sm font-medium text-white/90">Get in touch</span>
+              </div>
+              <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl mb-3">
+                Contact Us
+              </h1>
+              <p className="text-base text-white/90 leading-relaxed sm:text-lg">
+                Get in touch with the Centre for Policy Analysis team. We&apos;d love to hear from you.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Main Content Grid */}
