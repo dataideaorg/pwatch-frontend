@@ -837,9 +837,6 @@ export interface Poll {
   allow_multiple_votes: boolean;
   show_results_before_voting: boolean;
   featured: boolean;
-  is_x_poll: boolean;
-  x_poll_url: string | null;
-  x_poll_embed_html: string | null;
   options: PollOption[];
   total_votes: number;
   is_active: boolean;
@@ -909,11 +906,19 @@ export async function voteOnPoll(pollId: number, optionId: number): Promise<any>
     headers: {
       'Content-Type': 'application/json',
     },
+    credentials: 'include',
     body: JSON.stringify({ option_id: optionId }),
   });
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.error || 'Failed to submit vote');
+    let message = 'Failed to submit vote';
+    try {
+      const error = await response.json();
+      message = (error as { error?: string; detail?: string }).error ?? (error as { detail?: string }).detail ?? message;
+    } catch {
+      // response may not be JSON (e.g. 403/500 HTML)
+      message = response.status === 403 ? 'Session expired or permission denied. Try refreshing.' : message;
+    }
+    throw new Error(message);
   }
   return response.json();
 }

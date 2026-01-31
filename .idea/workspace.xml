@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/citizens-voice/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/citizens-voice/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/api.ts" beforeDir="false" afterPath="$PROJECT_DIR$/lib/api.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +83,7 @@
       <workItem from="1769646458193" duration="11000" />
       <workItem from="1769646505169" duration="25241000" />
       <workItem from="1769787494237" duration="18421000" />
-      <workItem from="1769836706076" duration="5203000" />
+      <workItem from="1769836706076" duration="8370000" />
     </task>
     <servers />
   </component>

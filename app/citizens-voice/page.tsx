@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import Script from 'next/script';
-import { Search, Calendar, CheckCircle, XCircle, TrendingUp, Users, BarChart3, MessageSquare, Send, AlertCircle } from 'lucide-react';
+import { Calendar, CheckCircle, XCircle, TrendingUp, Users, BarChart3, MessageSquare, Send, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { fetchPolls, voteOnPoll, fetchPollResults, Poll, submitFeedback, FeedbackSubmission, fetchXPollEmbeds, XPollEmbed } from '@/lib/api';
@@ -19,10 +19,6 @@ export default function CitizensVoicePage() {
   const [allPolls, setAllPolls] = useState<Poll[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [categoryFilter, setCategoryFilter] = useState<string>('all');
-  const [featuredFilter, setFeaturedFilter] = useState<boolean | null>(null);
   const [votedPolls, setVotedPolls] = useState<Set<number>>(new Set());
   const [pollResults, setPollResults] = useState<Record<number, any>>({});
   const [votingPollId, setVotingPollId] = useState<number | null>(null);
@@ -80,43 +76,6 @@ export default function CitizensVoicePage() {
       setLoading(false);
     }
   };
-
-  const categories = useMemo(() => {
-    const cats = new Set<string>();
-    allPolls.forEach((poll) => {
-      if (poll.category) cats.add(poll.category);
-    });
-    return Array.from(cats).sort();
-  }, [allPolls]);
-
-  const filteredPolls = useMemo(() => {
-    let filtered = [...allPolls];
-
-    if (statusFilter !== 'all') {
-      filtered = filtered.filter((poll) => poll.status === statusFilter);
-    }
-
-    if (categoryFilter !== 'all') {
-      filtered = filtered.filter((poll) => poll.category === categoryFilter);
-    }
-
-    if (featuredFilter !== null) {
-      filtered = filtered.filter((poll) => poll.featured === featuredFilter);
-    }
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter((poll) => {
-        return (
-          poll.title.toLowerCase().includes(query) ||
-          poll.description.toLowerCase().includes(query) ||
-          (poll.category && poll.category.toLowerCase().includes(query))
-        );
-      });
-    }
-
-    return filtered;
-  }, [allPolls, searchQuery, statusFilter, categoryFilter, featuredFilter]);
 
   // After Twitter widgets.js loads and X poll embeds are in the DOM, parse them so the full tweet (including poll) renders
   useEffect(() => {
@@ -272,83 +231,15 @@ export default function CitizensVoicePage() {
           </p>
         </div>
 
-        {/* Search and Filter Section */}
-        <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
-                <Input
-                  type="text"
-                  placeholder="Search polls..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 text-gray-900 placeholder:text-gray-400 border-gray-300 focus:border-gray-400"
-                  style={{ color: '#111827' }}
-                />
-              </div>
-            </div>
-            <div className="flex gap-2">
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
-              >
-                <option value="all">All Status</option>
-                <option value="active">Active</option>
-                <option value="closed">Closed</option>
-                <option value="draft">Draft</option>
-              </select>
-              <select
-                value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
-              >
-                <option value="all">All Categories</option>
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-              <select
-                value={featuredFilter === null ? 'all' : featuredFilter ? 'featured' : 'not-featured'}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setFeaturedFilter(value === 'all' ? null : value === 'featured');
-                }}
-                className="px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#2d5016] focus:border-transparent text-gray-900 bg-[#fafaf8]"
-              >
-                <option value="all">All Polls</option>
-                <option value="featured">Featured Only</option>
-              </select>
-              {(searchQuery || statusFilter !== 'all' || categoryFilter !== 'all' || featuredFilter !== null) && (
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setStatusFilter('all');
-                    setCategoryFilter('all');
-                    setFeaturedFilter(null);
-                  }}
-                  className="bg-[#fafaf8] text-gray-700 hover:bg-[#f5f0e8] border-gray-300"
-                >
-                  Clear
-                </Button>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* X Poll Embeds (standalone) */}
+        {/* X Poll Embeds (standalone) - first section */}
         {xPollEmbeds.length > 0 && (
           <div className="mb-10">
             <h2 className="text-xl font-bold text-gray-900 mb-4">X Polls</h2>
-            <div className="space-y-6">
+            <div className="flex flex-row flex-wrap justify-start gap-6">
               {xPollEmbeds.map((embed) => (
                 <div
                   key={embed.id}
-                  className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col items-center [&_.twitter-tweet]:!max-w-full [&_iframe]:!max-w-full"
+                  className="w-fit bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col items-center [&_.twitter-tweet]:!max-w-full [&_iframe]:!max-w-full"
                 >
                   {embed.title && (
                     <h3 className="text-lg font-semibold text-gray-900 mb-4 w-full">{embed.title}</h3>
@@ -363,17 +254,17 @@ export default function CitizensVoicePage() {
           </div>
         )}
 
+        {/* Platform polls */}
+        <h2 className="text-xl font-bold text-gray-900 mb-4">Platform Polls</h2>
+
         {/* Polls Grid */}
-        {filteredPolls.length === 0 ? (
+        {allPolls.length === 0 ? (
           <div className="bg-[#fafaf8] rounded-lg shadow-sm border border-gray-200 p-12 text-center">
             <p className="text-gray-500 text-lg">No polls found</p>
-            {(searchQuery || statusFilter !== 'all' || categoryFilter !== 'all' || featuredFilter !== null) && (
-              <p className="text-gray-400 text-sm mt-2">Try adjusting your search or filters</p>
-            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {filteredPolls.map((poll) => {
+            {allPolls.map((poll) => {
               const hasVoted = votedPolls.has(poll.id);
               const results = pollResults[poll.id];
               const showResults = hasVoted || poll.show_results_before_voting || poll.status === 'closed';
@@ -456,13 +347,27 @@ export default function CitizensVoicePage() {
                                 <div key={option.id} className="space-y-2">
                                   <div className="flex items-center justify-between">
                                     <label
+                                      role="button"
+                                      tabIndex={poll.is_active && !hasVoted ? 0 : undefined}
                                       className={`flex-1 cursor-pointer ${
                                         poll.is_active && !hasVoted ? 'hover:bg-[#f5f0e8]' : ''
                                       } p-3 rounded-lg border ${
                                         hasVoted && optionResults
                                           ? 'border-[#2d5016] bg-green-50'
                                           : 'border-gray-200'
-                                      } transition-colors`}
+                                      } transition-colors ${isVoting ? 'opacity-70 pointer-events-none' : ''}`}
+                                      onClick={(e) => {
+                                        if (!poll.is_active || hasVoted || isVoting) return;
+                                        e.preventDefault();
+                                        handleVote(poll.id, option.id);
+                                      }}
+                                      onKeyDown={(e) => {
+                                        if (!poll.is_active || hasVoted || isVoting) return;
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                          e.preventDefault();
+                                          handleVote(poll.id, option.id);
+                                        }
+                                      }}
                                     >
                                       <div className="flex items-center gap-3">
                                         {poll.is_active && !hasVoted ? (
@@ -470,9 +375,10 @@ export default function CitizensVoicePage() {
                                             type="radio"
                                             name={`poll-${poll.id}`}
                                             value={option.id}
+                                            readOnly
+                                            tabIndex={-1}
                                             disabled={isVoting || !poll.is_active || hasVoted}
-                                            onChange={() => handleVote(poll.id, option.id)}
-                                            className="w-4 h-4 text-[#2d5016] focus:ring-[#2d5016]"
+                                            className="w-4 h-4 text-[#2d5016] focus:ring-[#2d5016] pointer-events-none"
                                           />
                                         ) : null}
                                         <span className="text-sm font-medium text-gray-900 flex-1">
