@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowLeft, Search, Calendar, Clock, User, ExternalLink, Play } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowLeft, Search, Calendar, Clock, User, ExternalLink, Play, Radio } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { fetchXSpaces, XSpace } from '@/lib/api';
@@ -199,24 +200,51 @@ export default function XSpacesPage() {
 
   return (
     <div className="min-h-screen bg-[#f5f0e8]">
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Breadcrumb Navigation */}
-        <div className="mb-6">
-          <Link
-            href="/multimedia"
-            className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Multimedia
-          </Link>
+      <main className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+          {/* Breadcrumb Navigation */}
+          <div className="mb-4">
+            <Link
+              href="/multimedia"
+              className="inline-flex items-center text-[#2d5016] hover:text-[#1b3d26] transition-colors"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Multimedia
+            </Link>
+          </div>
+
+          {/* Hero Section */}
+          <div className="relative mb-10 h-[360px] overflow-hidden rounded-2xl shadow-xl">
+            <Image
+              src="/images/x-spaces.jpg"
+              alt="X Spaces - live discussions and recorded events"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"
+              aria-hidden
+            />
+            <div className="absolute inset-x-0 bottom-0 z-10 px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 mb-3">
+                  <Radio className="w-4 h-4 text-white" aria-hidden />
+                  <span className="text-sm font-medium text-white/90">Live audio</span>
+                </div>
+                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl mb-3">
+                  X Spaces
+                </h1>
+                <p className="text-base text-white/90 leading-relaxed sm:text-lg">
+                  Join our live discussions and listen to recorded X Spaces events.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">X Spaces</h1>
-          <p className="text-gray-600 text-lg">Join our live discussions and listen to recorded X Spaces events</p>
-        </div>
-
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pb-8">
         {/* Search and Filter Section */}
         <div className="bg-gradient-to-br from-[#fafaf8] to-[#f5f0e8] rounded-xl shadow-md border border-gray-200 p-6 mb-6">
           <div className="flex flex-col md:flex-row gap-4">
@@ -388,6 +416,7 @@ export default function XSpacesPage() {
             matters, governance, and civic engagement. You can participate in live spaces or listen to recordings
             of past events.
           </p>
+        </div>
         </div>
       </main>
     </div>
