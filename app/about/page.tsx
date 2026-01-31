@@ -17,6 +17,22 @@ import {
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
+/** Convert YouTube watch / youtu.be URL to embed URL */
+function getYouTubeEmbedUrl(url: string): string | null {
+  if (!url?.trim()) return null;
+  try {
+    const u = url.trim();
+    const watchMatch = u.match(/(?:youtube\.com\/watch\?v=)([a-zA-Z0-9_-]+)/);
+    if (watchMatch) return `https://www.youtube.com/embed/${watchMatch[1]}`;
+    const shortMatch = u.match(/(?:youtu\.be\/)([a-zA-Z0-9_-]+)/);
+    if (shortMatch) return `https://www.youtube.com/embed/${shortMatch[1]}`;
+    if (u.includes('youtube.com/embed/')) return u;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export default function AboutPage() {
   const [whoWeAre, setWhoWeAre] = useState<WhoWeAre | null>(null);
   const [ourStory, setOurStory] = useState<OurStory | null>(null);
@@ -137,13 +153,23 @@ export default function AboutPage() {
               {whoWeAre.title}
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-              {whoWeAre.image && (
-                <div className="relative h-96 rounded-xl overflow-hidden shadow-xl">
-                  <img
-                    src={whoWeAre.image.startsWith('http') ? whoWeAre.image : `${API_BASE_URL.replace('/api', '')}${whoWeAre.image}`}
-                    alt={whoWeAre.title}
-                    className="w-full h-full object-cover"
-                  />
+              {(whoWeAre.youtube_video_url || whoWeAre.image) && (
+                <div className="relative h-96 rounded-xl overflow-hidden shadow-xl bg-black">
+                  {getYouTubeEmbedUrl(whoWeAre.youtube_video_url || '') ? (
+                    <iframe
+                      src={getYouTubeEmbedUrl(whoWeAre.youtube_video_url!)!}
+                      title={whoWeAre.title}
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : whoWeAre.image ? (
+                    <img
+                      src={whoWeAre.image.startsWith('http') ? whoWeAre.image : `${API_BASE_URL.replace('/api', '')}${whoWeAre.image}`}
+                      alt={whoWeAre.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : null}
                 </div>
               )}
               <div className="bg-white rounded-xl shadow-md border border-gray-200 p-8 h-96 flex flex-col">
@@ -169,13 +195,23 @@ export default function AboutPage() {
                   dangerouslySetInnerHTML={{ __html: ourStory.content }}
                 />
               </div>
-              {ourStory.image && (
-                <div className="relative h-96 rounded-xl overflow-hidden shadow-xl">
-                  <img
-                    src={ourStory.image.startsWith('http') ? ourStory.image : `${API_BASE_URL.replace('/api', '')}${ourStory.image}`}
-                    alt={ourStory.title}
-                    className="w-full h-full object-cover"
-                  />
+              {(ourStory.youtube_video_url || ourStory.image) && (
+                <div className="relative h-96 rounded-xl overflow-hidden shadow-xl bg-black">
+                  {getYouTubeEmbedUrl(ourStory.youtube_video_url || '') ? (
+                    <iframe
+                      src={getYouTubeEmbedUrl(ourStory.youtube_video_url!)!}
+                      title={ourStory.title}
+                      className="absolute inset-0 w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : ourStory.image ? (
+                    <img
+                      src={ourStory.image.startsWith('http') ? ourStory.image : `${API_BASE_URL.replace('/api', '')}${ourStory.image}`}
+                      alt={ourStory.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : null}
                 </div>
               )}
             </div>
