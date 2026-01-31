@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Script from 'next/script';
+import Image from 'next/image';
 import { Calendar, CheckCircle, XCircle, TrendingUp, Users, BarChart3, MessageSquare, Send, AlertCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -222,15 +223,40 @@ export default function CitizensVoicePage() {
         strategy="afterInteractive"
         onLoad={() => setTwitterReady(true)}
       />
-      <main className="max-w-7xl mx-auto px-4 py-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">Citizens Voice</h1>
-          <p className="text-gray-600 text-lg">
-            Participate in polls and share your feedback on parliamentary matters and governance issues
-          </p>
+      <main className="relative">
+        {/* Hero Section */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+          <div className="relative mb-10 h-[360px] overflow-hidden rounded-2xl shadow-xl">
+            <Image
+              src="/images/citizens-voice.jpg"
+              alt="Citizens Voice - participate in polls and share your feedback"
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div
+              className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"
+              aria-hidden
+            />
+            <div className="absolute inset-x-0 bottom-0 z-10 px-6 py-6 sm:px-8 sm:py-8 md:px-10 md:py-10">
+              <div className="max-w-2xl">
+                <div className="inline-flex items-center gap-2 rounded-lg bg-white/15 px-3 py-1.5 mb-3">
+                  <MessageSquare className="w-4 h-4 text-white" aria-hidden />
+                  <span className="text-sm font-medium text-white/90">Your voice matters</span>
+                </div>
+                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl mb-3">
+                  Citizens Voice
+                </h1>
+                <p className="text-base text-white/90 leading-relaxed sm:text-lg">
+                  Participate in polls and share your feedback on parliamentary matters and governance issues.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pb-8">
         {/* X Poll Embeds (standalone) - first section */}
         {xPollEmbeds.length > 0 && (
           <div className="mb-10">
@@ -625,6 +651,7 @@ export default function CitizensVoicePage() {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </main>
     </div>
