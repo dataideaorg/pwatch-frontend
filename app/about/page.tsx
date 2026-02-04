@@ -410,7 +410,7 @@ export default function AboutPage() {
                       <img
                         src={member.photo.startsWith('http') ? member.photo : `${API_BASE_URL.replace('/api', '')}${member.photo}`}
                         alt={member.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#2d5016] to-[#1b3d26]">
