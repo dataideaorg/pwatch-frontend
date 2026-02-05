@@ -18,6 +18,7 @@ import {
 
 type SortField = 'title' | 'year_introduced' | 'created_at' | 'bill_type' | 'status' | 'mover' | null;
 type SortDirection = 'asc' | 'desc';
+const PAGE_SIZE = 15;
 
 function BillsTrackerPageContent() {
   // Store all bills loaded from the server
@@ -28,6 +29,7 @@ function BillsTrackerPageContent() {
   const [sortField, setSortField] = useState<SortField>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>('asc');
   const [heroImage, setHeroImage] = useState<string>('/images/bills.jpg');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     loadAllBills();
@@ -120,6 +122,25 @@ function BillsTrackerPageContent() {
 
     return sorted;
   }, [filteredBills, sortField, sortDirection]);
+
+  const totalPages = Math.max(1, Math.ceil(sortedBills.length / PAGE_SIZE));
+
+  useEffect(() => {
+    // Reset to first page when filters change
+    setCurrentPage(1);
+  }, [searchQuery, sortField, sortDirection, filteredBills.length]);
+
+  useEffect(() => {
+    // Clamp current page if data shrinks
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [currentPage, totalPages]);
+
+  const paginatedBills = useMemo(() => {
+    const start = (currentPage - 1) * PAGE_SIZE;
+    return sortedBills.slice(start, start + PAGE_SIZE);
+  }, [sortedBills, currentPage]);
 
   const handleSort = (field: SortField) => {
     if (sortField === field) {
@@ -553,7 +574,7 @@ function BillsTrackerPageContent() {
                       </TableRow>
                     </TableHeader>
                     <TableBody className="bg-[#fafaf8] divide-y divide-gray-200">
-                      {sortedBills.map((bill) => (
+                      {paginatedBills.map((bill) => (
                         <TableRow key={bill.id} className="hover:bg-[#f5f0e8] transition-colors">
                           <TableCell>
                             <div className="text-sm font-medium text-gray-900 max-w-md">
@@ -590,6 +611,35 @@ function BillsTrackerPageContent() {
                       ))}
                     </TableBody>
                   </Table>
+                </div>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3 border-t border-gray-200 bg-[#fafaf8]">
+                  <p className="text-sm text-gray-600">
+                    Showing {sortedBills.length === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1}-
+                    {Math.min(currentPage * PAGE_SIZE, sortedBills.length)} of {sortedBills.length} bills
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="bg-white text-gray-700 hover:bg-gray-50 border-gray-300 disabled:cursor-not-allowed"
+                    >
+                      Previous
+                    </Button>
+                    <span className="text-sm text-gray-700">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage >= totalPages}
+                      className="bg-white text-gray-700 hover:bg-gray-50 border-gray-300 disabled:cursor-not-allowed"
+                    >
+                      Next
+                    </Button>
+                  </div>
                 </div>
               </div>
             ) : (
