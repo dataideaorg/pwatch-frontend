@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import CitizensVoiceHero from '@/components/CitizensVoiceHero';
 import { fetchTrivias, fetchTrivia, Trivia, TriviaQuestion } from '@/lib/api';
 
-export default function TriviaPage() {
+function TriviaPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [trivias, setTrivias] = useState<Trivia[]>([]);
@@ -282,7 +282,7 @@ export default function TriviaPage() {
 
                   const currentQuestion = hasQuestions ? questions[triviaCurrentIndex] : null;
                   const hasOptions = currentQuestion?.options && currentQuestion.options.length > 0;
-                  const hasAnswer = currentQuestion?.answer_text?.trim().length > 0;
+                  const hasAnswer = (currentQuestion?.answer_text?.trim() ?? '').length > 0;
                   const correctOption = hasOptions ? currentQuestion?.options.find(opt => opt.is_correct) : null;
                   const selectedOption = triviaSelectedOptionId && hasOptions ? currentQuestion?.options.find(opt => opt.id === triviaSelectedOptionId) : null;
                   const isCorrect = selectedOption?.is_correct ?? false;
@@ -450,5 +450,32 @@ export default function TriviaPage() {
         </div>
       </main>
     </div>
+  );
+}
+
+function TriviaPageFallback() {
+  return (
+    <div className="min-h-screen bg-[#f5f0e8]">
+      <main className="relative">
+        <CitizensVoiceHero
+          title="Trivia"
+          subtitle="Test your knowledge with our trivia quizzes on parliamentary and governance topics."
+        />
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 pb-8">
+          <div className="flex items-center justify-center py-12">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-[#2d5016]" />
+            <span className="ml-3 text-gray-600">Loading...</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export default function TriviaPage() {
+  return (
+    <Suspense fallback={<TriviaPageFallback />}>
+      <TriviaPageContent />
+    </Suspense>
   );
 }
