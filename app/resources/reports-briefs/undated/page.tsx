@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, Search, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Download, FileText } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { CommitteeDetail } from '@/lib/api'
 
 interface Report {
   id: number
@@ -24,6 +25,65 @@ interface PaginatedResponse {
 }
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api'
+
+// Helper function to fetch all committee documents and transform them to Report format
+async function fetchAllCommitteeDocuments(): Promise<Report[]> {
+  const committeeDocuments: Report[] = []
+  
+  try {
+    // Fetch all committees
+    let currentPage = 1
+    let hasMore = true
+    
+    while (hasMore) {
+      const params = new URLSearchParams({
+        page: currentPage.toString(),
+        page_size: '100',
+      })
+      
+      const response = await fetch(`${API_BASE_URL}/trackers/committees/?${params}`)
+      if (!response.ok) {
+        break
+      }
+      
+      const data = await response.json()
+      const committees = data.results || []
+      
+      // Fetch details for each committee to get documents
+      for (const committee of committees) {
+        try {
+          const detailResponse = await fetch(`${API_BASE_URL}/trackers/committees/${committee.id}/`)
+          if (detailResponse.ok) {
+            const committeeDetail: CommitteeDetail = await detailResponse.json()
+            
+            // Transform committee documents to Report format
+            committeeDetail.documents.forEach((doc) => {
+              committeeDocuments.push({
+                id: doc.id + 1000000, // Offset to avoid ID conflicts with regular reports
+                name: doc.title,
+                description: doc.description && doc.description.trim() ? doc.description : null,
+                file: doc.file && doc.file.trim() ? doc.file : null,
+                date_received: doc.document_date,
+                created_at: doc.created_at,
+                updated_at: doc.updated_at,
+              })
+            })
+          }
+        } catch (err) {
+          // Continue with next committee if one fails
+          console.error(`Error fetching committee ${committee.id}:`, err)
+        }
+      }
+      
+      hasMore = data.next !== null
+      currentPage++
+    }
+  } catch (err) {
+    console.error('Error fetching committee documents:', err)
+  }
+  
+  return committeeDocuments
+}
 
 export default function ReportsBriefsUndatedPage() {
   const [allReports, setAllReports] = useState<Report[]>([])
@@ -50,6 +110,7 @@ export default function ReportsBriefsUndatedPage() {
       let currentPage = 1
       let hasMore = true
 
+      // Fetch regular reports
       while (hasMore) {
         const params = new URLSearchParams({
           page: currentPage.toString(),
@@ -66,6 +127,10 @@ export default function ReportsBriefsUndatedPage() {
         hasMore = data.next !== null
         currentPage++
       }
+
+      // Fetch and merge committee documents
+      const committeeDocuments = await fetchAllCommitteeDocuments()
+      allResults = [...allResults, ...committeeDocuments]
 
       setAllReports(allResults)
     } catch (err) {
