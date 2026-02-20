@@ -1,0 +1,14 @@
+# robots.txt for Parliament Watch Uganda
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private areas if any
+# Disallow: /admin/
+# Disallow: /api/
+
+# Sitemap location
+Sitemap: https://www.parliamentwatch.ug/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+# Crawl-delay: 1
